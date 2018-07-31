@@ -1,0 +1,46 @@
+<div class="col-sm-6 offset-3 col-xs-12 p-3 mb-2">
+  <div class="d-block row p-2">
+    <h3 class="text-light text-justify">Register as Viewer </h3>
+    <small class="text-muted float-right">Don't worry, your information is safe with us :)</small>
+    <br>
+    <small class="text-muted float-right">Promise!!!</small>
+  </div>
+  <form #signupForm=ngForm (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" class="form-control" required id="email" [(ngModel)]="formData.email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted" [hidden]='errors.email'>You will use your email to login later on.</small>
+      <small class="form-text text-danger mt-2" [hidden]='!errors.email' >
+        {{errors.email}}
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="password">Password </label>
+      <input type="password" class="form-control" required id="password" name="password" [(ngModel)]="formData.password" placeholder="Password" aria-describedby="passwordHelp">
+      <small id="passwordHelp" class="form-text text-muted" [hidden]='errors.password'>Don't forget this, ok?</small>
+      <small class="form-text text-danger mt-2" [hidden]='!errors.password' >
+        {{errors.password}}
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="password_confirmation">Password Confirmation</label>
+      <input type="password" class="form-control" required id="password_confirmation" name="password_confirmation" [(ngModel)]="formData.password_confirmation" placeholder="Re-enter Password" aria-describedby="repasswordHelp">
+      <small id="password_confirmation" class="form-text text-muted" [hidden]='errors.password_confirmation'>Type again your password...strengthen your memory!</small>
+      <small class="form-text text-danger mt-2" [hidden]='!errors.password_confirmation' >
+        {{errors.password_confirmation}}
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="name">Display Name</label>
+      <input type="text" class="form-control" required id="name" name="name" [(ngModel)]="formData.name" placeholder="Your true name, or nickname...but we do prefer true name :)">
+      <small class="form-text text-danger mt-2" [hidden]='!errors.name' >
+        {{errors.name}}
+      </small>
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="condition" required id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">I agree to your terms and conditions :> </label>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="!signupForm.valid" >Submit</button>
+  </form>
+</div>

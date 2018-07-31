@@ -1,0 +1,7 @@
+button.option{
+    border-radius: 0;
+}
+
+button.radiusleft{
+    border-radius: 1em 0 0 1em;
+}

@@ -1,0 +1,27 @@
+.side-info-block .side-info-block>*{
+    z-index: 1;
+}
+
+.img-block{
+    min-height: 40%;
+    max-height: 55%;
+}
+
+.description-block{
+    height: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: justify
+}
+
+.option-block{
+    display: block;
+}
+
+a.btn{
+    text-decoration: none;
+}
+
+.chapter_block{
+    overflow: auto;
+}

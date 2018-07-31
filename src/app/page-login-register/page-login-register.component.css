@@ -1,0 +1,14 @@
+a{
+    padding: 1% ;
+    display: inline-block;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.61);
+    text-decoration: none;
+    transition: 0.3s;
+    border-radius: 10px;
+}
+
+a:hover{
+    color: white;
+    background: rgb(5, 19, 41) !important;
+}

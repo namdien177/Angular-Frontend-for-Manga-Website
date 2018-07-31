@@ -1,0 +1,15 @@
+  <button type="button" class="btn btn-light option radiusleft">
+    Clear all filter
+  </button>
+  <button type="button" class="btn btn-outline-light option" *ngIf="sortname==1" (click)="sortnamebtn('giamdan')">
+    Sort by name <i class="fas fa-caret-up"></i>
+  </button>
+  <button type="button" class="btn btn-outline-light option" *ngIf="sortname==2" (click)="sortnamebtn('tangdan')">
+    Sort by name <i class="fas fa-caret-down"></i>
+  </button>
+  <button type="button" class="btn btn-outline-light option" *ngIf="sortview==1" (click)="sortviewbtn('giamdan')">
+    Sort by view <i class="fas fa-caret-up"></i>
+  </button>
+  <button type="button" class="btn btn-outline-light option" *ngIf="sortview==2" (click)="sortviewbtn('tangdan')">
+    Sort by view <i class="fas fa-caret-down"></i>
+  </button>

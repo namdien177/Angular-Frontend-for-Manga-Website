@@ -1,0 +1,52 @@
+<div class="col-sm-10 offset-2 list-block">
+
+<!-- ----------------------- -->
+
+<div class="card bg-dark mt-3">
+    <div class="card-body row">
+      <div class="block col-sm-5 col-xs-10 text-info">
+        Manga Name
+      </div>
+      <div class="block col-sm-1 col-xs-2 text-muted">
+        Chap
+      </div>
+      <div class="block col-sm-3 col-xs-12 text-muted">
+        Manga Author
+      </div>
+      <div class="block col-sm-1 col-xs-12 text-muted">
+        View
+      </div>
+      <div class="block col-sm-2 col-xs-12 text-muted">
+        Last Updated
+      </div>
+    </div>
+  </div>
+  
+  <a class="card border-light mt-3 btn-link" 
+  *ngFor="let manga of displayList; let e = even;"
+  (click)="clickBriefManga(manga)"
+   >
+    <div class="card-body row">
+      <div class="block col-sm-5 col-xs-10 text-info text-nowrap text-truncate">{{manga.name}} </div>
+      <div class="block col-sm-1 col-xs-2 text-muted"> 50/127 </div>
+      <div class="block col-sm-3 col-xs-12 text-muted text-nowrap text-truncate">{{manga.artist}}</div>
+      <div class="block col-sm-1 col-xs-12 text-muted" >{{manga.viewcount}}</div>
+      <div class="block col-sm-2 col-xs-12 text-muted" >{{manga.updated_at}}</div>
+    </div>
+  </a>
+
+  <!-- --------  routerLink="/manga/{{manga.id}}"--------------- -->
+
+<div *ngIf="!displayList" class="col-12">
+  <h1 class="display-4 text-muted text-center" >Seems like there is no manga here...</h1>
+</div>
+
+<div *ngIf="displayList && loadmoreCondition" class="col-12 mt-3 mb-3">
+    <button type="button" class="btn btn-info btn-block rounded-0" (click)='showMoreResult()'>Load More Manga!</button>
+  </div>
+
+<div *ngIf="displayList && currentDisplayMangaCount >= displayList.length && !loadmoreCondition" class="col-12 mt-3 mb-3">
+  <h1 class="display-4 text-muted text-center" >There is no manga left to load :'(</h1>
+</div>
+
+</div>

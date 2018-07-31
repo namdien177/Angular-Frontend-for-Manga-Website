@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+body{
+    background: rgb(6, 23, 49) !important;
+    color: aliceblue;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+html { 
+    height: 100vh;
+    overflow-y: scroll; 
+    box-sizing: border-box;
+}
+
+.route-container{
+    margin-top: 56px;
+    box-sizing: border-box;
+}
+
+.ng-invalid:not(form){
+    border-left: 5px solid rgb(255, 71, 39);
+}
+
+.ng-valid:not(form){
+    border-left: 5px solid rgb(9, 255, 0);
+}
