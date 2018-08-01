@@ -1,5 +1,5 @@
 <div class="container-fluid pl-0 pt-0 mt-0">
-    <div class="side-info-block col-sm-2 d-block h-100 position-fixed m-0 bg-primary p-0">
+    <div class="side-info-block col-sm-2 col-xs-12 d-block h-100 position-fixed m-0 bg-primary p-0">
         <div class="img-block p-1">
           <img src="{{showBriefManga.cover}}" srcset="" class="img-fluid">
         </div>
@@ -10,18 +10,61 @@
             </div>
             <div class="row m-1">
               <span class="">Tags: </span>
-              <span class="ml-1" *ngFor="let tag of showBriefManga.tags">
-                  <a href="#" class="badge badge-info">{{tag}}</a>
+              <span class="ml-1" *ngFor="let tag of tagList">
+                  <a href="#" class="badge badge-info">{{tag.name}}</a>
               </span>
             </div>
         </div>
         <div class="option-block w-100 p-0 mb-1 ml-0 mr-0">
-            <a routerLink="manga/{{showBriefManga.id}}" class="btn btn-success btn-block rounded-0" >
+            <a routerLink="manga/{{showBriefManga.id}}/bookmark" class="btn btn-success btn-block rounded-0" >
               <i class="fas fa-bookmark"></i> Bookmark
             </a>
         </div>
     </div>
-    <div class="chapter_block">
+
+    <!-- Displaying Chapter Section -->
+    <div class="chapter_block col-sm-10 col-xs-12 offset-2">
+        <div class="card bg-dark mt-3">
+            <div class="card-body row">
+                <div class="block col-sm-2 col-xs-2 text-info">
+                    Chap
+                </div>
+                <div class="block col-sm-6 col-xs-10 text-info">
+                    Chapt Title
+                </div>
+                <div class="block col-sm-2 col-xs-12 text-muted">
+                    View
+                </div>
+                <div class="block col-sm-2 col-xs-12 text-muted">
+                    Last Updated
+                </div>
+            </div>
+        </div>
         
+        <a class="card border-light mt-3 btn-link" 
+        *ngFor="let chap of chapList"
+        routerLink="/manga/{{chap.idManga}}/chap/{{chap.id}}"
+        >
+            <div class="card-body row">
+                <div class="block col-sm-2 col-xs-2 text-info text-center">{{chap.chap}} </div>
+                <div class="block col-sm-6 col-xs-10 text-info text-nowrap text-truncate"> {{chap.title}} </div>
+                <div class="block col-sm-2 col-xs-12 text-muted" >Not Available</div>
+                <div class="block col-sm-2 col-xs-12 text-muted" >{{chap.updated_at}}</div>
+            </div>
+        </a>
+    
+        <!-- --------  routerLink="/manga/{{chap.idManga}}/chap/{{chap.id}}"--------------- -->
+    
+        <div *ngIf="!chapList" class="col-12">
+        <h1 class="display-4 text-muted text-center" >Seems like there is no manga here...</h1>
+        </div>
+    
+        <div *ngIf="chapList && loadmoreCondition" class="col-12 mt-3 mb-3">
+            <button type="button" class="btn btn-info btn-block rounded-0" (click)='showMoreResult()'>Load More chap!</button>
+        </div>
+    
+        <div *ngIf="chapList && !loadmoreCondition" class="col-12 mt-3 mb-3">
+        <h1 class="display-4 text-muted text-center" >There is no chap left to load :'(</h1>
+        </div>
     </div>
 </div>

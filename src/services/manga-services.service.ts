@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Manga } from '../model/manga';
-import { Mangatags } from '../model/mangatags';
 import { TagManga } from '../model/tags';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { JsonData } from '../model/JSONmanga';
+import { JsonData as JSONchap } from '../model/JSONchap';
 import {ApiLaravelService} from '../app/api-laravel.service';
 
 @Injectable({
@@ -43,28 +43,30 @@ export class MangaServicesService {
       ])));
   }
 
-  getListTagsID(id: number): Observable<Mangatags[]> {
-    return this.http.get<Mangatags[]>(this.urlAPIManga + '/' + id + '/tags').pipe(
-      tap(receivedList =>
-        receivedList
-      ),
+  getTagInfo(id: number): Observable<TagManga[]> {
+    return this.http.get<TagManga[]>(this.urlAPIManga + '/' + id + '/tags').pipe(
+      tap(receivedList => receivedList),
       catchError(error => of([
 
       ])));
   }
 
-  getTagInfo(id: number): Observable<TagManga[]> {
-    // return this.apiLaravel.getDataGet('tags/' + id, this.tags).subscribe(
-    //   returnInfo => returnInfo
-    // );
-    return this.http.get<TagManga[]>(this.urlAPIManga + '/' + id + '/tags').pipe(
-      tap(receivedList => {
-        console.log(receivedList);
-        return receivedList;
-      }),
-      catchError(error => of([
-
-      ])));
+  getListMangaChap(id:number, link?): Observable<JSONchap[]> {
+      if (!link) {
+        return this.http.get<JSONchap[]>(this.urlAPIManga+'/'+id+"/chap").pipe(
+          tap(recievedList => recievedList),
+          catchError(error => of([
+  
+          ]))
+        );
+      } else {
+        return this.http.get<JSONchap[]>(link).pipe(
+          tap(recievedList => recievedList),
+          catchError(error => of([
+  
+          ]))
+        );
+      }
   }
 
   constructor(

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Manga } from '../../model/manga';
 import { MangaServicesService } from '../../services/manga-services.service';
-import { Mangatags } from '../../model/mangatags';
 import { TagManga } from '../../model/tags';
 import {forEach} from '@angular/router/src/utils/collection';
+import { JsonData as JSONTags } from '../../model/JSONtagInfo'
 
 @Component({
   selector: 'app-page-allmanga',
@@ -21,26 +21,17 @@ export class PageAllmangaComponent implements OnInit {
   sortview = 2;                    // xac dinh sort theo ten - 1 cao-thap === 2 thap-cao
 
   showBriefManga: Manga;
-  showBriefMangaTags: Mangatags[];
-  listTagString: TagManga[] = [];
+  listTagString: TagManga[];
   ngOnInit() {
   }
 
   getClickedManga(clickedManga: Manga) {
     if (clickedManga) {
       this.showBriefManga = clickedManga;
-    }
-  }
-
-  getListTags(tags: Mangatags[]) {
-    if (tags) {
-      this.showBriefMangaTags = tags;
-      this.showBriefMangaTags.forEach(value => {
-        console.log(value);
-        this.mangaService.getTagInfo(value.idTags).subscribe(values => this.listTagString.push(values.data));
+      this.mangaService.getTagInfo(clickedManga.id).subscribe(value => {
+        //@ts-ignore
+        this.listTagString = value.data
       });
-      console.log(this.listTagString);
     }
   }
-
 }

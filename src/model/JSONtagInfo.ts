@@ -1,7 +1,7 @@
-import { Mangatags } from './mangatags';
+import { TagManga } from './tags';
 
 export class JsonData {
 
-    data: Mangatags[];
+    data: TagManga[];
 
 }

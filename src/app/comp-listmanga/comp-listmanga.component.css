@@ -1,24 +1,9 @@
-/* div.bg-semitrans{
-    transition: 0.3s;
-    background-color:rgba(0, 0, 0, 0.1);
-}
-
-div.bg-semitrans:hover{
-    background-color:rgba(0, 0, 0, 0.3);
-} */
-
-/* .description-block{
-    height: 96px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    text-align: justify
-} */
-
 .list-block{
     z-index: 0;
 }
 
 a{
+    z-index: 0;
     text-decoration: none;
     cursor: pointer;
 }

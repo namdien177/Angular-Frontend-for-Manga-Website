@@ -23,5 +23,20 @@ a.btn{
 }
 
 .chapter_block{
+    display: block;
     overflow: auto;
+}
+
+.list-block{
+    z-index: -1;
+}
+
+a{
+    z-index: 0;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+a.card{
+    transition: 0.3s
 }

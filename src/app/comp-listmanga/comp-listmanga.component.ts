@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Manga } from '../../model/manga';
-import { Mangatags } from  '../../model/mangatags';
 import { MangaServicesService } from '../../services/manga-services.service';
 import {BehaviorSubject, of} from 'rxjs';
 import * as _ from 'lodash';
 import { JsonData } from '../../model/JSONmanga';
-import { JsonData as JsonDataTag } from '../../model/JSONmangaTags';
+import { JsonData as JsonDataTag } from '../../model/JSONchap';
 import {TagManga} from '../../model/tags';
 import {catchError, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
@@ -20,7 +19,6 @@ export class CompListmangaComponent implements OnInit {
   @Input() listMangaHave: Manga[];
   @Input() currentDisplayMangaCount: number;
   @Output() outputManga = new EventEmitter<Manga>();
-  @Output() outputListTag = new EventEmitter<Mangatags[]>();
 
   displayList: Manga[];
   newresult: Manga[] ;
@@ -57,7 +55,6 @@ export class CompListmangaComponent implements OnInit {
   clickBriefManga(manga: Manga): void {
     this.selectedManga = manga;
     this.outputManga.emit(manga);
-    this.outputListTag.emit(this.showTags(manga.id));
   }
 
   updateMovieServices(): void {
@@ -72,11 +69,11 @@ export class CompListmangaComponent implements OnInit {
     );
   }
 
-  showTags(id: number) {
-    // @ts-ignore
-    this.MangaServices.getListTagsID(id).subscribe(
-      listTagID => listTagID
-    );
-  }
+  // showTags(id: number) {
+  //   // @ts-ignore
+  //   this.MangaServices.getListTagsID(id).subscribe(
+  //     listTagID => listTagID
+  //   );
+  // }
 
 }

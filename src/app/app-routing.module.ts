@@ -37,7 +37,7 @@ const routes: Routes = [
 
   { path:'manga', component: PageAllmangaComponent, data:{depth: 1} },
       {path:'manga/:id', component:  PageMangaDetailComponent, data:{depth:2} },
-          {path:'manga/:id/:chap',component: PageMangaReadComponent, data:{depth:3}},
+          {path:'manga/:id/chap/:idChap',component: PageMangaReadComponent, data:{depth:3}},
 
   { path:'author', component: PageAllauthorComponent, data:{depth: 1} },
       {path:'author/:id', component: PageAuthorComponent, data:{depth:2 }},

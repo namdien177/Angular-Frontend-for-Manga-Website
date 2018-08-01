@@ -1,7 +1,8 @@
-export class Mangatags {
+export class Chap {
     id: number;
     idManga: number;
-    idTags: number;
+    chap: number;
+    title:String;
     created_at: String;
     updated_at: String;
 }
