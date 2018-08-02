@@ -2,6 +2,10 @@
     z-index: 1;
 }
 
+.bg-cs{
+    background: #2a3744 !important;
+}
+
 .img-block{
     min-height: 40%;
     max-height: 55%;

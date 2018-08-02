@@ -1,10 +1,10 @@
-<div class="container-fluid pl-0 pt-0 mt-0">
-    <div class="side-info-block col-sm-2 col-xs-12 d-block h-100 position-fixed m-0 bg-primary p-0">
+<div class="container-fluid pl-0 pt-0 mt-0 ">
+    <div class="side-info-block col-sm-2 col-xs-12 d-block h-100 position-fixed m-0 bg-cs p-0">
         <div class="img-block p-1">
           <img src="{{showBriefManga.cover}}" srcset="" class="img-fluid">
         </div>
         <div class="content-block w-100 p-1">
-            <h5 class="text-dark text-truncate text-center">{{showBriefManga.name}} </h5>
+            <h5 class="text-light text-truncate text-center">{{showBriefManga.name}} </h5>
             <div class="d-block p-1 text-light description-block">
                 <span> {{showBriefManga.description}} </span>
             </div>
@@ -15,7 +15,7 @@
               </span>
             </div>
         </div>
-        <div class="option-block w-100 p-0 mb-1 ml-0 mr-0">
+        <div class="option-block w-100 p-0 mb-1 ml-0 mr-0 p-1">
             <a routerLink="manga/{{showBriefManga.id}}/bookmark" class="btn btn-success btn-block rounded-0" >
               <i class="fas fa-bookmark"></i> Bookmark
             </a>
@@ -26,7 +26,7 @@
     <div class="chapter_block col-sm-10 col-xs-12 offset-2">
         <div class="card bg-dark mt-3">
             <div class="card-body row">
-                <div class="block col-sm-2 col-xs-2 text-info">
+                <div class="block col-sm-2 col-xs-2 text-info text-center">
                     Chap
                 </div>
                 <div class="block col-sm-6 col-xs-10 text-info">

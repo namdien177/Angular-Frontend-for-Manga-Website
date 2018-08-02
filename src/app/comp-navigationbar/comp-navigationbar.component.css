@@ -1,0 +1,7 @@
+nav.bg-primary{
+    background: #2a3744 !important;
+}
+
+.linkNoHref{
+    cursor: pointer;
+}

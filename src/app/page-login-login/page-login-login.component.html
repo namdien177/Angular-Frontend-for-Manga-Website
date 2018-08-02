@@ -10,7 +10,7 @@
       <label for="passwordinput">Password</label>
       <input type="password" class="form-control" name="passwordInput" [(ngModel)]="formData.password" id="passwordinput" required placeholder="Password">
     </div>
-    <button type="submit" class="btn btn-outline-primary btn-block" [disabled]="!loginForm.valid" >Login</button>
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid" >Login</button>
     <a routerLink='forget-password' class="">Forget your password?</a>
     <div class="alert alert-danger mt-2" [hidden]='!errors' >
         {{errors}}

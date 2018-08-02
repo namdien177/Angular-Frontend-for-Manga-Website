@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { JsonData } from '../model/JSONmanga';
 import { JsonData as JSONchap } from '../model/JSONchap';
+import { JsonData as JSONimg } from '../model/JSONmangaimg';
 import {ApiLaravelService} from '../app/api-laravel.service';
 
 @Injectable({
@@ -49,6 +50,15 @@ export class MangaServicesService {
       catchError(error => of([
 
       ])));
+  }
+
+  getMangaChapImage(idManga:number, idChap:number): Observable<JSONimg[]>{
+    return this.http.get<JSONimg[]>(this.urlAPIManga+'/'+idManga+'/chap/'+idChap).pipe(
+        tap(recievedList => recievedList),
+        catchError(error => of([
+  
+      ]))
+    )
   }
 
   getListMangaChap(id:number, link?): Observable<JSONchap[]> {

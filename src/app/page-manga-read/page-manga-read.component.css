@@ -1,0 +1,8 @@
+.flexBoxBtn{
+    justify-content: center;
+}
+
+.imgBlock{
+    overflow: auto;
+    padding-bottom: 2em;
+}

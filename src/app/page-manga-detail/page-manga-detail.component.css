@@ -40,3 +40,7 @@ a{
 a.card{
     transition: 0.3s
 }
+
+.bg-cs{
+    background: #2a3744 !important;
+}

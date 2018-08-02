@@ -28,6 +28,8 @@ import { PageForgetPasswordComponent } from './page-forget-password/page-forget-
 import { PageNewPasswordComponent } from './page-new-password/page-new-password.component';
 import { PageRegisterAuthorComponent } from './page-register-author/page-register-author.component';
 import { ApiLaravelService } from './api-laravel.service';
+import { AppTokenService } from './app-token.service';
+import { AppAuthService } from './app-auth.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { ApiLaravelService } from './api-laravel.service';
   providers: [    //adding services here
     MangaServicesService,
     UserServicesService,
-    ApiLaravelService
+    ApiLaravelService,
+    AppTokenService,
+    AppAuthService
   ],
   bootstrap: [AppComponent]
 })

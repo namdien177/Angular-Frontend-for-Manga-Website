@@ -35,10 +35,22 @@
       <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
     </form>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!loggedIn">
         <a class="nav-link" routerLink="/login" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:
           true}">
           <i class="fas fa-sign-in-alt"></i> Login
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="loggedIn">
+        <a class="nav-link" routerLink="/user" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:
+          true}">
+          <i class="fas fa-user"></i> User
+        </a>
+      </li>
+      <li class="nav-item linkNoHref" *ngIf="loggedIn">
+        <a class="nav-link">
+          <i class="fas fa-sign-out-alt"></i> Logout
         </a>
       </li>
     </ul>

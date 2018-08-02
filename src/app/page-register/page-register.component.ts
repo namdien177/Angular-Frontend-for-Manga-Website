@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiLaravelService } from '../api-laravel.service';
+import { AppTokenService } from '../app-token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-register',
@@ -11,7 +13,9 @@ export class PageRegisterComponent implements OnInit {
 
   constructor(
     private http:HttpClient,
-    private apiServices:ApiLaravelService) { }
+    private apiServices:ApiLaravelService,
+    private tokenservices:AppTokenService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -27,7 +31,7 @@ export class PageRegisterComponent implements OnInit {
   onSubmit(){
     return this.apiServices.getDataPost('signupviewer',this.formData).subscribe(
       Response=> {
-        console.log(Response);
+        this.handleResponce(Response);
       },
       error=>{
         this.handleError(error);
@@ -38,6 +42,11 @@ export class PageRegisterComponent implements OnInit {
   public errors = [];
   handleError(error){
     this.errors = error.error.errors;
+  }
+
+  handleResponce(data): any {
+    this.tokenservices.handle(data.access_token);
+    this.router.navigateByUrl('/');
   }
 
 }

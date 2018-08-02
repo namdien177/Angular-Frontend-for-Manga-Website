@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {ApiLaravelService} from '../api-laravel.service';
+import { AppTokenService } from '../app-token.service';
+import { Router } from '@angular/router';
+import { AppAuthService } from '../app-auth.service';
 
 @Component({
   selector: 'app-page-login-login',
@@ -8,22 +11,27 @@ import {ApiLaravelService} from '../api-laravel.service';
   styleUrls: ['./page-login-login.component.css']
 })
 export class PageLoginLoginComponent implements OnInit {
+  
   public formData = {
     email: null,
     password: null,
-    remember: null
   };
   public errors = null;
 
-  constructor(private http: HttpClient, private apiLaravel: ApiLaravelService) { }
+  constructor(
+    private http: HttpClient, 
+    private apiLaravel: ApiLaravelService,
+    private tokenservices: AppTokenService,
+    private router: Router,
+    private auth: AppAuthService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    return this.apiLaravel.getDataGet('login', this.formData).subscribe(
+    return this.apiLaravel.getDataPost('auth/login', this.formData).subscribe(
       Response => {
-        console.log(Response);
+        this.handleResponse(Response);
       },
       error => {
         this.handleError(error);
@@ -35,8 +43,10 @@ export class PageLoginLoginComponent implements OnInit {
     this.errors = error.error.error;
   }
 
-  onRemember() {
-
+  handleResponse(data): any {
+    this.tokenservices.handle(data.access_token);
+    this.auth.changeAuthStatus(true);
+    this.router.navigateByUrl('/');
   }
 
 }
