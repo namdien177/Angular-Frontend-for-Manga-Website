@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AppAuthService } from '../app-auth.service';
-import { AppTokenService } from '../app-token.service';
+import { AppAuthService } from '../../services/app-auth.service';
+import { AppTokenService } from '../../services/app-token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comp-navigationbar',
@@ -13,11 +14,15 @@ export class CompNavigationbarComponent implements OnInit {
 
   constructor(
     private auth:AppAuthService,
-    private token: AppTokenService
+    private token: AppTokenService,
+    private router: Router
   ) { }
 
-  logOut(){
-
+  logOut(event:MouseEvent){
+    event.preventDefault();
+    this.auth.changeAuthStatus(false);
+    this.token.removeToken();
+    this.router.navigateByUrl('/');
   }
 
   ngOnInit() {

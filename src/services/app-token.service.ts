@@ -42,6 +42,20 @@ export class AppTokenService {
     return false;
   }
 
+  getIDUser(){
+    const token = this.getToken();
+    if(token){
+      let payload = this.payLoad(token);
+      if (payload){
+        if (Object.values(this.iss).indexOf(payload.iss) > -1){
+          return payload.sub;
+        }
+      }
+    }
+
+    return false;
+  }
+
   payLoad(token:string) {
     let payload =  token.split('.')[1];
     return this.decode(payload);

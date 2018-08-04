@@ -3,11 +3,12 @@ import { Manga } from '../../model/manga';
 import { MangaServicesService } from '../../services/manga-services.service';
 import {BehaviorSubject, of} from 'rxjs';
 import * as _ from 'lodash';
-import { JsonData } from '../../model/JSONmanga';
+import { JsonData, UnitManga } from '../../model/JSONmanga';
 import { JsonData as JsonDataTag } from '../../model/JSONchap';
 import {TagManga} from '../../model/tags';
 import {catchError, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
+import { Author } from '../../model/author';
 
 @Component({
   selector: 'app-comp-listmanga',
@@ -20,12 +21,10 @@ export class CompListmangaComponent implements OnInit {
   @Input() currentDisplayMangaCount: number;
   @Output() outputManga = new EventEmitter<Manga>();
 
-  displayList: Manga[];
-  newresult: Manga[] ;
   selectedManga: Manga;
   jsonData: JsonData;
-  jsonDataTag: JsonDataTag;
-  private urlAPIManga = 'http://localhost:8000/api/';
+
+  listUnit: UnitManga[] = [];
 
   loadmoreCondition = true;
 
@@ -44,7 +43,7 @@ export class CompListmangaComponent implements OnInit {
           // @ts-ignore
           this.jsonData = ListMangaGot;
           // @ts-ignore
-          this.displayList.push.apply(this.displayList, ListMangaGot.data);
+          this.getAuthorNameAndNewChap(ListMangaGot);
         }
       );
     } else {
@@ -52,9 +51,9 @@ export class CompListmangaComponent implements OnInit {
     }
   }
 
-  clickBriefManga(manga: Manga): void {
-    this.selectedManga = manga;
-    this.outputManga.emit(manga);
+  clickBriefManga(unit: UnitManga): void {
+    this.selectedManga = unit.aManga;
+    this.outputManga.emit(unit.aManga);
   }
 
   updateMovieServices(): void {
@@ -63,13 +62,35 @@ export class CompListmangaComponent implements OnInit {
         // @ts-ignore
         this.jsonData = ListMangaGot;
         // @ts-ignore
-        this.displayList = ListMangaGot.data;
-        console.log(ListMangaGot);
+        this.getAuthorNameAndNewChap(ListMangaGot);
       }
     );
   }
 
-  // showTags(id: number) {
+  getAuthorNameAndNewChap(listManga:JsonData){
+    listManga.data.forEach(aManga=>{
+      this.MangaServices.getAuthor(aManga.id).subscribe(listAuthor=>{
+        let unit = new UnitManga;
+        //@ts-ignore
+        unit.aAuthor = listAuthor.data;
+        unit.aManga = aManga;
+        
+        this.MangaServices.getListMangaChap(aManga.id).subscribe(listChap=>{
+          //@ts-ignore
+          this.MangaServices.getListMangaChap(aManga.id, listChap.links.last).subscribe(listChap=>{
+            //@ts-ignore
+            unit.newestChap = listChap.data[listChap.data.length -1].chap;
+            // //@ts-ignore
+            // console.log(listChap.data[listChap.data.length -1]);
+          });
+        });
+
+        this.listUnit.push(unit);
+      });
+    });
+  }
+
+  // showTags(id: number) {newestChap
   //   // @ts-ignore
   //   this.MangaServices.getListTagsID(id).subscribe(
   //     listTagID => listTagID

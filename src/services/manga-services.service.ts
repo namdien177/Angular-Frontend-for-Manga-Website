@@ -7,7 +7,8 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { JsonData } from '../model/JSONmanga';
 import { JsonData as JSONchap } from '../model/JSONchap';
 import { JsonData as JSONimg } from '../model/JSONmangaimg';
-import {ApiLaravelService} from '../app/api-laravel.service';
+import { JsonData as JSONauthor } from '../model/JSONauthor';
+import {ApiLaravelService} from './api-laravel.service';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,18 @@ export class MangaServicesService {
         ]))
       );
     }
+  }
+
+  getNewestChap(id:number){
+    
+  }
+
+  getAuthor(id:number): Observable<JSONauthor[]> {
+    return this.http.get<JSONauthor[]>(this.urlAPIManga + '/' + id + '/getauthor').pipe(
+      tap(recievedList => recievedList),
+      catchError(error => of([
+
+      ])));
   }
 
   getInformation(id: number): Observable<Manga[]> {

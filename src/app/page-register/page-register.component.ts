@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApiLaravelService } from '../api-laravel.service';
-import { AppTokenService } from '../app-token.service';
+import { ApiLaravelService } from '../../services/api-laravel.service';
+import { AppTokenService } from '../../services/app-token.service';
 import { Router } from '@angular/router';
 
 @Component({

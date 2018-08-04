@@ -26,13 +26,13 @@
     <div class="chapter_block col-sm-10 col-xs-12 offset-2">
         <div class="card bg-dark mt-3">
             <div class="card-body row">
-                <div class="block col-sm-2 col-xs-2 text-info text-center">
+                <div class="block col-sm-2 col-xs-2 text-light text-center">
                     Chap
                 </div>
-                <div class="block col-sm-6 col-xs-10 text-info">
+                <div class="block col-sm-6 col-xs-10 text-light">
                     Chapt Title
                 </div>
-                <div class="block col-sm-2 col-xs-12 text-muted">
+                <div class="block col-sm-2 col-xs-12 text-light">
                     View
                 </div>
                 <div class="block col-sm-2 col-xs-12 text-muted">
@@ -41,14 +41,14 @@
             </div>
         </div>
         
-        <a class="card border-light mt-3 btn-link" 
+        <a class="card mt-3" 
         *ngFor="let chap of chapList"
         routerLink="/manga/{{chap.idManga}}/chap/{{chap.id}}"
         >
             <div class="card-body row">
-                <div class="block col-sm-2 col-xs-2 text-info text-center">{{chap.chap}} </div>
-                <div class="block col-sm-6 col-xs-10 text-info text-nowrap text-truncate"> {{chap.title}} </div>
-                <div class="block col-sm-2 col-xs-12 text-muted" >Not Available</div>
+                <div class="block col-sm-2 col-xs-2 text-light text-center">{{chap.chap}} </div>
+                <div class="block col-sm-6 col-xs-10 text-light text-nowrap text-truncate"> {{chap.title}} </div>
+                <div class="block col-sm-2 col-xs-12 text-light" >Not Available</div>
                 <div class="block col-sm-2 col-xs-12 text-muted" >{{chap.updated_at}}</div>
             </div>
         </a>

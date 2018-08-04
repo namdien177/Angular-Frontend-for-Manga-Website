@@ -16,17 +16,19 @@ import { PageRegisterComponent } from './page-register/page-register.component';
 import { PageForgetPasswordComponent } from './page-forget-password/page-forget-password.component';
 import { PageNewPasswordComponent } from './page-new-password/page-new-password.component';
 import { PageRegisterAuthorComponent } from './page-register-author/page-register-author.component';
+import { AppBeforeloginService } from '../services/app-beforelogin.service';
+import { AppAffterloginService } from '../services/app-affterlogin.service';
 
 const routes: Routes = [
-  { path:'', component: PageHomeComponent, data:{depth: 1}  },
+  { path: '', redirectTo: 'home', pathMatch: 'full', data:{depth: 1}  },
   { path:'home', component: PageHomeComponent, data:{depth: 1} },
 
-  { path:'login', component: PageLoginComponent, data:{depth: 1}  },
+  { path:'login', component: PageLoginComponent, data:{depth: 1}, canActivate:[AppBeforeloginService]  },
 
-  { path:'register-viewer', component: PageRegisterComponent, data:{depth: 2}},
-  { path: 'register-author', component: PageRegisterAuthorComponent, data:{depth:2}},
+  { path:'register-viewer', component: PageRegisterComponent, data:{depth: 2}, canActivate:[AppBeforeloginService] },
+  { path: 'register-author', component: PageRegisterAuthorComponent, data:{depth:2}, canActivate:[AppBeforeloginService] },
 
-  { path:'forget-password', component: PageForgetPasswordComponent, data:{depth: 1}},
+  { path:'forget-password', component: PageForgetPasswordComponent, data:{depth: 1}, canActivate:[AppBeforeloginService]},
   { path:'new-password', component: PageNewPasswordComponent, data: {depth:1}},
 
   // { path:'manga', component: PageAllmangaComponent, data:{depth: 1}, children:[
@@ -42,7 +44,7 @@ const routes: Routes = [
   { path:'author', component: PageAllauthorComponent, data:{depth: 1} },
       {path:'author/:id', component: PageAuthorComponent, data:{depth:2 }},
       
-  { path:'user',component:PageUserComponent, data:{depth: 1} },
+  { path:'user',component:PageUserComponent, data:{depth: 1}, canActivate:[AppAffterloginService] },
 
   { component: PageUnknownComponent, path: 'unknown', data:{depth: 1}  } //for unknown page - Should be at end
 ];

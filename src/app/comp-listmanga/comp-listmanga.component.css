@@ -9,5 +9,6 @@ a{
 }
 
 a.card{
+    background: #404040 !important;
     transition: 0.3s
 }

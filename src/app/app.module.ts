@@ -27,9 +27,11 @@ import { PageRegisterComponent } from './page-register/page-register.component';
 import { PageForgetPasswordComponent } from './page-forget-password/page-forget-password.component';
 import { PageNewPasswordComponent } from './page-new-password/page-new-password.component';
 import { PageRegisterAuthorComponent } from './page-register-author/page-register-author.component';
-import { ApiLaravelService } from './api-laravel.service';
-import { AppTokenService } from './app-token.service';
-import { AppAuthService } from './app-auth.service';
+import { ApiLaravelService } from '../services/api-laravel.service';
+import { AppTokenService } from '../services/app-token.service';
+import { AppAuthService } from '../services/app-auth.service';
+import { AppAffterloginService } from '../services/app-affterlogin.service';
+import { AppBeforeloginService } from '../services/app-beforelogin.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { AppAuthService } from './app-auth.service';
     UserServicesService,
     ApiLaravelService,
     AppTokenService,
-    AppAuthService
+    AppAuthService,
+    AppAffterloginService,
+    AppBeforeloginService
   ],
   bootstrap: [AppComponent]
 })
