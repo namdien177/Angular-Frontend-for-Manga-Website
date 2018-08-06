@@ -18,4 +18,8 @@ export class ApiLaravelService {
     return this.http.get(this.url_api + '/api/' + route + '', data);
   }
 
+  getUserInfo(route:String){
+    return this.http.get(this.url_api + '/api/' + route + '');
+  }
+
 }
