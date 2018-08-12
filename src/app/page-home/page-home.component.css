@@ -1,0 +1,35 @@
+@media only screen and (min-width: 600px) {
+    .container-fluid{
+        grid-template-areas: 
+        'update     ranking'
+        'newrising  ranking';
+        grid-template-columns: 3fr 1fr; 
+        grid-template-rows: 500px auto;
+    }
+}
+
+@media only screen and (max-width: 599px) {
+    .container-fluid{
+        grid-template-areas: 
+        'update'
+        'ranking'
+        'newrising';
+        grid-template-columns: 1fr;
+    }
+}
+
+.container-fluid{
+    display: grid;
+}
+
+.update-block{
+    grid-area: 'update';
+}
+
+.ranking-block{
+    grid-area: 'ranking'
+}
+
+.newrising-block{
+    grid-area: 'newrising'
+}
