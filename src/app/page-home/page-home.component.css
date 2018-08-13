@@ -12,8 +12,8 @@
     .container-fluid{
         grid-template-areas: 
         "update"
-        "ranking"
-        "newrising";
+        "newrising"
+        "ranking";
         grid-template-columns: 1fr;
     }
 }
@@ -55,40 +55,67 @@
 }
 
 .update-block-manga{
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
 }
 
-.card-manga{
-    display: flex;
-    flex-direction: row;
-    height: 150px;
-    width: 100% !important;
-    overflow: hidden;
-    background: rgb(184, 193, 201) !important;
-    color: rgba(0,0,0,0.55);
-    border-radius: 0.5em;
-    z-index: 2;
-}
-
-.card-manga *{
-    z-index: 2;
-}
-
-.card-img{
+.card-block-img{
     display: block;
-    content: icon;
-    height: 150px;
-    width: 150px;
+    height: 280px;
+    width: 200px;
     background-repeat:no-repeat;
     background-position: center;
     background-size: cover;
     border-radius: 0.5em;
+    z-index: 2;
+    text-decoration: none !important;
+    margin: 0.5em 0.5em;
+    float: left;
+}
+.card-block-img >*{
+    border-radius: 0.5em;
+    z-index: 3;
+}
+
+.card-block-info{
+    position: relative;
+    height: 90px;
+    bottom: 90px;
+    left: 0;
+    right: 0;
+    width: 200px;
+    background: rgba(0, 0, 0, 0.705);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.card-block-info:hover{
+    background: rgba(0, 0, 0, 0.925);
+    bottom: 200px;
+    height: 200px;
+}
+
+.card-block-title{
+    width: 200px;
+    height: 28px;
+    overflow: hidden;
+}
+
+.card-block-content{
+    height: 72px;
+    overflow: hidden;
 }
 
 .card-content{
     width: 100% !important;
     padding: 0.5em;
+}
+
+.card-block-content-chap{
+    height: 16px;
+    bottom: 16px;
+    top: 120px;
 }
 
 .ranking-block{
