@@ -2,7 +2,7 @@ a{
     padding: 1% ;
     display: inline-block;
     text-align: center;
-    color: rgba(255, 255, 255, 0.61);
+    color: rgb(213, 222, 232) !important;
     text-decoration: none;
     transition: 0.3s;
     border-radius: 10px;
@@ -11,6 +11,9 @@ a{
 }
 
 a:hover{
-    color: white;
-    background: #222222 !important;
+    background: rgb(75, 78, 80) !important;
+}
+
+.text-muted{
+    color: rgb(213, 222, 232) !important;
 }

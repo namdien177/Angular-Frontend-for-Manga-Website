@@ -1,8 +1,8 @@
 @media only screen and (min-width: 600px) {
     .container-fluid{
         grid-template-areas: 
-        'update     ranking'
-        'newrising  ranking';
+        "update     ranking"
+        "newrising  ranking" !important;
         grid-template-columns: 3fr 1fr; 
         grid-template-rows: 500px auto;
     }
@@ -11,25 +11,94 @@
 @media only screen and (max-width: 599px) {
     .container-fluid{
         grid-template-areas: 
-        'update'
-        'ranking'
-        'newrising';
+        "update"
+        "ranking"
+        "newrising";
         grid-template-columns: 1fr;
     }
 }
 
 .container-fluid{
     display: grid;
+    z-index: 0;
+    grid-gap: 1em;
+    padding-top: 1em;
+}
+
+.container-fluid > div{
+    padding: 0.5em;
+    -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.55);
+    -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.55);
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.55);
 }
 
 .update-block{
-    grid-area: 'update';
+    grid-area: update;
+    z-index: 1;
+    background: rgb(114, 125, 135) !important;
+    overflow: scroll;
+    overflow-x:hidden;
+    height: 500px;
+
+    display: grid;
+    grid-template-areas: 
+    "title"
+    "manga";
+}
+
+.update-block > h2 {
+    grid-area: title;
+}
+
+.update-block > div{
+    grid-area: manga;
+}
+
+.update-block-manga{
+    display: flex;
+    flex-direction: column;
+}
+
+.card-manga{
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    width: 100% !important;
+    overflow: hidden;
+    background: rgb(184, 193, 201) !important;
+    color: rgba(0,0,0,0.55);
+    border-radius: 0.5em;
+    z-index: 2;
+}
+
+.card-manga *{
+    z-index: 2;
+}
+
+.card-img{
+    display: block;
+    content: icon;
+    height: 150px;
+    width: 150px;
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 0.5em;
+}
+
+.card-content{
+    width: 100% !important;
+    padding: 0.5em;
 }
 
 .ranking-block{
-    grid-area: 'ranking'
+    grid-area: ranking;
+    z-index: 1;
+    background: rgb(114, 125, 135) !important;
 }
 
 .newrising-block{
-    grid-area: 'newrising'
+    grid-area: newrising;
+    z-index: 1;
+    background: rgb(114, 125, 135) !important;
 }

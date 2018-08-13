@@ -1,9 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 body{
-    background: #0d0d0d !important;
+    background: rgb(88, 102, 112) !important;
     color: #d9d9d9;
     margin: 0 0 0 5px;
+    height: 100% !important;
+    width: 100% !important
+}
+
+.footerLink{
+    text-decoration: none !important;
+    color: #d9d9d9;
+}
+
+.footerLink:hover{
+    text-decoration: none !important;
+    color: #ffffff;
+}
+
+.page-footer{
+   
 }
 
 /* width */
@@ -34,6 +50,7 @@ html {
 
 .route-container{
     margin-top: 56px;
+    height: 100% !important;
     box-sizing: border-box;
 }
 
