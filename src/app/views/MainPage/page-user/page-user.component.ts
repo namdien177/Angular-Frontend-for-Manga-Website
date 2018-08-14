@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AppAuthService } from '../../services/app-auth.service';
+import { AppAuthService } from '../../../../services/app-auth.service';
 import { Router } from '@angular/router';
-import { AppTokenService } from '../../services/app-token.service';
-import { ApiLaravelService } from '../../services/api-laravel.service';
-import { UserServicesService } from '../../services/user-services.service';
-import { User } from '../../model/user';
+import { AppTokenService } from '../../../../services/app-token.service';
+import { ApiLaravelService } from '../../../../services/api-laravel.service';
+import { UserServicesService } from '../../../../services/user-services.service';
+import { User } from '../../../../model/user';
 
 @Component({
   selector: 'app-page-user',

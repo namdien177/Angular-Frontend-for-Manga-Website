@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MangaServicesService } from '../../services/manga-services.service';
-import { ImageManga } from '../../model/manga-img';
-import { Manga } from '../../model/manga';
-import { Chap } from '../../model/chap';
-import { JsonData as JSONchap } from '../../model/JSONchap';
+import { MangaServicesService } from '../../../../services/manga-services.service';
+import { ImageManga } from '../../../../model/manga-img';
+import { Manga } from '../../../../model/manga';
+import { Chap } from '../../../../model/chap';
+import { JsonData as JSONchap } from '../../../../model/JSONchap';
 import { ActivatedRoute } from '@angular/router'
 
 @Component({

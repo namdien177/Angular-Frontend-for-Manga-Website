@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Manga } from '../../model/manga';
-import { MangaServicesService } from '../../services/manga-services.service';
+import { Manga } from '../../../../model/manga';
+import { MangaServicesService } from '../../../../services/manga-services.service';
 import { ActivatedRoute } from '@angular/router';
-import { TagManga } from '../../model/tags';
-import { Chap } from '../../model/chap';
-import { JsonData } from '../../model/JSONchap';
+import { TagManga } from '../../../../model/tags';
+import { Chap } from '../../../../model/chap';
+import { JsonData } from '../../../../model/JSONchap';
 
 @Component({
   selector: 'app-page-manga-detail',

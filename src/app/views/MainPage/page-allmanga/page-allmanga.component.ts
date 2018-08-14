@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Manga } from '../../model/manga';
-import { MangaServicesService } from '../../services/manga-services.service';
-import { TagManga } from '../../model/tags';
+import { Manga } from '../../../../model/manga';
+import { MangaServicesService } from '../../../../services/manga-services.service';
+import { TagManga } from '../../../../model/tags';
 import {forEach} from '@angular/router/src/utils/collection';
-import { JsonData as JSONTags } from '../../model/JSONtagInfo'
+import { JsonData as JSONTags } from '../../../../model/JSONtagInfo'
 
 @Component({
   selector: 'app-page-allmanga',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApiLaravelService } from '../../services/api-laravel.service';
+import { ApiLaravelService } from '../../../../services/api-laravel.service';
 
 @Component({
   selector: 'app-page-register-author',

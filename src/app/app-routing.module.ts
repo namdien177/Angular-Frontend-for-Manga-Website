@@ -3,19 +3,19 @@ import { NgModule } from '@angular/core';
 
 //route
 import { RouterModule, Routes } from '@angular/router';
-import { PageHomeComponent } from './page-home/page-home.component';
-import { PageLoginComponent } from './page-login/page-login.component';
-import { PageAllmangaComponent } from './page-allmanga/page-allmanga.component';
-import { PageAllauthorComponent } from './page-allauthor/page-allauthor.component';
-import { PageUnknownComponent } from './page-unknown/page-unknown.component';
-import { PageMangaReadComponent } from './page-manga-read/page-manga-read.component';
-import { PageMangaDetailComponent } from './page-manga-detail/page-manga-detail.component';
-import { PageAuthorComponent } from './page-author/page-author.component';
-import { PageUserComponent } from './page-user/page-user.component';
-import { PageRegisterComponent } from './page-register/page-register.component';
-import { PageForgetPasswordComponent } from './page-forget-password/page-forget-password.component';
-import { PageNewPasswordComponent } from './page-new-password/page-new-password.component';
-import { PageRegisterAuthorComponent } from './page-register-author/page-register-author.component';
+import { PageHomeComponent } from './views/MainPage/page-home/page-home.component';
+import { PageLoginComponent } from './views/MainPage/page-login/page-login.component';
+import { PageAllmangaComponent } from './views/MainPage/page-allmanga/page-allmanga.component';
+import { PageAllauthorComponent } from './views/MainPage/page-allauthor/page-allauthor.component';
+import { PageUnknownComponent } from './views/MainPage/page-unknown/page-unknown.component';
+import { PageMangaReadComponent } from './views/MainPage/page-manga-read/page-manga-read.component';
+import { PageMangaDetailComponent } from './views/MainPage/page-manga-detail/page-manga-detail.component';
+import { PageAuthorComponent } from './views/MainPage/page-author/page-author.component';
+import { PageUserComponent } from './views/MainPage/page-user/page-user.component';
+import { PageRegisterComponent } from './views/MainPage/page-register/page-register.component';
+import { PageForgetPasswordComponent } from './views/MainPage/page-forget-password/page-forget-password.component';
+import { PageNewPasswordComponent } from './views/MainPage/page-new-password/page-new-password.component';
+import { PageRegisterAuthorComponent } from './views/MainPage/page-register-author/page-register-author.component';
 import { AppBeforeloginService } from '../services/app-beforelogin.service';
 import { AppAffterloginService } from '../services/app-affterlogin.service';
 

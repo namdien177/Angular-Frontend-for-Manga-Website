@@ -1,14 +1,14 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { Manga } from '../../model/manga';
-import { MangaServicesService } from '../../services/manga-services.service';
+import { Manga } from '../../../../model/manga';
+import { MangaServicesService } from '../../../../services/manga-services.service';
 import {BehaviorSubject, of} from 'rxjs';
 import * as _ from 'lodash';
-import { JsonData, UnitManga } from '../../model/JSONmanga';
-import { JsonData as JsonDataTag } from '../../model/JSONchap';
-import {TagManga} from '../../model/tags';
+import { JsonData, UnitManga } from '../../../../model/JSONmanga';
+import { JsonData as JsonDataTag } from '../../../../model/JSONchap';
+import {TagManga} from '../../../../model/tags';
 import {catchError, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-import { Author } from '../../model/author';
+import { Author } from '../../../../model/author';
 
 @Component({
   selector: 'app-comp-listmanga',

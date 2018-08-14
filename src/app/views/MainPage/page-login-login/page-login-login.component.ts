@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {ApiLaravelService} from '../../services/api-laravel.service';
-import { AppTokenService } from '../../services/app-token.service';
+import {ApiLaravelService} from '../../../../services/api-laravel.service';
+import { AppTokenService } from '../../../../services/app-token.service';
 import { Router } from '@angular/router';
-import { AppAuthService } from '../../services/app-auth.service';
+import { AppAuthService } from '../../../../services/app-auth.service';
 
 @Component({
   selector: 'app-page-login-login',
