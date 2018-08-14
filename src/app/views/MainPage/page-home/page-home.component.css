@@ -3,8 +3,8 @@
         grid-template-areas: 
         "update     ranking"
         "newrising  ranking" !important;
-        grid-template-columns: 3fr 1fr; 
-        grid-template-rows: 500px auto;
+        grid-template-columns: 1050px auto; 
+        grid-template-rows: 400px auto;
     }
 }
 
@@ -36,14 +36,12 @@
     grid-area: update;
     z-index: 1;
     background: rgb(114, 125, 135) !important;
-    overflow: scroll;
-    overflow-x:hidden;
-    height: 500px;
-
+    height: 350px;
     display: grid;
     grid-template-areas: 
     "title"
     "manga";
+    overflow: hidden;
 }
 
 .update-block > h2 {
@@ -55,9 +53,37 @@
 }
 
 .update-block-manga{
-    display: inline-block;
+    display: grid;
+    grid-template-areas: 
+    'btn up btnnt';
+    grid-template-rows: 1fr;
+    grid-template-columns: 80px 860px 80px;
+    grid-gap: 10px;
+    height: 290px;
 }
 
+.update-block-manga > .btnupdatepre{
+    grid-area: btn;
+}
+
+.update-block-manga > .btnupdatenext{
+    grid-area: btnnt;
+}
+
+.update-block-manga > .upblock{
+    grid-area: up;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.update-block-manga > div > button{
+    height: 100%;
+}
+
+/*
+Card manga
+*/
 .card-block-img{
     display: block;
     height: 280px;
@@ -68,8 +94,7 @@
     border-radius: 0.5em;
     z-index: 2;
     text-decoration: none !important;
-    margin: 0.5em 0.5em;
-    float: left;
+    margin: 5px;
 }
 .card-block-img >*{
     border-radius: 0.5em;
@@ -118,12 +143,21 @@
     top: 120px;
 }
 
+
+
+/**
+RANKING BLOCK
+*/
 .ranking-block{
     grid-area: ranking;
     z-index: 1;
     background: rgb(114, 125, 135) !important;
 }
 
+
+/**
+newrising BLOCK
+*/
 .newrising-block{
     grid-area: newrising;
     z-index: 1;
