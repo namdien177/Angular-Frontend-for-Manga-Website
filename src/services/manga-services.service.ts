@@ -37,8 +37,22 @@ export class MangaServicesService {
     }
   }
 
-  getNewestChap(id:number){
-    
+  getRecentUpdateList(displayNumber:number, link?:string): Observable<JsonData[]>{
+    if (!link) {
+      return this.http.get<JsonData[]>(this.urlAPIManga + '/updatelist/'+displayNumber).pipe(
+        tap(recievedList => recievedList),
+        catchError(error => of([
+
+        ]))
+      );
+    } else {
+      return this.http.get<JsonData[]>(link).pipe(
+        tap(recievedList => recievedList),
+        catchError(error => of([
+
+        ]))
+      );
+    }
   }
 
   getAuthor(id:number): Observable<JSONauthor[]> {

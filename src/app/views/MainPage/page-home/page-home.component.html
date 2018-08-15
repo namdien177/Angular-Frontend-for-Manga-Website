@@ -1,69 +1,32 @@
 <div class="container-fluid">
   <div class="update-block">
-    <h2>New Updates:</h2>
+    <h2>New Updates: </h2>
+    <p class="currentPage">Page: 2</p>
     <div class="update-manga">
       <div class="prevbtn">
-        <button class="btn btn-block btn-success rounded-0">
+        <button class="btn btn-block btn-default rounded-0" (click)="prevbtn" [class.d-none]="!prevcondition">
           <
         </button>
       </div>
       <div class="main">
-          <a href="" class="manga-card">
-            <img src="https://bjpqvq.bn.files.1drv.com/y4mPUAQMuVJAPhJEgo7fihlGzfg8RBp6DMlxqrPx8VTPE4PiXjPS1Al8z1i26NlYPcVJ1BMMbZakpC_9XRN0RbvXgUVAxEWMuzqfHZCj7SouD4ODtYp1jDJk27tqFaZFvmYpua1rVY39HCGUoADxJR6telHS9s4wso0uJRCUeVwHEAui2i0riPDdREksiZcraylLtkO9s3E-U7Ut3NxBX2sOg?width=843&height=1200&cropmode=none"
+          <a routerLink="/manga/{{manga?.aManga.id}}" class="manga-card" *ngFor="let manga of displayList">
+            <img src="{{manga?.aManga.cover}}"
                class="cover">
             <div class="manga-info">
-              <h5 class="title">Hayate No Gotoku das das da sd</h5>
-              <p class="description">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, asperiores commodi ducimus quibusdam fuga dolorum iure ut illo cum ab ipsa perferendis voluptatibus iusto sequi adipisci nobis assumenda blanditiis distinctio in quam nostrum dolore, nisi non labore. Officia, labore quibusdam. Autem quaerat voluptas magnam enim aperiam numquam excepturi illum id.
-              </p>
+              <h5 class="title">{{manga?.aManga.name}}</h5>
               <div class="chap">
-                chap 5
+                Chap {{manga?.newestChap}}
               </div>
+              <p class="description">
+                {{manga?.aManga.description}}
+              </p>
             </div>
           </a>
-          <a href="" class="manga-card">
-            <img src="https://bjpqvq.bn.files.1drv.com/y4mPUAQMuVJAPhJEgo7fihlGzfg8RBp6DMlxqrPx8VTPE4PiXjPS1Al8z1i26NlYPcVJ1BMMbZakpC_9XRN0RbvXgUVAxEWMuzqfHZCj7SouD4ODtYp1jDJk27tqFaZFvmYpua1rVY39HCGUoADxJR6telHS9s4wso0uJRCUeVwHEAui2i0riPDdREksiZcraylLtkO9s3E-U7Ut3NxBX2sOg?width=843&height=1200&cropmode=none"
-               class="cover">
-            <div class="manga-info">
-              <h5 class="title">Hayate No Gotoku das das da sd</h5>
-              <p class="description">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, asperiores commodi ducimus quibusdam fuga dolorum iure ut illo cum ab ipsa perferendis voluptatibus iusto sequi adipisci nobis assumenda blanditiis distinctio in quam nostrum dolore, nisi non labore. Officia, labore quibusdam. Autem quaerat voluptas magnam enim aperiam numquam excepturi illum id.
-              </p>
-              <div class="chap">
-                chap 5
-              </div>
-            </div>
-          </a>
-          <a href="" class="manga-card">
-            <img src="https://bjpqvq.bn.files.1drv.com/y4mPUAQMuVJAPhJEgo7fihlGzfg8RBp6DMlxqrPx8VTPE4PiXjPS1Al8z1i26NlYPcVJ1BMMbZakpC_9XRN0RbvXgUVAxEWMuzqfHZCj7SouD4ODtYp1jDJk27tqFaZFvmYpua1rVY39HCGUoADxJR6telHS9s4wso0uJRCUeVwHEAui2i0riPDdREksiZcraylLtkO9s3E-U7Ut3NxBX2sOg?width=843&height=1200&cropmode=none"
-               class="cover">
-            <div class="manga-info">
-              <h5 class="title">Hayate No Gotoku das das da sd</h5>
-              <p class="description">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, asperiores commodi ducimus quibusdam fuga dolorum iure ut illo cum ab ipsa perferendis voluptatibus iusto sequi adipisci nobis assumenda blanditiis distinctio in quam nostrum dolore, nisi non labore. Officia, labore quibusdam. Autem quaerat voluptas magnam enim aperiam numquam excepturi illum id.
-              </p>
-              <div class="chap">
-                chap 5
-              </div>
-            </div>
-          </a>
-          <a href="" class="manga-card">
-            <img src="https://bjpqvq.bn.files.1drv.com/y4mPUAQMuVJAPhJEgo7fihlGzfg8RBp6DMlxqrPx8VTPE4PiXjPS1Al8z1i26NlYPcVJ1BMMbZakpC_9XRN0RbvXgUVAxEWMuzqfHZCj7SouD4ODtYp1jDJk27tqFaZFvmYpua1rVY39HCGUoADxJR6telHS9s4wso0uJRCUeVwHEAui2i0riPDdREksiZcraylLtkO9s3E-U7Ut3NxBX2sOg?width=843&height=1200&cropmode=none"
-               class="cover">
-            <div class="manga-info">
-              <h5 class="title">Hayate No Gotoku das das da sd</h5>
-              <p class="description">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid, asperiores commodi ducimus quibusdam fuga dolorum iure ut illo cum ab ipsa perferendis voluptatibus iusto sequi adipisci nobis assumenda blanditiis distinctio in quam nostrum dolore, nisi non labore. Officia, labore quibusdam. Autem quaerat voluptas magnam enim aperiam numquam excepturi illum id.
-              </p>
-              <div class="chap">
-                chap 5
-              </div>
-            </div>
-          </a>
+          
       </div>
 
       <div class="nextbtn">
-        <button class="btn btn-block btn-success rounded-0">
+        <button class="btn btn-block btn-default rounded-0" (click)="nextbtn">
           >
         </button>
       </div>

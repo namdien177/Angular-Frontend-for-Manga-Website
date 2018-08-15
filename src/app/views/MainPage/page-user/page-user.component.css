@@ -1,8 +1,131 @@
+.container-fluid > div:not(.btn-option){
+    -webkit-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+    -moz-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+    box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+    border-radius: 1em;
+    margin: auto;
+}
+
 .infomation-block{
-    margin: 4em auto 1em auto;
-    background: #1f1f1f !important;
-    border-radius: 6px;
+    margin: 4em auto 1em auto !important;
+    z-index: 1;
     padding: 1em;
+    color: rgb(34, 34, 34);
+    background: rgb(209, 214, 219);
+}
+
+.btn-option{
+    margin: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: transparent !important;
+}
+
+.btn-option > button{
+    -webkit-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+    -moz-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+    box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+    border-radius: 1em;
+}
+
+.bookmark{
+    background: rgb(209, 214, 219);
+    margin: 1em auto 1em auto !important;
+    display: grid;
+    grid-template-areas: 
+    'title'
+    'list';
+    grid-gap: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.bookmark > .title{
+    grid-area: title;
+    display: grid;
+    grid-template-columns: 7fr 2fr 3fr;
+    grid-gap: 1em;
+    color: black;
+    justify-items: center;
+}
+
+.bookmark > .title *{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.bookmark > .list{
+    grid-area: list;
+}
+
+.bookmark > .list > .manga{
+    background: #315D6D;
+    display: grid;
+    grid-template-columns: 9fr 2fr 1fr;
+    padding: 0;
+    border-radius: 1em;
+    margin-bottom: 1em;
+}
+
+.bookmark > .list > .manga > .info{
+    color: aliceblue;
+    display:grid;
+    grid-template-columns: 7fr 2fr;
+    align-items: center;
+}
+
+.tooltips{
+    display: block;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    left: -160px;
+    visibility: hidden;
+    z-index: 2;
+    opacity: 1;
+    transition: 0.2s;
+    border-radius: 1em;
+    padding: 0;
+}
+
+.tooltips *{
+    z-index: 2;
+    border-radius: 1em;
+    -webkit-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+    -moz-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+    box-shadow: 2px 2px 3px 0px rgb(63, 63, 63);
+}
+
+a.info:hover > .tooltips{
+    display: block !important;
+    visibility: visible
+}
+
+.bookmark > .list > .manga > .info > div{
+    padding-left: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.bookmark > .list > .manga > .info >.chap{
+    justify-self: center;
+    align-self: center;
+    text-align: center
+}
+
+.removebtn{
+    border-radius: 0 1em 1em 0;
+}
+
+/*
+*
+*/
+.infomation-block i{
+    color:  rgb(49, 54, 61);
 }
 
 .img-block{
@@ -10,5 +133,15 @@
 }
 
 .information{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
 
+.detail-information{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
 }

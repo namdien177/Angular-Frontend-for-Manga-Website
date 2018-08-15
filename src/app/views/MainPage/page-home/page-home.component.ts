@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Manga } from '../../../../model/manga';
+import { MangaServicesService } from '../../../../services/manga-services.service';
+import { JsonData, UnitManga } from '../../../../model/JSONmanga';
 
 @Component({
   selector: 'app-page-home',
@@ -7,9 +10,87 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageHomeComponent implements OnInit {
 
-  constructor() { }
+  innerWidth;
+  displayList:UnitManga[] = [];
+
+  jsonManga:JsonData;
 
   ngOnInit() {
+    
   }
+  
+  loadList(displayNumber:number): void {
+    this.mangaservice.getRecentUpdateList(displayNumber).subscribe(
+      listmanga=>{
+        // @ts-ignore
+        this.jsonManga = listmanga;
+        this.getLastestChap(this.jsonManga);
+      }
+    )
+  }
+
+  getLastestChap(jsonMangaList){
+    jsonMangaList.data.forEach(aManga => {
+      this.mangaservice.getAuthor(aManga.id).subscribe(listAuthor=>{
+        let unit = new UnitManga;
+        //@ts-ignore
+        unit.aAuthor = listAuthor.data;
+        unit.aManga = aManga;
+        this.mangaservice.getListMangaChap(aManga.id).subscribe(listChap=>{
+          //@ts-ignore
+          this.mangaservice.getListMangaChap(aManga.id, listChap.links.last).subscribe(listChap=>{
+            //@ts-ignore  
+            unit.newestChap = listChap.data[listChap.data.length -1].chap;
+          });
+        });
+        this.displayList.push(unit);
+    });
+  })}
+
+  nextcondition = true;
+  nextbtn() {
+    if (this.jsonManga.links.next) {
+      this.mangaservice.getRecentUpdateList(4,this.jsonManga.links.next).subscribe(
+        (ListMangaGot) => {
+          // @ts-ignore
+          this.jsonManga = ListMangaGot;
+
+          this.getLastestChap(ListMangaGot);
+        }
+      );
+      if(this.jsonManga.links.next){
+        this.nextcondition = true;
+      }else{
+        this.nextcondition = false;
+      }
+    } else {
+      this.nextcondition = false;
+    }
+  }
+
+  prevcondition = false;
+  prevbtn() {
+    if (this.jsonManga.links.prev) {
+      this.mangaservice.getRecentUpdateList(4, this.jsonManga.links.prev).subscribe(
+        (ListMangaGot) => {
+          // @ts-ignore
+          this.jsonManga = ListMangaGot;
+          this.getLastestChap(ListMangaGot);
+        }
+      );
+      if(this.jsonManga.links.prev){
+        this.prevcondition = true;
+      }else{
+        this.prevcondition = false;
+      }
+    } else {
+      this.prevcondition = true;
+    }
+  }
+
+  constructor(
+    private mangaservice:MangaServicesService) { 
+      this.loadList(4);
+    }
 
 }

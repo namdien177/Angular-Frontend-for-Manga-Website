@@ -5,7 +5,8 @@ body{
     color: #d9d9d9;
     margin: 0 0 0 5px;
     height: 100% !important;
-    width: 100% !important
+    width: 100% !important;
+    font-family: Helvetica, sans-serif;
 }
 
 .footerLink{
@@ -16,6 +17,10 @@ body{
 .footerLink:hover{
     text-decoration: none !important;
     color: #ffffff;
+}
+
+a{
+    text-decoration: none !important;
 }
 
 /* width */
@@ -88,8 +93,8 @@ html {
 
 .manga-card > .manga-info{
     position: relative;
-    height: 90px;
-    bottom: 90px;
+    height: 70px;
+    bottom: 70px;
     left: 0;
     right: 0;
     width: 200px;
@@ -112,17 +117,25 @@ html {
 }
 
 .manga-card > .manga-info > .description{
-    height: 93px;
+    height: 143px;
     overflow: hidden;
     width: 100% !important;
     padding: 0 0.5em 0.5em 0.5em;
     color: #888;
     text-align: center;
+    bottom: 0;
+    top: 57px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.manga-card > .manga-info > .description:hover{
+    opacity: 1;
 }
 
 .manga-info > .chap{
-    height: 80px;
-    bottom: 0px;
-    top: 120px;
+    height: 30px;
+    bottom: 143px;
+    top: 27px;
     text-align: center;
 }

@@ -49,13 +49,23 @@
     height: 350px;
     display: grid;
     grid-template-areas: 
-    "title"
-    "manga";
+    "title page"
+    "manga manga";
     overflow: hidden;
 }
 
 .update-block > h2 {
     grid-area: title;
+    width: 100% !important;
+    display: inline-block;
+}
+
+.currentPage{
+    grid-area: page;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .update-block > div{
@@ -70,6 +80,7 @@
     grid-gap: 10px;
     height: 290px;
     background: rgb(86, 94, 102) !important;
+    border-radius: 0.5em;
 }
 
 .update-manga > .prevbtn{
@@ -89,6 +100,9 @@
 
 .update-manga > div > button{
     height: 100%;
+    background: transparent !important;
+    border: 0px !important;
+    color: white;
 }
 
 /**
