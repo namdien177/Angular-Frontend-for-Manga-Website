@@ -18,10 +18,6 @@ body{
     color: #ffffff;
 }
 
-.page-footer{
-   
-}
-
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -60,4 +56,73 @@ html {
 
 .ng-valid:not(form){
     border-left: 5px solid rgb(9, 255, 0);
+}
+
+
+/*
+*   Card manga
+*   use manga-card to create a display manga
+*/  
+.manga-card{
+    display: block;
+    height: 280px;
+    width: 200px;
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 0.5em;
+    z-index: 2;
+    text-decoration: none !important;
+    margin: 5px;
+}
+
+.manga-card >*{
+    border-radius: 0.5em;
+    z-index: 3;
+}
+
+.manga-card > .cover{
+    width: 200px; 
+    max-height: 280px;
+}
+
+.manga-card > .manga-info{
+    position: relative;
+    height: 90px;
+    bottom: 90px;
+    left: 0;
+    right: 0;
+    width: 200px;
+    background: rgba(0, 0, 0, 0.700);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    transition: 0.5s;
+}
+.manga-card > .manga-info:hover{
+    background: rgba(0, 0, 0, 0.900);
+    bottom: 200px;
+    height: 200px;
+}
+
+.manga-card > .manga-info > .title{
+    width: 200px;
+    height: 27px;
+    overflow: hidden;
+}
+
+.manga-card > .manga-info > .description{
+    height: 93px;
+    overflow: hidden;
+    width: 100% !important;
+    padding: 0 0.5em 0.5em 0.5em;
+    color: #888;
+    text-align: center;
+}
+
+.manga-info > .chap{
+    height: 80px;
+    bottom: 0px;
+    top: 120px;
+    text-align: center;
 }
