@@ -1,7 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Manga } from '../../../../model/manga';
 import { MangaServicesService } from '../../../../services/manga-services.service';
-import { JsonData, UnitManga } from '../../../../model/JSONmanga';
+import * as jsondata from '../../../../model/JSONmodel';
 
 @Component({
   selector: 'app-page-home',
@@ -11,9 +10,9 @@ import { JsonData, UnitManga } from '../../../../model/JSONmanga';
 export class PageHomeComponent implements OnInit {
 
   innerWidth;
-  displayList:UnitManga[] = [];
+  displayList:jsondata.MangaAllJSON[] = [];
 
-  jsonManga:JsonData;
+  jsonManga:jsondata.MangaJSON;
 
   ngOnInit() {
     
@@ -32,7 +31,7 @@ export class PageHomeComponent implements OnInit {
   getLastestChap(jsonMangaList){
     jsonMangaList.data.forEach(aManga => {
       this.mangaservice.getAuthor(aManga.id).subscribe(listAuthor=>{
-        let unit = new UnitManga;
+        let unit = new jsondata.MangaAllJSON;
         //@ts-ignore
         unit.aAuthor = listAuthor.data;
         unit.aManga = aManga;

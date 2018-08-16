@@ -29,7 +29,7 @@ export class PageUserComponent implements OnInit {
       authCondition => {
         this.loggedIn = authCondition;
         if (!this.loggedIn){
-          this.router.navigateByUrl('/login');
+          this.router.navigateByUrl('/');
         }else{
           this.userServices.getUserInfo(this.token.getIDUser()).subscribe(
             userInfo =>{

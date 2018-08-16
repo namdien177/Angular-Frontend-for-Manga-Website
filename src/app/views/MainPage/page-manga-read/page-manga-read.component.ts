@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MangaServicesService } from '../../../../services/manga-services.service';
 import { ImageManga } from '../../../../model/manga-img';
-import { Manga } from '../../../../model/manga';
 import { Chap } from '../../../../model/chap';
-import { JsonData as JSONchap } from '../../../../model/JSONchap';
 import { ActivatedRoute } from '@angular/router'
 
 @Component({
@@ -15,8 +13,6 @@ export class PageMangaReadComponent implements OnInit {
 
   constructor(private mangaServices:MangaServicesService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
-      // console.log(params);                        // log the entire params object
-      // console.log(params['id']);                  // log the value of id
       this.idManga = params['id'];
       this.idChap = params['idChap'];
     });

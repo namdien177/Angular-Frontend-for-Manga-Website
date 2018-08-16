@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {ApiLaravelService} from './api-laravel.service';
 import { catchError, tap, map } from 'rxjs/operators';
-import { JsonData as UserJSON} from '../model/JSONuser';
+import * as jsonmodel from '../model/JSONmodel';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -17,8 +17,8 @@ export class UserServicesService {
     private apiLaravel: ApiLaravelService
   ) { }
 
-  getUserInfo(id:number):Observable<UserJSON[]>{
-    return this.http.get<UserJSON[]>(this.urlAPIManga + '/' + id + ' ').pipe(
+  getUserInfo(id:number):Observable<jsonmodel.UserJSON[]>{
+    return this.http.get<jsonmodel.UserJSON[]>(this.urlAPIManga + '/' + id + ' ').pipe(
       tap(recievedList => recievedList),
       catchError(error => of([
 

@@ -4,10 +4,7 @@ import { TagManga } from '../model/tags';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { JsonData } from '../model/JSONmanga';
-import { JsonData as JSONchap } from '../model/JSONchap';
-import { JsonData as JSONimg } from '../model/JSONmangaimg';
-import { JsonData as JSONauthor } from '../model/JSONauthor';
+import * as jsonmodel from '../model/JSONmodel';
 import {ApiLaravelService} from './api-laravel.service';
 
 @Injectable({
@@ -19,16 +16,16 @@ export class MangaServicesService {
   tags: TagManga;
   private urlAPIManga = 'http://localhost:8000/api/manga';
 
-  getListManga(link?): Observable<JsonData[]> {
+  getListManga(link?): Observable<jsonmodel.MangaJSON[]> {
     if (!link) {
-      return this.http.get<JsonData[]>(this.urlAPIManga).pipe(
+      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPIManga).pipe(
         tap(recievedList => recievedList),
         catchError(error => of([
 
         ]))
       );
     } else {
-      return this.http.get<JsonData[]>(link).pipe(
+      return this.http.get<jsonmodel.MangaJSON[]>(link).pipe(
         tap(recievedList => recievedList),
         catchError(error => of([
 
@@ -37,16 +34,16 @@ export class MangaServicesService {
     }
   }
 
-  getRecentUpdateList(displayNumber:number, link?:string): Observable<JsonData[]>{
+  getRecentUpdateList(displayNumber:number, link?:string): Observable<jsonmodel.MangaJSON[]>{
     if (!link) {
-      return this.http.get<JsonData[]>(this.urlAPIManga + '/updatelist/'+displayNumber).pipe(
+      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPIManga + '/updatelist/'+displayNumber).pipe(
         tap(recievedList => recievedList),
         catchError(error => of([
 
         ]))
       );
     } else {
-      return this.http.get<JsonData[]>(link).pipe(
+      return this.http.get<jsonmodel.MangaJSON[]>(link).pipe(
         tap(recievedList => recievedList),
         catchError(error => of([
 
@@ -55,8 +52,8 @@ export class MangaServicesService {
     }
   }
 
-  getAuthor(id:number): Observable<JSONauthor[]> {
-    return this.http.get<JSONauthor[]>(this.urlAPIManga + '/' + id + '/getauthor').pipe(
+  getAuthor(id:number): Observable<jsonmodel.AuthorJSON[]> {
+    return this.http.get<jsonmodel.AuthorJSON[]>(this.urlAPIManga + '/' + id + '/getauthor').pipe(
       tap(recievedList => recievedList),
       catchError(error => of([
 
@@ -79,8 +76,8 @@ export class MangaServicesService {
       ])));
   }
 
-  getMangaChapImage(idManga:number, idChap:number): Observable<JSONimg[]>{
-    return this.http.get<JSONimg[]>(this.urlAPIManga+'/'+idManga+'/chap/'+idChap).pipe(
+  getMangaChapImage(idManga:number, idChap:number): Observable<jsonmodel.MangaCoverJSON[]>{
+    return this.http.get<jsonmodel.MangaCoverJSON[]>(this.urlAPIManga+'/'+idManga+'/chap/'+idChap).pipe(
         tap(recievedList => recievedList),
         catchError(error => of([
   
@@ -88,16 +85,16 @@ export class MangaServicesService {
     )
   }
 
-  getListMangaChap(id:number, link?): Observable<JSONchap[]> {
+  getListMangaChap(id:number, link?): Observable<jsonmodel.ChapJSON[]> {
       if (!link) {
-        return this.http.get<JSONchap[]>(this.urlAPIManga+'/'+id+"/chap").pipe(
+        return this.http.get<jsonmodel.ChapJSON[]>(this.urlAPIManga+'/'+id+"/chap").pipe(
           tap(recievedList => recievedList),
           catchError(error => of([
   
           ]))
         );
       } else {
-        return this.http.get<JSONchap[]>(link).pipe(
+        return this.http.get<jsonmodel.ChapJSON[]>(link).pipe(
           tap(recievedList => recievedList),
           catchError(error => of([
   

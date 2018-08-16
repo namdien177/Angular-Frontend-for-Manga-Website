@@ -4,7 +4,7 @@ import { MangaServicesService } from '../../../../services/manga-services.servic
 import { ActivatedRoute } from '@angular/router';
 import { TagManga } from '../../../../model/tags';
 import { Chap } from '../../../../model/chap';
-import { JsonData } from '../../../../model/JSONchap';
+import * as jsonmodel from '../../../../model/JSONmodel';
 
 @Component({
   selector: 'app-page-manga-detail',
@@ -19,7 +19,7 @@ export class PageMangaDetailComponent implements OnInit {
   tagList: TagManga[] = [];
   chapList:Chap[]=[];
   loadmoreCondition = true;
-  jsonData:JsonData;
+  jsonData:jsonmodel.ChapJSON;
 
   constructor(
     private MangaServices: MangaServicesService,

@@ -20,7 +20,7 @@ import { AppBeforeloginService } from '../services/app-beforelogin.service';
 import { AppAffterloginService } from '../services/app-affterlogin.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full', data:{depth: 1}  },
+  { path: '', redirectTo: '/home', pathMatch: 'full', data:{depth: 1}  },
   { path:'home', component: PageHomeComponent, data:{depth: 1} },
 
   { path:'login', component: PageLoginComponent, data:{depth: 1}, canActivate:[AppBeforeloginService]  },

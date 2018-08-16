@@ -1,11 +1,11 @@
-.container-fluid > div:not(.btn-option){
-    -webkit-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
-    -moz-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
-    box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+.container-fluid > div{
     border-radius: 1em;
     margin: auto;
 }
 
+/*
+*   Information block section
+*/
 .infomation-block{
     margin: 4em auto 1em auto !important;
     z-index: 1;
@@ -14,6 +14,31 @@
     background: rgb(209, 214, 219);
 }
 
+.infomation-block i{
+    color:  rgb(49, 54, 61);
+}
+
+.img-block{
+    
+}
+
+.information{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.detail-information{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+/* 
+*   btn block section
+*/
 .btn-option{
     margin: auto;
     padding: 0;
@@ -30,6 +55,9 @@
     border-radius: 1em;
 }
 
+/* 
+*   Bookmark block section
+*/
 .bookmark{
     background: rgb(209, 214, 219);
     margin: 1em auto 1em auto !important;
@@ -75,6 +103,20 @@
     display:grid;
     grid-template-columns: 7fr 2fr;
     align-items: center;
+    position: relative;
+}
+
+.bookmark > .list > .manga > .info > div{
+    padding-left: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.bookmark > .list > .manga > .info >.chap{
+    justify-self: center;
+    align-self: center;
+    text-align: center
 }
 
 .tooltips{
@@ -86,7 +128,6 @@
     visibility: hidden;
     z-index: 2;
     opacity: 1;
-    transition: 0.2s;
     border-radius: 1em;
     padding: 0;
 }
@@ -104,44 +145,18 @@ a.info:hover > .tooltips{
     visibility: visible
 }
 
-.bookmark > .list > .manga > .info > div{
-    padding-left: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.bookmark > .list > .manga > .info >.chap{
-    justify-self: center;
-    align-self: center;
-    text-align: center
-}
-
 .removebtn{
     border-radius: 0 1em 1em 0;
 }
 
-/*
-*
+/* 
+* Status block section
 */
-.infomation-block i{
-    color:  rgb(49, 54, 61);
-}
 
-.img-block{
-    
-}
-
-.information{
+.status-block{
     display: flex;
     justify-content: center;
     align-content: center;
-    flex-direction: column;
-}
-
-.detail-information{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
+    margin: auto;
+    margin-bottom: 1em;
 }

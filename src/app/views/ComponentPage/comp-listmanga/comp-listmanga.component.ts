@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Manga } from '../../../../model/manga';
 import { MangaServicesService } from '../../../../services/manga-services.service';
 import * as _ from 'lodash';
-import { JsonData, UnitManga } from '../../../../model/JSONmanga';
+import * as jsonmodel from '../../../../model/JSONmodel';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -17,9 +17,9 @@ export class CompListmangaComponent implements OnInit {
   @Output() outputManga = new EventEmitter<Manga>();
 
   selectedManga: Manga;
-  jsonData: JsonData;
+  jsonData: jsonmodel.MangaJSON;
 
-  listUnit: UnitManga[] = [];
+  listUnit: jsonmodel.MangaAllJSON[] = [];
 
   loadmoreCondition = true;
 
@@ -45,7 +45,7 @@ export class CompListmangaComponent implements OnInit {
     }
   }
 
-  clickBriefManga(unit: UnitManga): void {
+  clickBriefManga(unit: jsonmodel.MangaAllJSON): void {
     this.selectedManga = unit.aManga;
     this.outputManga.emit(unit.aManga);
   }
@@ -61,10 +61,10 @@ export class CompListmangaComponent implements OnInit {
     );
   }
 
-  getAuthorNameAndNewChap(listManga:JsonData){
+  getAuthorNameAndNewChap(listManga:jsonmodel.MangaJSON){
     listManga.data.forEach(aManga=>{
       this.MangaServices.getAuthor(aManga.id).subscribe(listAuthor=>{
-        let unit = new UnitManga;
+        let unit = new jsonmodel.MangaAllJSON;
         //@ts-ignore
         unit.aAuthor = listAuthor.data;
         unit.aManga = aManga;

@@ -9,6 +9,12 @@ body{
     font-family: Helvetica, sans-serif;
 }
 
+.shadow-soft{
+    -webkit-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+    -moz-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+    box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
+}
+
 .footerLink{
     text-decoration: none !important;
     color: #d9d9d9;
