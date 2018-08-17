@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Manga } from '../../../../model/manga';
 import { MangaServicesService } from '../../../../services/manga-services.service';
 import { TagManga } from '../../../../model/tags';
+import { Bookmark } from '../../../../model/bookmark';
+import { UserServicesService } from '../../../../services/user-services.service';
 
 @Component({
   selector: 'app-page-allmanga',
@@ -9,7 +11,9 @@ import { TagManga } from '../../../../model/tags';
   styleUrls: ['./page-allmanga.component.css']
 })
 export class PageAllmangaComponent implements OnInit {
-  constructor(private mangaService: MangaServicesService) { }
+  constructor(
+    private mangaService: MangaServicesService,
+    private userService: UserServicesService) { }
 
   listAllManga: Manga[];               // array chua manga queue tu sv
   currentDisplayMangaCount = 10;   // so manga dang hien thi

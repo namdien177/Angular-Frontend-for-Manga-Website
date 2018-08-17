@@ -68,7 +68,6 @@ export class CompListmangaComponent implements OnInit {
         //@ts-ignore
         unit.aAuthor = listAuthor.data;
         unit.aManga = aManga;
-        
         this.MangaServices.getListMangaChap(aManga.id).subscribe(listChap=>{
           //@ts-ignore
           this.MangaServices.getListMangaChap(aManga.id, listChap.links.last).subscribe(listChap=>{

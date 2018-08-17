@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import * as jsonmodel from '../model/JSONmodel';
 import {ApiLaravelService} from './api-laravel.service';
+import { AppTokenService } from './app-token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -103,8 +104,25 @@ export class MangaServicesService {
       }
   }
 
+  /**
+   * Bookmark a manga. Return type is object JSON message
+   * @param manga passed manga to unbookmark
+   */
+  bookmark(manga:Manga){
+    return this.apiLaravel.getDataGet('manga/'+manga.id+"/bookmark/"+this.token.getIDUser());
+  }
+
+  /**
+   * Un-bookmark a manga. Return type is object JSON message
+   * @param manga passed manga to unbookmark
+   */
+  unbookmark(manga:Manga){
+    return this.apiLaravel.getDataGet('manga/'+manga.id+"/unbookmark/"+this.token.getIDUser());
+  }
+
   constructor(
     private http: HttpClient,
-    private apiLaravel: ApiLaravelService
+    private apiLaravel: ApiLaravelService,
+    private token: AppTokenService
   ) { }
 }

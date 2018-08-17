@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
+import { ResponseMessage } from '../model/JSONmodel';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +17,12 @@ export class ApiLaravelService {
     return this.http.post(this.url_api + '/api/' + route + '', data);
   }
 
-  getDataGet(route: String, data) {
-    return this.http.get(this.url_api + '/api/' + route + '', data);
-  }
+  getDataGet(route: String):Observable<ResponseMessage[]>{
+    return this.http.get<ResponseMessage[]>(this.url_api + '/api/' + route + '').pipe(
+      tap(recievedList => recievedList),
+      catchError(error => of([
 
-  getUserInfo(route:String){
-    return this.http.get(this.url_api + '/api/' + route + '');
+      ])));
   }
 
 }

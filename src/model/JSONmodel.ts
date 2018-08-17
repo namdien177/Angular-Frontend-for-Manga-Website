@@ -6,9 +6,19 @@ import { Manga } from "./manga";
 import { ImageManga } from "./manga-img";
 import { TagManga } from './tags';
 import { User } from "./user";
+import { Bookmark } from "./bookmark";
+
+export class ResponseMessage{
+    boolean: boolean;
+    message: string;
+}
+
+export class BookmarkJSON{
+    data:Bookmark[];
+}
 
 export class UserJSON{
-    data:User
+    data:User;
 }
 
 export class AuthorJSON{

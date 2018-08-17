@@ -29,69 +29,33 @@
       <p>Action</p>
     </div>
     <div class="list">
-      <div class="manga">
-        <a href="" class="info">
+      <div class="manga" *ngFor="let manga of listmanga; index as i;">
+        <a routerLink="/manga/{{manga?.info.id}}" class="info">
           <div>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis quo nisi rerum animi cum quibusdam, ipsum eum repellendus nulla ea.
+            {{manga?.info.name}}
           </div>
           <div class="chap">
-            5
+            {{manga?.latestChap}}
           </div>
           <div class="tooltips">
-            <img src="https://bjpqvq.bn.files.1drv.com/y4mPUAQMuVJAPhJEgo7fihlGzfg8RBp6DMlxqrPx8VTPE4PiXjPS1Al8z1i26NlYPcVJ1BMMbZakpC_9XRN0RbvXgUVAxEWMuzqfHZCj7SouD4ODtYp1jDJk27tqFaZFvmYpua1rVY39HCGUoADxJR6telHS9s4wso0uJRCUeVwHEAui2i0riPDdREksiZcraylLtkO9s3E-U7Ut3NxBX2sOg?width=843&height=1200&cropmode=none" 
+            <img src="{{manga?.info.cover}}" 
             width="150px" height="150px">
           </div>
         </a>
-        <button class="btn btn-warning rounded-0">
+        <button *ngIf="manga.manga.read == 1" class="btn btn-warning rounded-0">
           Mark as read
         </button>
-        <button class="btn btn-danger removebtn">
-          Remove
+        <button *ngIf="manga.manga.read == 2" class="btn btn-secondary rounded-0">
+          Unread this
         </button>
-      </div>
-      <div class="manga">
-        <a href="" class="info">
-          <div>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis quo nisi rerum animi cum quibusdam, ipsum eum repellendus nulla ea.
-          </div>
-          <div class="chap">
-            5
-          </div>
-          <div class="tooltips">
-            <img src="http://c5.ninemanga.com/es_manga/26/2458/326449/6db6b914b3456302b54f884e9b95540b.jpg" 
-            width="150px" height="150px">
-          </div>
-        </a>
-        <button class="btn btn-warning rounded-0">
-          Mark as read
-        </button>
-        <button class="btn btn-danger removebtn">
-          Remove
-        </button>
-      </div>
-      <div class="manga">
-        <a href="" class="info">
-          <div>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis quo nisi rerum animi cum quibusdam, ipsum eum repellendus nulla ea.
-          </div>
-          <div class="chap">
-            5
-          </div>
-          <div class="tooltips">
-            <img src="https://bjpqvq.bn.files.1drv.com/y4mPUAQMuVJAPhJEgo7fihlGzfg8RBp6DMlxqrPx8VTPE4PiXjPS1Al8z1i26NlYPcVJ1BMMbZakpC_9XRN0RbvXgUVAxEWMuzqfHZCj7SouD4ODtYp1jDJk27tqFaZFvmYpua1rVY39HCGUoADxJR6telHS9s4wso0uJRCUeVwHEAui2i0riPDdREksiZcraylLtkO9s3E-U7Ut3NxBX2sOg?width=843&height=1200&cropmode=none" 
-            width="150px" height="150px">
-          </div>
-        </a>
-        <button class="btn btn-warning rounded-0">
-          Mark as read
-        </button>
-        <button class="btn btn-danger removebtn">
+        <button class="btn btn-danger removebtn" (click)="unbookmark(manga.info, i)">
           Remove
         </button>
       </div>
     </div>
   </div>
   <div class="status-block col-sm-8 col-xs-12">
-    <h3 class="text-center text-dark">Total</h3>
+    <h3 class="text-center text-dark">Total {{listmanga.length}}</h3>
+
   </div>
 </div>
