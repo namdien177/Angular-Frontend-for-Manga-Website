@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {ApiLaravelService} from '../../../../services/api-laravel.service';
 import { AppTokenService } from '../../../../services/app-token.service';
@@ -11,6 +11,8 @@ import { AppAuthService } from '../../../../services/app-auth.service';
   styleUrls: ['./page-login-login.component.css']
 })
 export class PageLoginLoginComponent implements OnInit {
+
+  @Output() loading = new EventEmitter<boolean>();
   
   public formData = {
     email: null,
@@ -26,9 +28,11 @@ export class PageLoginLoginComponent implements OnInit {
     private auth: AppAuthService) { }
 
   ngOnInit() {
+
   }
 
   onSubmit() {
+    this.loading.emit(true);
     return this.apiLaravel.getDataPost('auth/login', this.formData).subscribe(
       Response => {
         this.handleResponse(Response);
@@ -47,6 +51,7 @@ export class PageLoginLoginComponent implements OnInit {
     this.tokenservices.handle(data.access_token);
     this.auth.changeAuthStatus(true);
     this.router.navigateByUrl('/');
+    this.loading.emit(false);
   }
 
 }

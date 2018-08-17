@@ -13,9 +13,13 @@ export class PageLoginComponent implements OnInit {
     private auth: AppAuthService,
     private router:Router,
   ) { }
-
+  
+  load:boolean = true;
   ngOnInit() {
-    
+    this.load = false;
   }
 
+  loading(load:boolean){
+    if(load==true || load ==false) this.load = load;
+  }
 }

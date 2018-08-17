@@ -26,6 +26,7 @@ export class PageMangaDetailComponent implements OnInit {
   read=false;
   responseMessage:string;
   auth:boolean = false;
+  loading: boolean = true;
 
   constructor(
     private MangaServices: MangaServicesService,
@@ -40,6 +41,7 @@ export class PageMangaDetailComponent implements OnInit {
    }
 
    showMoreResult() {
+     this.loading = true;
      console.log(this.jsonData);
       if (this.jsonData.links.next) {
         this.MangaServices.getListMangaChap(this.showBriefManga.id, this.jsonData.links.next).subscribe(
@@ -48,12 +50,13 @@ export class PageMangaDetailComponent implements OnInit {
             this.jsonData = ListMangaChapGot;
             // @ts-ignore
             this.chapList.push.apply(this.chapList, ListMangaChapGot.data);
+            this.loading = false;
           }
         );
       } else {
         this.loadmoreCondition = false;
+        this.loading = false;
       }
-      console.log(this.loadmoreCondition);
     }
 
   ngOnInit() {
@@ -74,6 +77,7 @@ export class PageMangaDetailComponent implements OnInit {
         this.chapList = chaplist.data;
         //@ts-ignore
         this.jsonData = chaplist;
+        this.loading = false;
       }
     );
     this.userService.getUserBookmark().subscribe(
@@ -81,7 +85,6 @@ export class PageMangaDetailComponent implements OnInit {
         let didRead = false;
         //@ts-ignore
         if(Bookmark.data){
-          // console.log(Bookmark.data);
           //@ts-ignore
           Bookmark.data.forEach(manga => {
             if (manga.idManga == this.showBriefManga.id){

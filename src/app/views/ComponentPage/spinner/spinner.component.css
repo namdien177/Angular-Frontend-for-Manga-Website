@@ -17,8 +17,18 @@
 }
 
 @keyframes spinner {
-    to {
-      transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
   }
-  
+}
+
+.outsite{
+  width: 100% !important;
+  height: 100% !important;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: block;
+  position: absolute;
+  background-color: rgba(240, 248, 255, 0.555) !important;
+}

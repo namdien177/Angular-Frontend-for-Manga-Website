@@ -20,6 +20,7 @@ export class PageUserComponent implements OnInit {
   public loggedIn:boolean = false;
   user:User;
   listmanga:displayBookmark[] = [];
+  loading:boolean = true;
 
   unbookmark(manga:Manga, i){
     console.log (manga);
@@ -104,6 +105,7 @@ export class PageUserComponent implements OnInit {
                               info: infoManga
                             };
                             this.listmanga.push(displayManga);
+                            this.loading = false;
                           });
                         });
                       }

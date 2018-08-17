@@ -3,6 +3,7 @@ import { MangaServicesService } from '../../../../services/manga-services.servic
 import { ImageManga } from '../../../../model/manga-img';
 import { Chap } from '../../../../model/chap';
 import { ActivatedRoute } from '@angular/router'
+import { ApiLaravelService } from '../../../../services/api-laravel.service';
 
 @Component({
   selector: 'app-page-manga-read',
@@ -11,7 +12,10 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class PageMangaReadComponent implements OnInit {
 
-  constructor(private mangaServices:MangaServicesService, private route: ActivatedRoute) {
+  constructor(
+    private mangaServices:MangaServicesService, 
+    private route: ActivatedRoute,
+    private api: ApiLaravelService) {
     this.route.params.subscribe(params => {
       this.idManga = params['id'];
       this.idChap = params['idChap'];
@@ -26,6 +30,10 @@ export class PageMangaReadComponent implements OnInit {
 
   ngOnInit() {
     this.getImage(this.idManga,this.idChap);
+    this.api.getDataGet('manga/'+this.idManga+"/chap/"+this.idChap+"/more").subscribe(
+      res=>{
+        console.log(res);
+    });
   }
 
   getImage(idManga:number, idChap:number){

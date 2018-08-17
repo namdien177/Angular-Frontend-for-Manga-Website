@@ -32,6 +32,7 @@ export class CompListmangaComponent implements OnInit {
   }
 
   showMoreResult() {
+    this.loading = true;
     if (this.jsonData.links.next) {
       this.MangaServices.getListManga(this.jsonData.links.next).subscribe(
         (ListMangaGot) => {
@@ -43,6 +44,7 @@ export class CompListmangaComponent implements OnInit {
       );
     } else {
       this.loadmoreCondition = false;
+      this.loading = false;
     }
   }
 

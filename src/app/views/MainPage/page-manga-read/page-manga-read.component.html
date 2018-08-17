@@ -7,7 +7,7 @@
     <button class="btn btn-block btn-warning m-2 mb-5">Mark as read</button>
   </div>
   <div class="bookmarkSection fixed-bottom d-flex flex-row">
-    <button class="btn btn-outline-danger rounded-0 w-25">Previous</button>
+    <button class="btn btn-outline-danger rounded-0 w-25" >Previous</button>
     <button class="btn btn-default rounded-0 w-25">Go</button>
     <select name="chapter" id="chapter" class="custom-select rounded-0">
       <option *ngFor="let link of listChap" [value]='link.id' [selected]='link.id == idChap ? true:false' >
