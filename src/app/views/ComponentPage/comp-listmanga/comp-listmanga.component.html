@@ -1,4 +1,4 @@
-<div class="col-sm-10 offset-2 list-block">
+<div class="col-sm-10 offset-2 list-block" [class.ngVisible]='!loading' [class.ngInvisible]='loading'>
   <!-- ----------------------- -->
   <div class="card bg-dark mt-3">
     <div class="card-body row">
@@ -39,12 +39,13 @@
     <h1 class="display-4 text-muted text-center" >Seems like there is no manga here...</h1>
   </div>
 
-  <div *ngIf="listUnit && loadmoreCondition" class="col-12 mt-3 mb-3">
-      <button type="button" class="btn btn-info btn-block rounded-0" (click)='showMoreResult()'>Load More Manga!</button>
-    </div>
+  <div *ngIf="listUnit && loadmoreCondition" class="col-12 mt-3 mb-3" >
+    <button type="button" *ngIf="!loading" class="btn btn-info btn-block rounded-0" (click)='showMoreResult()'>Load More Manga!</button>
+  </div>
 
   <div *ngIf="listUnit && !loadmoreCondition" class="col-12 mt-3 mb-3">
     <h1 class="display-4 text-muted text-center" >There is no manga left to load :'(</h1>
   </div>
 
 </div>
+<app-spinner *ngIf="loading"></app-spinner>

@@ -9,13 +9,13 @@ import * as jsondata from '../../../../model/JSONmodel';
 })
 export class PageHomeComponent implements OnInit {
 
-  innerWidth;
+  loading:boolean = true;
   displayList:jsondata.MangaAllJSON[] = [];
 
   jsonManga:jsondata.MangaJSON;
 
   ngOnInit() {
-    
+    this.loadList(4);
   }
   
   loadList(displayNumber:number): void {
@@ -41,8 +41,9 @@ export class PageHomeComponent implements OnInit {
             //@ts-ignore  
             unit.newestChap = listChap.data[listChap.data.length -1].chap;
           });
+          this.displayList.push(unit);
+          this.loading = false;
         });
-        this.displayList.push(unit);
     });
   })}
 
@@ -88,8 +89,6 @@ export class PageHomeComponent implements OnInit {
   }
 
   constructor(
-    private mangaservice:MangaServicesService) { 
-      this.loadList(4);
-    }
+    private mangaservice:MangaServicesService) { }
 
 }

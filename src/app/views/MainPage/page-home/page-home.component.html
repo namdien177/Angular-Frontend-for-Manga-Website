@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" [class.ngVisible] = "!loading" [class.ngInvisible] = "loading">
   <div class="update-block">
     <h2>New Updates: </h2>
     <p class="currentPage">Page: 2</p>
@@ -44,3 +44,5 @@
     amet enim delectus alias quod asperiores illum beatae quasi temporibus totam fugit.
   </div>
 </div>
+
+<app-spinner *ngIf="loading"></app-spinner>

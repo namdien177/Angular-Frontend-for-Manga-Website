@@ -22,6 +22,7 @@ export class CompListmangaComponent implements OnInit {
   listUnit: jsonmodel.MangaAllJSON[] = [];
 
   loadmoreCondition = true;
+  loading:boolean = true;
 
   constructor(
     private MangaServices: MangaServicesService) { }
@@ -73,12 +74,10 @@ export class CompListmangaComponent implements OnInit {
           this.MangaServices.getListMangaChap(aManga.id, listChap.links.last).subscribe(listChap=>{
             //@ts-ignore
             unit.newestChap = listChap.data[listChap.data.length -1].chap;
-            // //@ts-ignore
-            // console.log(listChap.data[listChap.data.length -1]);
+            this.listUnit.push(unit);
+            this.loading = false;
           });
         });
-
-        this.listUnit.push(unit);
       });
     });
   }
