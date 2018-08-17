@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MangaServicesService } from '../../../../services/manga-services.service';
 import { ImageManga } from '../../../../model/manga-img';
 import { Chap } from '../../../../model/chap';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { ApiLaravelService } from '../../../../services/api-laravel.service';
 
 @Component({
@@ -15,26 +15,46 @@ export class PageMangaReadComponent implements OnInit {
   constructor(
     private mangaServices:MangaServicesService, 
     private route: ActivatedRoute,
-    private api: ApiLaravelService) {
-    this.route.params.subscribe(params => {
-      this.idManga = params['id'];
-      this.idChap = params['idChap'];
-    });
+    private api: ApiLaravelService,
+    private router: Router) {
    }
 
   listImage:ImageManga[]=[];
   idManga:number;
   idChap:number;
   listChap:Chap[]=[];
-
+  prevLink:string = null;
+  nextLink:string = null;
+  valueID:string = this.idChap+"";
+  loading:boolean = true;
 
   ngOnInit() {
-    this.getImage(this.idManga,this.idChap);
-    this.api.getDataGet('manga/'+this.idManga+"/chap/"+this.idChap+"/more").subscribe(
+    this.route.params.subscribe(params => {
+      this.loading = true;
+      this.listImage = [];
+      this.listChap = [];
+      this.prevLink = null;
+      this.nextLink = null;
+      this.valueID = params['idChap'];
+      this.idManga = params['id'];
+      this.idChap = params['idChap'];
+      this.getImage(this.idManga,this.idChap);
+      this.api.getDataGet('manga/'+this.idManga+"/chap/"+this.idChap+"/link").subscribe(
       res=>{
-        console.log(res);
+        //@ts-ignore
+        this.prevLink = res.prev;
+        //@ts-ignore
+        this.nextLink = res.next;
+        this.loading = false;
+      });
     });
   }
+
+  // clickChap(idManga){
+  //   if(idManga){
+  //     this.valueID = idManga+"";
+  //   }
+  // }
 
   getImage(idManga:number, idChap:number){
     this.mangaServices.getMangaChapImage(idManga,idChap).subscribe(

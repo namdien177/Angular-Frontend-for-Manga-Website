@@ -68,21 +68,21 @@ html {
     border-left: 5px solid rgb(9, 255, 0);
 }
 
-ngLoadSpinOn{
+ngDisplayOn{
     display: none;
 }
 
-ngLoadSpinOff{
+ngDisplayOff{
     display: block;
 }
 
 
 ngVisible{
-    display: block;
+    visibility: visible !important;
 }
 
 ngInvisible{
-    display: none;
+    visibility: hidden !important;
 }
 
 
