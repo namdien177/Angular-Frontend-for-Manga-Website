@@ -34,6 +34,36 @@ export class PageUserComponent implements OnInit {
     });
   }
 
+  markread(mangaBookmark:Bookmark, i){
+    this.mangaservice.markRead(mangaBookmark).subscribe(
+      response => {
+        //@ts-ignore
+        if(response.boolean){
+          let tempManga = mangaBookmark;
+          tempManga.read = 2;
+          let temp = this.listmanga[i];
+          temp.manga = tempManga;
+          this.listmanga[i]=temp;
+        }
+      }
+    )
+  }
+
+  markunread(mangaBookmark:Bookmark, i){
+    this.mangaservice.markUnRead(mangaBookmark).subscribe(
+      response => {
+        //@ts-ignore
+        if(response.boolean){
+          let tempManga = mangaBookmark;
+          tempManga.read = 1;
+          let temp = this.listmanga[i];
+          temp.manga = tempManga;
+          this.listmanga[i]=temp;
+        }
+      }
+    )
+  }
+
   constructor(
     private auth:AppAuthService,
     private router: Router,

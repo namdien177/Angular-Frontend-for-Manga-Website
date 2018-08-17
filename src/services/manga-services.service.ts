@@ -7,6 +7,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 import * as jsonmodel from '../model/JSONmodel';
 import {ApiLaravelService} from './api-laravel.service';
 import { AppTokenService } from './app-token.service';
+import { Bookmark } from '../model/bookmark';
 
 @Injectable({
   providedIn: 'root'
@@ -118,6 +119,14 @@ export class MangaServicesService {
    */
   unbookmark(manga:Manga){
     return this.apiLaravel.getDataGet('manga/'+manga.id+"/unbookmark/"+this.token.getIDUser());
+  }
+
+  markRead(bookmark:Bookmark){
+    return this.apiLaravel.getDataGet('manga/'+bookmark.idManga+"/read/"+this.token.getIDUser());
+  }
+
+  markUnRead(bookmark:Bookmark){
+    return this.apiLaravel.getDataGet('manga/'+bookmark.idManga+"/unread/"+this.token.getIDUser());
   }
 
   constructor(

@@ -42,10 +42,10 @@
             width="150px" height="150px">
           </div>
         </a>
-        <button *ngIf="manga.manga.read == 1" class="btn btn-warning rounded-0">
+        <button *ngIf="manga.manga.read == 1" (click)="markread(manga.manga, i)" class="btn btn-warning rounded-0">
           Mark as read
         </button>
-        <button *ngIf="manga.manga.read == 2" class="btn btn-secondary rounded-0">
+        <button *ngIf="manga.manga.read == 2" (click)="markunread(manga.manga, i)" class="btn btn-secondary rounded-0">
           Unread this
         </button>
         <button class="btn btn-danger removebtn" (click)="unbookmark(manga.info, i)">
