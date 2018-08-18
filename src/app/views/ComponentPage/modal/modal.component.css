@@ -1,0 +1,52 @@
+.modal-windows{
+    position: absolute;
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0;
+    left: 0;
+    background: rgba(48, 48, 48, 0.486);
+    z-index: 8;
+}
+
+.modal-windows > .modal-frame{
+    margin: 20% auto;
+    max-width: 50%;
+    min-width: 25%;
+    display: grid;
+    grid-template-areas: 
+    '.          close-button'
+    'message    message'
+    'option     option';
+    grid-gap: 1em;
+    background: white;
+    padding: 1em;
+    grid-template-rows: auto 4em auto;
+    grid-template-columns: auto 40px;
+}
+
+.modal-windows > .modal-frame > .close-button{
+    grid-area: close-button;
+}
+
+.modal-windows > .modal-frame > .modal-message{
+    grid-area: message;
+    text-align: justify;
+}
+
+.modal-windows > .modal-frame > .modal-option{
+    grid-area: option;
+    display: grid;
+    grid-template-areas: 
+    'tips   btn';
+    grid-template-columns: auto 30%;
+    align-items: center;
+}
+
+.modal-windows > .modal-frame > .modal-option > small{
+    grid-area: tips;
+}
+
+.modal-windows > .modal-frame > .modal-option > button{
+    grid-area: btn;
+}

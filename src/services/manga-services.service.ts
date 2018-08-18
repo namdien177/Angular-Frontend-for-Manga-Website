@@ -125,8 +125,16 @@ export class MangaServicesService {
     return this.apiLaravel.getDataGet('manga/'+bookmark.idManga+"/read/"+this.token.getIDUser());
   }
 
+  markReadID(idManga){
+    return this.apiLaravel.getDataGet('manga/'+idManga+"/read/"+this.token.getIDUser());
+  }
+
   markUnRead(bookmark:Bookmark){
     return this.apiLaravel.getDataGet('manga/'+bookmark.idManga+"/unread/"+this.token.getIDUser());
+  }
+
+  markUnReadID(idManga){
+    return this.apiLaravel.getDataGet('manga/'+idManga+"/unread/"+this.token.getIDUser());
   }
 
   constructor(

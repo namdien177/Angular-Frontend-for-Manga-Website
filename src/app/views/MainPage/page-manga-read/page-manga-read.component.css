@@ -5,3 +5,7 @@
 .imgBlock{
     padding-bottom: 2em;
 }
+
+a.btn-link {
+    color: white;
+}

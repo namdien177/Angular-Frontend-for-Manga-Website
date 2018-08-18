@@ -4,19 +4,25 @@
       <img class="img-responsive"
       src="{{img.img_url}}" alt="Chap {{img.idChap}}">
     </p>
-    <button class="btn btn-block btn-warning m-2 mb-5">Mark as read</button>
+    <button class="btn btn-block btn-warning mb-1" *ngIf="!read && loginAuth" (click)="markread()" >Mark as read</button>
+    <button class="btn btn-block btn-secondary mb-1" *ngIf="read && loginAuth" (click)="markunread()" >Mark as unread</button>
+    <button class="btn btn-block btn-light mb-1" *ngIf="!loginAuth" (click)="loginBtn()" >Login to bookmark</button>
+    <button (click)="mangaInformation()" class="btn btn-success btn-block mb-5">View more information of this manga</button>
   </div>
   <div class="bookmarkSection fixed-bottom d-flex flex-row">
-    <button class="btn btn-outline-danger rounded-0 w-25" [class.ngVisible]="prevLink != null" [class.ngInvisible]="prevLink == null" >
+      <!-- [class.ngVisible]="prevLink != null" [class.ngInvisible]="prevLink == null" -->
+    <button class="btn btn-danger rounded-0 w-25" [disabled]='prevLink == null' (click)="prevclick()" >
       Previous
     </button>
-    <a class="btn btn-default rounded-0 w-25" routerLink="/manga/{{idManga}}/chap/{{valueID}}" >Go</a>
+    <a class="btn btn-link bg-primary rounded-0 w-25" routerLink="/manga/{{idManga}}/chap/{{valueID}}" >Go</a>
     <select name="chapter" id="chapter" class="custom-select rounded-0" [(ngModel)]="valueID" ngDefaultControl >
       <option *ngFor="let link of listChap" [value]='link?.id' [selected]='link?.id == idChap ? true:false' >
         Chap {{link?.chap}}: {{link?.title}}
       </option>
     </select>
-    <button class="btn btn-outline-success rounded-0 w-25">Next</button>
+    <button class="btn btn-success rounded-0 w-25" [disabled]='nextLink == null' (click)="nextclick()" >
+      Next
+    </button>
   </div>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>

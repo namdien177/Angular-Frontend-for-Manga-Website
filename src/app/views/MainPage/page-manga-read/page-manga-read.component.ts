@@ -4,6 +4,9 @@ import { ImageManga } from '../../../../model/manga-img';
 import { Chap } from '../../../../model/chap';
 import { ActivatedRoute, Router } from '@angular/router'
 import { ApiLaravelService } from '../../../../services/api-laravel.service';
+import { UserServicesService } from '../../../../services/user-services.service';
+import { Bookmark } from '../../../../model/bookmark';
+import { AppTokenService } from '../../../../services/app-token.service';
 
 @Component({
   selector: 'app-page-manga-read',
@@ -13,10 +16,12 @@ import { ApiLaravelService } from '../../../../services/api-laravel.service';
 export class PageMangaReadComponent implements OnInit {
 
   constructor(
-    private mangaServices:MangaServicesService, 
+    private mangaservice:MangaServicesService, 
     private route: ActivatedRoute,
     private api: ApiLaravelService,
-    private router: Router) {
+    private router: Router,
+    private userService: UserServicesService,
+    private token: AppTokenService) {
    }
 
   listImage:ImageManga[]=[];
@@ -27,6 +32,8 @@ export class PageMangaReadComponent implements OnInit {
   nextLink:string = null;
   valueID:string = this.idChap+"";
   loading:boolean = true;
+  read:boolean = false;
+  loginAuth:boolean = false;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -45,23 +52,79 @@ export class PageMangaReadComponent implements OnInit {
         this.prevLink = res.prev;
         //@ts-ignore
         this.nextLink = res.next;
-        this.loading = false;
+        if(this.token.loggedIn()){
+          this.loginAuth = true;
+          this.userService.getUserBookmark().subscribe(
+            Bookmark =>{
+              let didRead = false;
+              //@ts-ignore
+              if(Bookmark.data){
+                //@ts-ignore
+                Bookmark.data.forEach(manga => {
+                  if (manga.idManga == this.idManga){
+                    didRead = true;
+                  }
+                });
+              }
+              this.loading = false;
+              this.read = didRead;
+          });
+        }else{
+          this.loginAuth = false;
+          this.loading = false;
+        }
       });
     });
   }
 
-  // clickChap(idManga){
-  //   if(idManga){
-  //     this.valueID = idManga+"";
-  //   }
-  // }
+  markread(){
+    this.loading = true;
+    this.mangaservice.markReadID(this.idManga).subscribe(
+      response => {
+        //@ts-ignore
+        if(response.boolean){
+          this.read = !this.read;
+        }
+        this.loading = false;
+      }
+    )
+  }
+
+  markunread(){
+    this.loading = true;
+    this.mangaservice.markUnReadID(this.idManga).subscribe(
+      response => {
+        //@ts-ignore
+        if(response.boolean){
+          this.read = !this.read;
+        }
+        this.loading = false;
+      }
+    )
+  }
+
+  loginBtn(){
+    this.router.navigateByUrl('/login');
+  }
+
+  prevclick(){
+    this.router.navigateByUrl(this.prevLink);
+  }
+
+  nextclick(){
+    this.router.navigateByUrl(this.nextLink);
+  }
+
+  mangaInformation(){
+    this.router.navigateByUrl('/manga/'+this.idManga);
+  }
 
   getImage(idManga:number, idChap:number){
-    this.mangaServices.getMangaChapImage(idManga,idChap).subscribe(
+    this.mangaservice.getMangaChapImage(idManga,idChap).subscribe(
       valua=>{
         //@ts-ignore
         this.listImage = valua.data;
-        this.mangaServices.getListMangaChap(idManga).subscribe(
+        this.mangaservice.getListMangaChap(idManga).subscribe(
           valua=>{
             //@ts-ignore
             this.listChap.push.apply(this.listChap,valua.data);

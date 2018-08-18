@@ -34,6 +34,7 @@ import { AppAuthService } from '../services/app-auth.service';
 import { AppAffterloginService } from '../services/app-affterlogin.service';
 import { AppBeforeloginService } from '../services/app-beforelogin.service';
 import { SpinnerComponent } from './views/ComponentPage/spinner/spinner.component';
+import { ModalComponent as ModalComComponent } from './views/ComponentPage/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { SpinnerComponent } from './views/ComponentPage/spinner/spinner.componen
     PageForgetPasswordComponent,
     PageNewPasswordComponent,
     PageRegisterAuthorComponent,
-    SpinnerComponent      //adding component
+    SpinnerComponent,
+    ModalComComponent      //adding component
   ],
   imports: [
     BrowserModule,

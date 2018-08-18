@@ -77,43 +77,47 @@ export class PageMangaDetailComponent implements OnInit {
         this.chapList = chaplist.data;
         //@ts-ignore
         this.jsonData = chaplist;
-        this.loading = false;
+        this.userService.getUserBookmark().subscribe(
+          Bookmark =>{
+            let didRead = false;
+            //@ts-ignore
+            if(Bookmark.data){
+              //@ts-ignore
+              Bookmark.data.forEach(manga => {
+                if (manga.idManga == this.showBriefManga.id){
+                  didRead = true;
+                }
+              });
+            }
+            this.loading = false;
+            this.read = didRead;
+        });
       }
     );
-    this.userService.getUserBookmark().subscribe(
-      Bookmark =>{
-        let didRead = false;
-        //@ts-ignore
-        if(Bookmark.data){
-          //@ts-ignore
-          Bookmark.data.forEach(manga => {
-            if (manga.idManga == this.showBriefManga.id){
-              didRead = true;
-            }
-          });
-        }
-        this.read = didRead;
-    });
     this.auth = this.token.loggedIn();
   }
 
   bookmark(manga:Manga):void{
+    this.loading = true;
     this.MangaServices.bookmark(manga).subscribe(response =>{
       console.log(response);
       //@ts-ignore
       this.read = response.boolean;
       //@ts-ignore
       this.responseMessage = response.message;
+      this.loading = false;
     });
   }
 
   unbookmark(manga:Manga){
+    this.loading = true;
     this.MangaServices.unbookmark(manga).subscribe(response =>{
       console.log(response);
       //@ts-ignore
       this.read = !response.boolean;
       //@ts-ignore
       this.responseMessage = response.message;
+      this.loading = false;
     });
   }
 }
