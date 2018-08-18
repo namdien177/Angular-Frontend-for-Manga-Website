@@ -21,6 +21,8 @@ export class PageUserComponent implements OnInit {
   user:User;
   listmanga:displayBookmark[] = [];
   loading:boolean = true;
+  error:boolean = false;
+  errorMessage = "";
 
   unbookmark(manga:Manga, i){
     console.log (manga);
@@ -65,6 +67,10 @@ export class PageUserComponent implements OnInit {
     )
   }
 
+  errorModal(closemodal:boolean){
+    this.error = closemodal;
+  }
+
   constructor(
     private auth:AppAuthService,
     private router: Router,
@@ -79,12 +85,13 @@ export class PageUserComponent implements OnInit {
       authCondition => {
         this.loggedIn = authCondition;
         if (!this.loggedIn){
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/login');
         }else{
-          this.userServices.getUserInfo(this.token.getIDUser()).subscribe(
+            this.userServices.me().subscribe(
             userInfo =>{
+              console.log(userInfo);
               //@ts-ignore
-              this.user = userInfo.data;
+              this.user = userInfo;
               this.userServices.getUserBookmark().subscribe(
                 listmanga=>{
                   //@ts-ignore
@@ -112,7 +119,16 @@ export class PageUserComponent implements OnInit {
                     );
                   })
                 }
-              ) 
+              )
+            },
+            error =>{
+              this.loading=false;
+              this.error = true;
+              this.errorMessage = "User is not authenticated. You will be redirected after 4 seconds.";
+              setTimeout(() => {
+                this.token.removeToken();
+                this.router.navigateByUrl('/login');
+              }, 4000);
             }
           );
         }

@@ -36,9 +36,11 @@ export class PageLoginLoginComponent implements OnInit {
     return this.apiLaravel.getDataPost('auth/login', this.formData).subscribe(
       Response => {
         this.handleResponse(Response);
+        this.loading.emit(false);
       },
       error => {
         this.handleError(error);
+        this.loading.emit(false);
       }
     );
   }

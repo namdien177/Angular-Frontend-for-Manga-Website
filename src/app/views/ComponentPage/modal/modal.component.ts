@@ -17,9 +17,9 @@ export class ModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.close.emit(false)
-    }, 3000);
+    // setTimeout(() => {
+    //   this.close.emit(false)
+    // }, 4000);
   }
 
   

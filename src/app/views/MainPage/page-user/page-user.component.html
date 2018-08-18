@@ -60,3 +60,4 @@
   </div>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>
+<app-modal *ngIf='error' [message]="errorMessage" (close)='errorModal($event)' ></app-modal>

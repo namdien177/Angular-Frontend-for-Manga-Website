@@ -19,12 +19,11 @@ export class UserServicesService {
     private token: AppTokenService
   ) { }
 
-  getUserInfo(id:number):Observable<jsonmodel.UserJSON[]>{
-    return this.http.get<jsonmodel.UserJSON[]>(this.urlAPIManga + '/' + id + ' ').pipe(
-      tap(recievedList => recievedList),
-      catchError(error => of([
-
-      ])));
+  me(){
+    let tokenUser= {
+      token:this.token.getToken()
+    }
+    return this.apiLaravel.getDataPost('auth/me',tokenUser);
   }
 
   getUserBookmark():Observable<jsonmodel.BookmarkJSON[]>{

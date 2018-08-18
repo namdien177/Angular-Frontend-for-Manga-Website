@@ -11,7 +11,7 @@
 
 .modal-windows > .modal-frame{
     margin: 20% auto;
-    max-width: 50%;
+    max-width: 30%;
     min-width: 25%;
     display: grid;
     grid-template-areas: 
@@ -23,15 +23,17 @@
     padding: 1em;
     grid-template-rows: auto 4em auto;
     grid-template-columns: auto 40px;
+    border-radius: 1em;
 }
 
 .modal-windows > .modal-frame > .close-button{
     grid-area: close-button;
 }
 
-.modal-windows > .modal-frame > .modal-message{
+.modal-windows > .modal-frame > .modal-message-block{
     grid-area: message;
     text-align: justify;
+    color: rgb(36, 36, 36);
 }
 
 .modal-windows > .modal-frame > .modal-option{

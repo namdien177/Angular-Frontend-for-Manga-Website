@@ -46,7 +46,7 @@ const routes: Routes = [
       
   { path:'user',component:PageUserComponent, data:{depth: 1}, canActivate:[AppAffterloginService] },
 
-  { component: PageUnknownComponent, path: 'unknown', data:{depth: 1}  } //for unknown page - Should be at end
+  { component: PageUnknownComponent, path: '', data:{depth: 1}  } //for unknown page - Should be at end
 ];
 
 @NgModule({

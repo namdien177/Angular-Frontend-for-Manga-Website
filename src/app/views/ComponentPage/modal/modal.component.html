@@ -1,14 +1,14 @@
-<div class="modal-windows">
+<div class="modal-windows shadow-soft">
     <div class="modal-frame">
-        <button class="btn btn-block btn-danger close-button">&times;</button>
-        <div class="modal-message">
+        <button class="btn btn-block btn-danger close-button" (click)="closebtn()">&times;</button>
+        <div class="modal-message-block">
             <p>
                 {{message}}
             </p>
         </div>
         <div class="modal-option">
-            <small class="text-muted modal-tips">This message will automatically closed after 4 seconds.</small>
-            <button class="btn btn-block btn-success modal-confirm">Got it</button>
+            <!-- <small class="text-muted modal-tips">This message will automatically closed after 4 seconds.</small> -->
+            <button class="btn btn-block btn-success modal-confirm" (click)="closebtn()">Got it</button>
         </div>
     </div>
 </div>

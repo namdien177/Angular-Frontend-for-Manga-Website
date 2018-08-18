@@ -68,6 +68,8 @@
     grid-gap: 0.5em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    transition: 0.5s;
+    overflow: hidden;
 }
 
 .bookmark > .title{
@@ -86,7 +88,11 @@
 }
 
 .bookmark > .list{
+    min-height: 50px;
+    display: block;
     grid-area: list;
+    transition: 0.5s;
+    overflow: hidden;
 }
 
 .bookmark > .list > .manga{
