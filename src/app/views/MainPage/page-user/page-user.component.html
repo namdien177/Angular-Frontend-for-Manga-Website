@@ -31,15 +31,13 @@
     <div class="list">
       <div class="manga" *ngFor="let manga of listmanga; index as i;">
         <a routerLink="/manga/{{manga?.info.id}}" class="info">
-          <div>
-            {{manga?.info.name}}
+          <div class="coverManga" [ngStyle]="{'background-image': 'url(' + manga.info.cover + ')'}">
+            <div class="mangaName" >
+              {{manga?.info.name}}
+            </div>
           </div>
           <div class="chap">
             {{manga?.latestChap}}
-          </div>
-          <div class="tooltips">
-            <img src="{{manga?.info.cover}}" 
-            width="150px" height="150px">
           </div>
         </a>
         <button *ngIf="manga.manga.read == 1" (click)="markread(manga.manga, i)" class="btn btn-warning rounded-0">

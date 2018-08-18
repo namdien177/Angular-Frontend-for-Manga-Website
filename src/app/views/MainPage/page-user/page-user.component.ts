@@ -127,7 +127,7 @@ export class PageUserComponent implements OnInit {
               this.errorMessage = "User is not authenticated. You will be redirected after 4 seconds.";
               setTimeout(() => {
                 this.token.removeToken();
-                this.router.navigateByUrl('/login');
+                location.reload();
               }, 4000);
             }
           );

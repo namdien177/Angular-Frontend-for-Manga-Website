@@ -18,10 +18,6 @@
     color:  rgb(49, 54, 61);
 }
 
-.img-block{
-    
-}
-
 .information{
     display: flex;
     justify-content: center;
@@ -102,53 +98,75 @@
     padding: 0;
     border-radius: 1em;
     margin-bottom: 1em;
+    justify-content: stretch;
+    align-content: stretch;
 }
 
 .bookmark > .list > .manga > .info{
     color: aliceblue;
     display:grid;
     grid-template-columns: 7fr 2fr;
+    justify-content: stretch;
+    align-content: stretch;
     align-items: center;
     position: relative;
+    border-radius: 1em 0 0 1em;
 }
 
-.bookmark > .list > .manga > .info > div{
+.bookmark > .list > .manga > .info > .coverManga{
+    display: block;
+    height: 100% !important;
+    width: 100% !important;
+    /* Animated section */
+    background-position: center;
+    background-size: cover;
+    -webkit-animation: backgroundScroll 15s linear 1;
+    -webkit-animation-fill-mode: backwards;
+    animation: backgroundScroll 15s linear 1;
+    animation-fill-mode: backwards;
+    animation-iteration-count: infinite;
+    border-radius: 1em 0 0 1em;
+}
+
+.bookmark > .list > .manga > .info .mangaName{
+    background: #315D6D !important;
+}
+
+.bookmark > .list > .manga > .info .mangaName:hover{
+    color: black !important;
+    background-color: transparent !important;
+}
+
+.bookmark > .list > .manga > .info .chap, .mangaName{
+    height: 100% !important;
+    width: 100% !important;
+    background-color: #315D6D;
+    transition: 0.2s;
+    border-radius: 1em 0 0 1em;
     padding-left: 1em;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding: 1em 1em;
 }
 
 .bookmark > .list > .manga > .info >.chap{
+    border-radius: 0 !important;
     justify-self: center;
     align-self: center;
     text-align: center
 }
 
-.tooltips{
-    display: block;
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: -160px;
-    visibility: hidden;
-    z-index: 2;
-    opacity: 1;
-    border-radius: 1em;
-    padding: 0;
+@-webkit-keyframes backgroundScroll {
+    0%   {background-position:0 0;}
+    50%  {background-position: 100% -100%;}
+    100% {background-position: 0 0;}
 }
 
-.tooltips *{
-    z-index: 2;
-    border-radius: 1em;
-    -webkit-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
-    -moz-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
-    box-shadow: 2px 2px 3px 0px rgb(63, 63, 63);
-}
-
-a.info:hover > .tooltips{
-    display: block !important;
-    visibility: visible
+@keyframes backgroundScroll {
+    0%   {background-position:0 0;}
+    50%  {background-position: 100% -100%;}
+    100% {background-position: 0 0;}
 }
 
 .removebtn{

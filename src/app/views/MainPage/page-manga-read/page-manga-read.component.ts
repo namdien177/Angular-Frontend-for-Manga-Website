@@ -46,7 +46,7 @@ export class PageMangaReadComponent implements OnInit {
       this.idManga = params['id'];
       this.idChap = params['idChap'];
       this.getImage(this.idManga,this.idChap);
-      this.api.getDataGet('manga/'+this.idManga+"/chap/"+this.idChap+"/link").subscribe(
+      this.api.getDataGetResponse('manga/'+this.idManga+"/chap/"+this.idChap+"/link").subscribe(
       res=>{
         //@ts-ignore
         this.prevLink = res.prev;

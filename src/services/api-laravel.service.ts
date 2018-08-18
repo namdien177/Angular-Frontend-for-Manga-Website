@@ -17,7 +17,15 @@ export class ApiLaravelService {
     return this.http.post(this.url_api + '/api/' + route + '', data);
   }
 
-  getDataGet(route: String):Observable<ResponseMessage[]>{
+  getDataGet(route: string):Observable<Object[]>{
+    return this.http.get<Object[]>(this.url_api + '/api/' + route + '').pipe(
+      tap(recievedList => recievedList),
+      catchError(error => of([
+
+      ])));
+  }
+
+  getDataGetResponse(route: String):Observable<ResponseMessage[]>{
     return this.http.get<ResponseMessage[]>(this.url_api + '/api/' + route + '').pipe(
       tap(recievedList => recievedList),
       catchError(error => of([

@@ -1,5 +1,30 @@
 <div class="container-fluid">
   <div class="col-sm-8 col-xs-12 mainblock" >
-    asdkjsada
+    <h2>All author</h2>
+    <hr>
+    <div class="author-display-block">
+      <a class="authorBlock shadow-soft bg-dark" routerLink="/author/{{author?.id}}" *ngFor="let author of authorlist.data">
+        {{author?.name}}
+      </a>
+      <a class="authorBlock shadow-soft bg-dark">
+        abc
+      </a>
+      <a class="authorBlock shadow-soft bg-dark">
+        abc
+      </a>
+      <a class="authorBlock shadow-soft bg-dark">
+        abc
+      </a>
+      <a class="authorBlock shadow-soft bg-dark">
+        abc
+      </a>
+      <a class="authorBlock shadow-soft bg-dark">
+        abc
+      </a>
+    </div>
+    <button class="btn btn-block btn-info mt-3 mb-3" *ngIf="loadmoreCondition">Show more</button>
+    <div class="col-12 mt-3 mb-3 info-text" *ngIf="!loadmoreCondition">
+      <h1 class="display-4 text-muted text-center" >There is no author left to load :'( </h1>
+    </div>
   </div>
 </div>

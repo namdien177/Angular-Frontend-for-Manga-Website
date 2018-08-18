@@ -2,3 +2,27 @@
     margin: auto;
     padding: 1em;
 }
+
+.authorBlock{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+    padding: 0.5em;
+    border-radius: 1em;
+    box-sizing: border-box;
+    color: aliceblue;
+}
+
+.author-display-block{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 1em;
+    grid-row: auto;
+}
+
+.info-text{ 
+    z-index: -5;
+}

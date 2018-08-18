@@ -25,6 +25,12 @@ export class AuthorJSON{
     data:Author[];
 }
 
+export class AuthorPaginateJSON{
+    data:Author[];
+    links:LinkJson;
+    meta: MetaJson;
+}
+
 export class ChapJSON{
     data:Chap[];
     links:LinkJson;

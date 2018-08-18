@@ -110,7 +110,7 @@ export class MangaServicesService {
    * @param manga passed manga to unbookmark
    */
   bookmark(manga:Manga){
-    return this.apiLaravel.getDataGet('manga/'+manga.id+"/bookmark/"+this.token.getIDUser());
+    return this.apiLaravel.getDataGetResponse('manga/'+manga.id+"/bookmark/"+this.token.getIDUser());
   }
 
   /**
@@ -118,23 +118,23 @@ export class MangaServicesService {
    * @param manga passed manga to unbookmark
    */
   unbookmark(manga:Manga){
-    return this.apiLaravel.getDataGet('manga/'+manga.id+"/unbookmark/"+this.token.getIDUser());
+    return this.apiLaravel.getDataGetResponse('manga/'+manga.id+"/unbookmark/"+this.token.getIDUser());
   }
 
   markRead(bookmark:Bookmark){
-    return this.apiLaravel.getDataGet('manga/'+bookmark.idManga+"/read/"+this.token.getIDUser());
+    return this.apiLaravel.getDataGetResponse('manga/'+bookmark.idManga+"/read/"+this.token.getIDUser());
   }
 
   markReadID(idManga){
-    return this.apiLaravel.getDataGet('manga/'+idManga+"/read/"+this.token.getIDUser());
+    return this.apiLaravel.getDataGetResponse('manga/'+idManga+"/read/"+this.token.getIDUser());
   }
 
   markUnRead(bookmark:Bookmark){
-    return this.apiLaravel.getDataGet('manga/'+bookmark.idManga+"/unread/"+this.token.getIDUser());
+    return this.apiLaravel.getDataGetResponse('manga/'+bookmark.idManga+"/unread/"+this.token.getIDUser());
   }
 
   markUnReadID(idManga){
-    return this.apiLaravel.getDataGet('manga/'+idManga+"/unread/"+this.token.getIDUser());
+    return this.apiLaravel.getDataGetResponse('manga/'+idManga+"/unread/"+this.token.getIDUser());
   }
 
   constructor(
