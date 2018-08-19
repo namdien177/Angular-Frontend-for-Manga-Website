@@ -1,5 +1,49 @@
 <div class="container-fluid">
-  <div class="col-sm-8 col-xs-12 mainblock" >
-    asdkjsada
+  <div class="mainblock" *ngIf="!error">
+    <div class="author-info-block" >
+      <div class="author shadow-soft">
+        <i class="fas fa-user-tie fa-7x text-center"></i>
+        <div class="author-name"><span>{{author?.name}}</span></div>
+        <div class="author-detail">
+          <small class="text-muted text-monospace">Brief Information:</small>
+          <p class="text-dark ">{{author?.information}} </p>
+          <small class="text-muted text-monospace">Date Joined:</small>
+          <p class="text-dark ">{{author?.created_at}} </p>
+        </div>
+      </div>
+      <hr *ngIf="author.idViewer == userID">
+      <div class="authorLegit" *ngIf="author.idViewer == userID">
+        <button class="btn btn-block btn-info">Upload new Manga</button>
+        <button class="btn btn-block btn-warning">Edit your author profile</button>
+      </div>
+    </div>
+    <div class="author-work shadow-soft" *ngIf="!error"  >
+        <h4 class="text-dark">All works</h4>
+        <hr>
+        <div class="list-work">
+          <a routerLink="/manga/{{manga?.aManga.id}}" class="manga-card" *ngFor="let manga of displayList">
+            <img src="{{manga?.aManga.cover}}"
+                class="cover">
+            <div class="manga-info">
+              <h5 class="title">{{manga?.aManga.name}}</h5>
+              <div class="chap">
+                Chap {{manga?.newestChap}}
+              </div>
+              <p class="description">
+                {{manga?.aManga.description}}
+              </p>
+            </div>
+          </a>
+          <button class="btn btn-block btn-info" (click)="loadmoreall()" *ngIf="loadmorerecent">Load more</button>
+          <h5 class="text-muted text-center" *ngIf="!loadmorerecent">Sorry it seems like there are all of this author works :/</h5>
+        </div>
+    </div>
+    <div class="author-hottest" *ngIf="!error"  >
+        <h4 class="text-dark">Most viewed</h4>
+        <hr>
+        <h2 class="text-muted text-center">This section is developing! please wait ;)</h2>
+    </div>
   </div>
 </div>
+
+<app-spinner *ngIf="loading"></app-spinner>

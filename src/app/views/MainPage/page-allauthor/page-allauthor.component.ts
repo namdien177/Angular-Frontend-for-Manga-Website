@@ -13,6 +13,8 @@ export class PageAllauthorComponent implements OnInit {
     private apiservice:ApiLaravelService
   ) { }
 
+  loading:boolean = true;
+
   authorlist:jsonmodel.AuthorPaginateJSON;
   loadmoreCondition:boolean = false;
 
@@ -24,6 +26,7 @@ export class PageAllauthorComponent implements OnInit {
         if (this.authorlist.links.next != null){
           this.loadmoreCondition = true;
         }else this.loadmoreCondition = false;
+        this.loading = false;
       }
     )
   }

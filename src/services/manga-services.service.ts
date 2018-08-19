@@ -17,10 +17,29 @@ export class MangaServicesService {
   list: Manga[];
   tags: TagManga;
   private urlAPIManga = 'http://localhost:8000/api/manga';
+  private urlAPIAuthor = 'http://localhost:8000/api/author';
 
   getListManga(link?): Observable<jsonmodel.MangaJSON[]> {
     if (!link) {
       return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPIManga).pipe(
+        tap(recievedList => recievedList),
+        catchError(error => of([
+
+        ]))
+      );
+    } else {
+      return this.http.get<jsonmodel.MangaJSON[]>(link).pipe(
+        tap(recievedList => recievedList),
+        catchError(error => of([
+
+        ]))
+      );
+    }
+  }
+
+  getListMangaAuthor(idAuthor, link?):Observable<jsonmodel.MangaJSON[]>{
+    if (!link) {
+      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPIAuthor+'/'+idAuthor+'/recent-update').pipe(
         tap(recievedList => recievedList),
         catchError(error => of([
 
@@ -107,18 +126,18 @@ export class MangaServicesService {
 
   /**
    * Bookmark a manga. Return type is object JSON message
-   * @param manga passed manga to unbookmark
+   * @param manga passed manga to bookmark
    */
-  bookmark(manga:Manga){
-    return this.apiLaravel.getDataGetResponse('manga/'+manga.id+"/bookmark/"+this.token.getIDUser());
+  bookmark(id){
+    return this.apiLaravel.getDataGetResponse('manga/'+ id+"/bookmark/"+this.token.getIDUser());
   }
 
   /**
    * Un-bookmark a manga. Return type is object JSON message
    * @param manga passed manga to unbookmark
    */
-  unbookmark(manga:Manga){
-    return this.apiLaravel.getDataGetResponse('manga/'+manga.id+"/unbookmark/"+this.token.getIDUser());
+  unbookmark(id){
+    return this.apiLaravel.getDataGetResponse('manga/'+ id+"/unbookmark/"+this.token.getIDUser());
   }
 
   markRead(bookmark:Bookmark){

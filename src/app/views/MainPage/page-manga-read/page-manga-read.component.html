@@ -4,10 +4,11 @@
       <img class="img-responsive"
       src="{{img.img_url}}" alt="Chap {{img.idChap}}">
     </p>
-    <button class="btn btn-block btn-warning mb-1" *ngIf="!read && loginAuth" (click)="markread()" >Mark as read</button>
-    <button class="btn btn-block btn-secondary mb-1" *ngIf="read && loginAuth" (click)="markunread()" >Mark as unread</button>
+    <button class="btn btn-block btn-warning mb-1" *ngIf="!read && loginAuth && bookmark" (click)="markread()" >Mark as read</button>
+    <button class="btn btn-block btn-secondary mb-1" *ngIf="read && loginAuth && bookmark" (click)="markunread()" >Mark as unread</button>
+    <button class="btn btn-block btn-success mb-1" *ngIf="!read && loginAuth && !bookmark" (click)="bookmarkBtn()" >Bookmark this</button>
     <button class="btn btn-block btn-light mb-1" *ngIf="!loginAuth" (click)="loginBtn()" >Login to bookmark</button>
-    <button (click)="mangaInformation()" class="btn btn-success btn-block mb-5">View more information of this manga</button>
+    <button (click)="mangaInformation()" class="btn btn-info btn-block mb-5">View more information of this manga</button>
   </div>
   <div class="bookmarkSection fixed-bottom d-flex flex-row">
       <!-- [class.ngVisible]="prevLink != null" [class.ngInvisible]="prevLink == null" -->

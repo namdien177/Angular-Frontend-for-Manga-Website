@@ -26,7 +26,7 @@ export class PageUserComponent implements OnInit {
 
   unbookmark(manga:Manga, i){
     console.log (manga);
-    this.mangaservice.unbookmark(manga).subscribe(response =>{
+    this.mangaservice.unbookmark(manga.id).subscribe(response =>{
       console.log(response);
       //@ts-ignore
       if (response.boolean){

@@ -1,5 +1,5 @@
 <div class="container-fluid pl-0 pt-0 mt-0">
-  <div *ngIf='showBriefManga' class="side-info-block col-sm-2 d-block h-100 position-fixed m-0 bg-cs p-0">
+  <div *ngIf='showBriefManga' class="side-info-block col-sm-2 d-block h-100 position-fixed m-0 bg-cs p-1">
       <div class="img-block p-1">
         <img src="{{showBriefManga?.cover}}" srcset="" class="img-fluid">
       </div>
@@ -21,7 +21,7 @@
           </a>
       </div>
   </div>
-  <div class="block mt-1 col-sm-10 offset-2">
+  <div class="block mt-0 col-sm-10 offset-2">
     <h3 class="text-light">All the manga!</h3>
     <p class="float-right text-muted">Total: {{totalMangaCount}} Manga</p>
   </div>

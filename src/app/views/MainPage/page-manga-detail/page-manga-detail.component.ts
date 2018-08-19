@@ -99,8 +99,7 @@ export class PageMangaDetailComponent implements OnInit {
 
   bookmark(manga:Manga):void{
     this.loading = true;
-    this.MangaServices.bookmark(manga).subscribe(response =>{
-      console.log(response);
+    this.MangaServices.bookmark(manga.id).subscribe(response =>{
       //@ts-ignore
       this.read = response.boolean;
       //@ts-ignore
@@ -111,7 +110,7 @@ export class PageMangaDetailComponent implements OnInit {
 
   unbookmark(manga:Manga){
     this.loading = true;
-    this.MangaServices.unbookmark(manga).subscribe(response =>{
+    this.MangaServices.unbookmark(manga.id).subscribe(response =>{
       console.log(response);
       //@ts-ignore
       this.read = !response.boolean;

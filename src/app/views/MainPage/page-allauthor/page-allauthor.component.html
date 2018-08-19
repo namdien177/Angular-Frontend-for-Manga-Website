@@ -3,7 +3,7 @@
     <h2>All author</h2>
     <hr>
     <div class="author-display-block">
-      <a class="authorBlock shadow-soft bg-dark" routerLink="/author/{{author?.id}}" *ngFor="let author of authorlist.data">
+      <a class="authorBlock shadow-soft bg-dark" routerLink="/author/{{author?.id}}" *ngFor="let author of authorlist?.data">
         {{author?.name}}
       </a>
       <a class="authorBlock shadow-soft bg-dark">
@@ -28,3 +28,5 @@
     </div>
   </div>
 </div>
+
+<app-spinner *ngIf="loading"></app-spinner>

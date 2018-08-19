@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiLaravelService } from '../../../../services/api-laravel.service';
 import { AppTokenService } from '../../../../services/app-token.service';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class PageRegisterComponent implements OnInit {
 
+  loading = true;
+
   constructor(
     private http:HttpClient,
     private apiServices:ApiLaravelService,
@@ -18,23 +20,27 @@ export class PageRegisterComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.loading = false;
   }
 
   public formData={
-    email:null,
-    password: null,
-    password_confirmation:null,
-    name:null,
+    email:"",
+    password: "",
+    password_confirmation:"",
+    name:"",
     authorize: 2
   };
 
   onSubmit(){
-    return this.apiServices.getDataPost('signupviewer',this.formData).subscribe(
+    this.loading = true;
+    return this.apiServices.getDataPost('auth/signupviewer',this.formData).subscribe(
       Response=> {
         this.handleResponce(Response);
+        this.loading = false;
       },
       error=>{
         this.handleError(error);
+        this.loading = false;
       }
     )
   }

@@ -1,3 +1,81 @@
+.container-fluid{
+    padding-top: 1em;
+}
+
 .mainblock{
-    margin: 1em auto;
+    height: 100% !important;
+    width: 100% !important;
+    display: grid;
+    grid-template-areas: 
+    '. info mainblock .'
+    '. info hottest .';
+    grid-template-columns: 1fr 1fr 3fr 1fr;
+    color: rgb(24, 24, 24);
+    grid-gap: 1em;
+}
+
+.author-info-block{
+    padding: 0;
+    grid-area: info;
+    display: block;
+}
+
+.author{
+    width: 100% !important;
+    padding: 0.5em;
+    border-radius: 1em;
+    display: grid;
+    background: rgb(255, 255, 255);
+    color: black;
+    border-bottom: 5px solid rgb(45, 45, 250);
+}
+
+.authorLegit{
+    width: 100% !important;
+    display: grid;
+    background: rgba(255, 255, 255, 0);
+}
+
+.author > .author-name{
+    font-size: 1.5em;
+    width: 100% !important;
+    max-height: 3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.author > .author-detail{
+    display: block;
+}
+
+.author-work{
+    padding: 0.5em;
+    border-radius: 1em;
+    grid-area: mainblock;
+    background: rgb(255, 255, 255);
+    display: block;
+}
+
+.author-hottest{
+    padding: 0.5em;;
+    grid-area: hottest;
+    border-radius: 1em;
+    display: block;
+    background: rgb(255, 255, 255);
+}
+
+.list-work{
+    display: inline-block;
+    width: 100% !important;
+}
+
+.list-work > button{
+    border-radius: 0.5em 0.5em 1em 1em;
+}
+
+.manga-card{
+    border: 1px rgba(26, 26, 26, 0.678) !important;
 }

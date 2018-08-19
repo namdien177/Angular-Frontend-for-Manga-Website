@@ -34,6 +34,7 @@ export class PageMangaReadComponent implements OnInit {
   loading:boolean = true;
   read:boolean = false;
   loginAuth:boolean = false;
+  bookmark:boolean = true;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -57,17 +58,22 @@ export class PageMangaReadComponent implements OnInit {
           this.userService.getUserBookmark().subscribe(
             Bookmark =>{
               let didRead = false;
+              let didBookmark = false;
               //@ts-ignore
               if(Bookmark.data){
                 //@ts-ignore
                 Bookmark.data.forEach(manga => {
                   if (manga.idManga == this.idManga){
-                    didRead = true;
+                    didBookmark = true;
+                    if(manga.read == 2){
+                      didRead = true;
+                    }
                   }
                 });
               }
               this.loading = false;
               this.read = didRead;
+              this.bookmark = didBookmark;
           });
         }else{
           this.loginAuth = false;
@@ -117,6 +123,17 @@ export class PageMangaReadComponent implements OnInit {
 
   mangaInformation(){
     this.router.navigateByUrl('/manga/'+this.idManga);
+  }
+
+  bookmarkBtn(){
+    this.loading = true;
+    this.mangaservice.bookmark(this.idManga).subscribe(response =>{
+      //@ts-ignore
+      this.bookmark = response.boolean;
+      //@ts-ignore
+      this.responseMessage = response.message;
+      this.loading = false;
+    });
   }
 
   getImage(idManga:number, idChap:number){

@@ -1,5 +1,6 @@
 .list-block{
     z-index: 0;
+    padding-right: 0 !important;
 }
 
 a{

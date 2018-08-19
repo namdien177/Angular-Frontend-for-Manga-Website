@@ -49,15 +49,9 @@ a{
 }
 
 html { 
-    height: 100vh;
-    overflow-y: scroll; 
-    box-sizing: border-box;
-}
-
-.route-container{
-    margin-top: 56px;
     height: 100% !important;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .ng-invalid:not(form){
@@ -85,7 +79,6 @@ ngInvisible{
     visibility: hidden !important;
 }
 
-
 /*
 *   Card manga
 *   use manga-card to create a display manga
@@ -101,6 +94,7 @@ ngInvisible{
     z-index: 2;
     text-decoration: none !important;
     margin: 5px;
+    position: relative;
 }
 
 .manga-card >*{
@@ -114,9 +108,9 @@ ngInvisible{
 }
 
 .manga-card > .manga-info{
-    position: relative;
+    position: absolute;
     height: 70px;
-    bottom: 70px;
+    bottom: 0px;
     left: 0;
     right: 0;
     width: 200px;
@@ -128,7 +122,6 @@ ngInvisible{
 }
 .manga-card > .manga-info:hover{
     background: rgba(0, 0, 0, 0.900);
-    bottom: 200px;
     height: 200px;
 }
 
