@@ -3,7 +3,7 @@ import { Manga } from '../../../../model/manga';
 import { MangaServicesService } from '../../../../services/manga-services.service';
 import { ActivatedRoute } from '@angular/router';
 import { TagManga } from '../../../../model/tags';
-import { Chap } from '../../../../model/chap';
+import { Chap, ChapFull } from '../../../../model/chap';
 import * as jsonmodel from '../../../../model/JSONmodel';
 import { UserServicesService } from '../../../../services/user-services.service';
 import { AppTokenService } from '../../../../services/app-token.service';
@@ -20,7 +20,7 @@ export class PageMangaDetailComponent implements OnInit {
   idManga: number;
   showBriefManga: Manga;
   tagList: TagManga[] = [];
-  chapList:Chap[] = [];
+  displayChapList:ChapFull[] = [];
   loadmoreCondition = true;
   jsonData:jsonmodel.ChapJSON;
   read=false;
@@ -42,14 +42,21 @@ export class PageMangaDetailComponent implements OnInit {
 
    showMoreResult() {
      this.loading = true;
-     console.log(this.jsonData);
       if (this.jsonData.links.next) {
         this.MangaServices.getListMangaChap(this.showBriefManga.id, this.jsonData.links.next).subscribe(
           (ListMangaChapGot) => {
             // @ts-ignore
             this.jsonData = ListMangaChapGot;
             // @ts-ignore
-            this.chapList.push.apply(this.chapList, ListMangaChapGot.data);
+            ListMangaChapGot.data.forEach(chap=>{
+              let aChap = new ChapFull;
+              aChap.chap = chap;
+              this.MangaServices.getViewCount(this.showBriefManga.id,chap.id).subscribe(view=>{
+                //@ts-ignore
+                aChap.viewCount = view;
+                this.displayChapList.push(aChap);
+              });
+            });
             this.loading = false;
           }
         );
@@ -74,7 +81,15 @@ export class PageMangaDetailComponent implements OnInit {
     this.MangaServices.getListMangaChap(this.idManga).subscribe(
       chaplist => {
         //@ts-ignore
-        this.chapList = chaplist.data;
+        chaplist.data.forEach(chap=>{
+          let aChap = new ChapFull;
+          aChap.chap = chap;
+          this.MangaServices.getViewCount(this.showBriefManga.id,chap.id).subscribe(view=>{
+            //@ts-ignore
+            aChap.viewCount = view;
+            this.displayChapList.push(aChap);
+          });
+        });
         //@ts-ignore
         this.jsonData = chaplist;
         this.userService.getUserBookmark().subscribe(

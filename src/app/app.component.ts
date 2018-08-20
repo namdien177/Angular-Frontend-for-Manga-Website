@@ -1,5 +1,7 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { trigger, state, keyframes, transition, group, query, style, animate } from '@angular/animations';
+import { AppTokenService } from '../services/app-token.service';
+import { ApiLaravelService } from '../services/api-laravel.service';
 
 @Component({
   selector: 'app-root',
@@ -20,11 +22,18 @@ import { trigger, state, keyframes, transition, group, query, style, animate } f
       ])
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+    ngOnInit() {
+    }
 
     loading:boolean= true;
 
     getDepth(outlet) {
     return outlet.activatedRouteData['depth'];
     }
+
+    constructor(
+        private token:AppTokenService,
+        private apiLaravel:ApiLaravelService
+    ){}
 }

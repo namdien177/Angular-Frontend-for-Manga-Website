@@ -76,8 +76,12 @@ export class CompListmangaComponent implements OnInit {
           this.MangaServices.getListMangaChap(aManga.id, listChap.links.last).subscribe(listChap=>{
             //@ts-ignore
             unit.newestChap = listChap.data[listChap.data.length -1].chap;
-            this.listUnit.push(unit);
-            this.loading = false;
+            this.MangaServices.getViewCount(aManga.id).subscribe(view=>{
+              //@ts-ignore
+              unit.viewCount=view;
+              this.listUnit.push(unit);
+              this.loading = false;
+            });
           });
         });
       });

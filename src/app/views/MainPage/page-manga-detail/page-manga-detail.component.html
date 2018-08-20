@@ -50,28 +50,28 @@
         </div>
         
         <a class="card mt-3" 
-        *ngFor="let chap of chapList"
-        routerLink="/manga/{{chap.idManga}}/chap/{{chap.id}}"
+        *ngFor="let chap of displayChapList"
+        routerLink="/manga/{{chap.chap.idManga}}/chap/{{chap.chap.id}}"
         >
             <div class="card-body row">
-                <div class="block col-sm-2 col-xs-2 text-light text-center">{{chap.chap}} </div>
-                <div class="block col-sm-6 col-xs-10 text-light text-nowrap text-truncate"> {{chap.title}} </div>
-                <div class="block col-sm-2 col-xs-12 text-light" >Not Available</div>
-                <div class="block col-sm-2 col-xs-12 text-muted" >{{chap.updated_at}}</div>
+                <div class="block col-sm-2 col-xs-2 text-light text-center">{{chap.chap.chap}} </div>
+                <div class="block col-sm-6 col-xs-10 text-light text-nowrap text-truncate"> {{chap.chap.title}} </div>
+                <div class="block col-sm-2 col-xs-12 text-light" >{{chap.viewCount}}</div>
+                <div class="block col-sm-2 col-xs-12 text-muted" >{{chap.chap.updated_at}}</div>
             </div>
         </a>
     
         <!-- --------  routerLink="/manga/{{chap.idManga}}/chap/{{chap.id}}"--------------- -->
     
-        <div *ngIf="!chapList" class="col-12">
+        <div *ngIf="!displayChapList" class="col-12">
         <h1 class="display-4 text-muted text-center" >Seems like there is no manga here...</h1>
         </div>
     
-        <div *ngIf="chapList && loadmoreCondition" class="col-12 mt-3 mb-3">
+        <div *ngIf="displayChapList && loadmoreCondition" class="col-12 mt-3 mb-3">
             <button type="button" class="btn btn-info btn-block rounded-0" (click)='showMoreResult()'>Load More chap!</button>
         </div>
     
-        <div *ngIf="chapList && !loadmoreCondition" class="col-12 mt-3 mb-3">
+        <div *ngIf="displayChapList && !loadmoreCondition" class="col-12 mt-3 mb-3">
         <h1 class="display-4 text-muted text-center" >There is no chap left to load :'(</h1>
         </div>
     </div>

@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="mainblock col-xs-12 col-sm-6">
+    <h3>Upload Section</h3>
+    <hr>
+    <form #signupForm=ngForm (ngSubmit)="onSubmit()">
+      <div class="info">
+        <div class="form-group">
+          <label class='text-info' for="name">Manga Name</label>
+          <input type="text" class="form-control" required id="name" name="name" value="etc" [(ngModel)]="formData.name" placeholder="Name of the manga" aria-describedby="namehelp">
+          <small id="name" class="form-text text-muted" [hidden]='errors.name'>Let's make your manga name awesome!</small>
+          <small class="form-text text-danger mt-2" [hidden]='!errors.name' >
+            {{errors.name}}
+          </small>
+        </div>
+        <div class="form-group">
+          <label class='text-info' for="cover">Cover links</label>
+          <input type="text" class="form-control" required id="cover" name="cover" [(ngModel)]="formData.cover" placeholder="Link image for your awesome manga's cover!" aria-describedby="coverhelp">
+          <small id="cover" class="form-text text-muted" [hidden]='errors.cover'>Expected to be embed image link!!!</small>
+          <small class="form-text text-danger mt-2" [hidden]='!errors.cover' >
+            {{errors.cover}}
+          </small>
+        </div>
+        <div class="form-group">
+          <label class='text-info' for="releaseYear">Release Year</label>
+          <input type="number" min="1800" max="2100" class="form-control" required id="password_confirmation" name="releaseYear" [(ngModel)]="formData.releaseYear" placeholder="well...should be recently?" aria-describedby="releaseYearhelp">
+          <small id="releaseYear" class="form-text text-muted" [hidden]='errors.releaseYear'>Year of your awesome manga born!</small>
+          <small class="form-text text-danger mt-2" [hidden]='!errors.releaseYear' >
+            {{errors.releaseYear}}
+          </small>
+        </div>
+      </div>
+      <div class="imageSection">
+
+      </div>
+      <button type="submit" [disabled]="!signupForm.valid" class="btn btn-block btn-success">Upload now</button>
+    </form>
+  </div>
+</div>

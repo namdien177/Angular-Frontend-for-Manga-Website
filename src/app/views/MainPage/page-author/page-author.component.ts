@@ -4,7 +4,7 @@ import { MangaServicesService } from '../../../../services/manga-services.servic
 import { ApiLaravelService } from '../../../../services/api-laravel.service';
 import { AppTokenService } from '../../../../services/app-token.service';
 import { Author } from '../../../../model/author';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as jsondata from '../../../../model/JSONmodel';
 
 @Component({
@@ -18,7 +18,8 @@ export class PageAuthorComponent implements OnInit {
     private mangaservice:MangaServicesService,
     private apiservice:ApiLaravelService,
     private token:AppTokenService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private router:Router
   ) {
     this.route.params.subscribe(params => {
       this.authorID = params['id'];
@@ -35,20 +36,22 @@ export class PageAuthorComponent implements OnInit {
   userID = this.token.getIDUser();
 
   getLastestChap(jsonMangaList){
-    jsonMangaList.data.forEach(aManga => {
-      let unit = new jsondata.MangaAllJSON;
-      unit.aAuthor=[];
-      unit.aAuthor.push(this.author);
-      unit.aManga = aManga;
-      this.mangaservice.getListMangaChap(aManga.id).subscribe(listChap=>{
-        //@ts-ignore
-        this.mangaservice.getListMangaChap(aManga.id, listChap.links.last).subscribe(listChap=>{
-          //@ts-ignore  
-          unit.newestChap = listChap.data[listChap.data.length -1].chap;
+    if(jsonMangaList){
+      jsonMangaList.data.forEach(aManga => {
+        let unit = new jsondata.MangaAllJSON;
+        unit.aAuthor=[];
+        unit.aAuthor.push(this.author);
+        unit.aManga = aManga;
+        this.mangaservice.getListMangaChap(aManga.id).subscribe(listChap=>{
+          //@ts-ignore
+          this.mangaservice.getListMangaChap(aManga.id, listChap.links.last).subscribe(listChap=>{
+            //@ts-ignore  
+            unit.newestChap = listChap.data[listChap.data.length -1].chap;
+          });
+          this.displayList.push(unit);
         });
-        this.displayList.push(unit);
       });
-    });
+    }
     this.loading = false;
   }
 
@@ -58,6 +61,10 @@ export class PageAuthorComponent implements OnInit {
     }else {
       this.loadmorerecent = false;
     }
+  }
+
+  uploadbtn(){
+    this.router.navigateByUrl('/upload');
   }
 
   getMangaOfAuthor(link?){

@@ -13,7 +13,7 @@
       </div>
       <hr *ngIf="author.idViewer == userID">
       <div class="authorLegit" *ngIf="author.idViewer == userID">
-        <button class="btn btn-block btn-info">Upload new Manga</button>
+        <button (click)="uploadbtn()" class="btn btn-block btn-info">Upload new Manga</button>
         <button class="btn btn-block btn-warning">Edit your author profile</button>
       </div>
     </div>

@@ -1,0 +1,11 @@
+.mainblock{
+    margin: auto;
+    margin-top: 1em;
+}
+
+.mainblock > form > div{
+    background: rgba(255, 255, 255, 0.74);
+    border-radius: 1em;
+    margin-bottom: 0.5em;
+    padding: 1em;
+}

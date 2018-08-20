@@ -18,6 +18,7 @@ import { PageNewPasswordComponent } from './views/MainPage/page-new-password/pag
 import { PageRegisterAuthorComponent } from './views/MainPage/page-register-author/page-register-author.component';
 import { AppBeforeloginService } from '../services/app-beforelogin.service';
 import { AppAffterloginService } from '../services/app-affterlogin.service';
+import { PageUploadComponent } from './views/MainPage/page-upload/page-upload.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full', data:{depth: 1}  },
@@ -43,6 +44,8 @@ const routes: Routes = [
 
   { path:'author', component: PageAllauthorComponent, data:{depth: 1} },
       {path:'author/:id', component: PageAuthorComponent, data:{depth:2 }},
+      
+  {path:'upload', component:PageUploadComponent, data:{depth:2}},
       
   { path:'user',component:PageUserComponent, data:{depth: 1}, canActivate:[AppAffterloginService] },
 

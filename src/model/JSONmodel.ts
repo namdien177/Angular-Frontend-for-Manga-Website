@@ -50,6 +50,7 @@ export class MangaAllJSON{
     aManga: Manga;
     aAuthor: Author[];
     newestChap: number;
+    viewCount:number;
 }
 
 export class MangaCoverJSON{

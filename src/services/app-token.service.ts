@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { ApiLaravelService } from './api-laravel.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppTokenService {
 
-  constructor() { }
+  constructor(
+    private apiLaravel:ApiLaravelService
+  ) { }
 
   private iss = {
     login: 'http://127.0.0.1:8000/api/auth/login',
@@ -13,7 +16,10 @@ export class AppTokenService {
     signupauthor: 'http://127.0.0.1:8000/api/auth/signupauthor'
   }
 
+  private sub = '6';
+
   handle(token) {
+    this.removeToken();
     this.setToken(token);
 
   }
@@ -35,7 +41,9 @@ export class AppTokenService {
     if(token){
       let payload = this.payLoad(token);
       if (payload){
-        return (Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false);
+        let trueHost = Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false;
+        let AnonymousUser = Object.values(this.sub).indexOf(payload.sub) > -1 ? false : true;
+        return (trueHost && AnonymousUser);
       }
     }
 
@@ -47,7 +55,7 @@ export class AppTokenService {
     if(token){
       let payload = this.payLoad(token);
       if (payload){
-        if (Object.values(this.iss).indexOf(payload.iss) > -1){
+        if (Object.values(this.iss).indexOf(payload.iss) > -1 || Object.values(this.sub).indexOf(payload.sub) >-1){
           return payload.sub;
         }
       }
@@ -66,6 +74,17 @@ export class AppTokenService {
   }
 
   loggedIn(){
+    if(!this.isValid()){
+      this.apiLaravel.getDataPost('anonymous', null).subscribe(
+        response => {
+          //@ts-ignore
+          this.handle(response.anonymous_token)
+        },
+        error => {
+            
+        }
+      );
+    }
     return this.isValid();
   }
 }

@@ -164,6 +164,18 @@ export class MangaServicesService {
     return this.apiLaravel.getDataGetResponse('manga/'+idManga+"/unread/"+this.token.getIDUser());
   }
 
+  countAView(idManga, idChap){
+    return this.apiLaravel.getDataGet('manga/'+idManga+"/chap/"+idChap+"/count/"+this.token.getIDUser());
+  }
+
+  getViewCount(idManga, idChap?){
+    if(idChap){
+      return this.apiLaravel.getDataGet('manga/'+idManga+"/chap/"+idChap+"/count/getcount");
+    }else{
+      return this.apiLaravel.getDataGet('manga/'+idManga+'/getview');
+    }
+  }
+
   constructor(
     private http: HttpClient,
     private apiLaravel: ApiLaravelService,
