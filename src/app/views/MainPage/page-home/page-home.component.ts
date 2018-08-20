@@ -30,7 +30,7 @@ export class PageHomeComponent implements OnInit {
 
   getLastestChap(jsonMangaList){
     jsonMangaList.data.forEach(aManga => {
-      this.mangaservice.getAuthor(aManga.id).subscribe(listAuthor=>{
+      this.mangaservice.getMangaAuthor(aManga.id).subscribe(listAuthor=>{
         let unit = new jsondata.MangaAllJSON;
         //@ts-ignore
         unit.aAuthor = listAuthor.data;

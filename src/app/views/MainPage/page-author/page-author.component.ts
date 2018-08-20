@@ -32,7 +32,7 @@ export class PageAuthorComponent implements OnInit {
   authorID;
   loading:boolean = true;
   error:boolean = true;
-  userID = this.token.getIDUser;
+  userID = this.token.getIDUser();
 
   getLastestChap(jsonMangaList){
     jsonMangaList.data.forEach(aManga => {
@@ -47,9 +47,10 @@ export class PageAuthorComponent implements OnInit {
           unit.newestChap = listChap.data[listChap.data.length -1].chap;
         });
         this.displayList.push(unit);
-        this.loading = false;
       });
-  })}
+    });
+    this.loading = false;
+  }
 
   loadmoreall(){
     if(this.jsonMangaList.links.next){
@@ -84,11 +85,14 @@ export class PageAuthorComponent implements OnInit {
     this.mangaservice.getAuthor(this.authorID).subscribe(
       author=>{
         //@ts-ignore
-        this.author = author.data[0];
+        this.author = author.data;
         //@ts-ignore
         if(author.data){
           this.error=false;
           this.getMangaOfAuthor();
+        }else{
+          this.error = true;
+          this.loading = false;
         }
       }
     )

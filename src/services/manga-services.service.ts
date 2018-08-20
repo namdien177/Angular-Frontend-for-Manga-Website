@@ -73,8 +73,16 @@ export class MangaServicesService {
     }
   }
 
-  getAuthor(id:number): Observable<jsonmodel.AuthorJSON[]> {
-    return this.http.get<jsonmodel.AuthorJSON[]>(this.urlAPIManga + '/' + id + '/getauthor').pipe(
+  getAuthor(idAuthor): Observable<jsonmodel.AuthorJSON[]> {
+    return this.http.get<jsonmodel.AuthorJSON[]>(this.urlAPIAuthor + '/' + idAuthor + '').pipe(
+      tap(recievedList => recievedList),
+      catchError(error => of([
+
+    ])));
+  }
+
+  getMangaAuthor(idManga:number): Observable<jsonmodel.AuthorJSON[]> {
+    return this.http.get<jsonmodel.AuthorJSON[]>(this.urlAPIManga + '/' + idManga + '/getauthor').pipe(
       tap(recievedList => recievedList),
       catchError(error => of([
 

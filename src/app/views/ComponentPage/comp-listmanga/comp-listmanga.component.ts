@@ -66,7 +66,7 @@ export class CompListmangaComponent implements OnInit {
 
   getAuthorNameAndNewChap(listManga:jsonmodel.MangaJSON){
     listManga.data.forEach(aManga=>{
-      this.MangaServices.getAuthor(aManga.id).subscribe(listAuthor=>{
+      this.MangaServices.getMangaAuthor(aManga.id).subscribe(listAuthor=>{
         let unit = new jsonmodel.MangaAllJSON;
         //@ts-ignore
         unit.aAuthor = listAuthor.data;

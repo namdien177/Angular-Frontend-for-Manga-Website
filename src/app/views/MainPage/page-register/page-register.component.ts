@@ -52,7 +52,7 @@ export class PageRegisterComponent implements OnInit {
 
   handleResponce(data): any {
     this.tokenservices.handle(data.access_token);
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/login');
   }
 
 }

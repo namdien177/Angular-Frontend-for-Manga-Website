@@ -117,7 +117,8 @@ export class PageUserComponent implements OnInit {
                         });
                       }
                     );
-                  })
+                  });
+                  this.loading = false;
                 }
               )
             },

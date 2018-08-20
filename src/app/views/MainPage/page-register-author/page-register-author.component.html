@@ -1,41 +1,62 @@
-<div class="col-sm-6 offset-3 col-xs-12 p-3 mb-2">
-  <div class="d-block row p-2">
-    <h3 class="text-light text-justify">Register as Author </h3>
-    <small class="text-muted float-right">Don't worry, your information is safe with us :)</small>
-    <br>
-    <small class="text-muted float-right">Promise!!!</small>
+<div class="mainblock col-sm-6 offset-3 col-xs-12 p-3 mb-2">
+  <div class="d-block shadow-soft row">
+    <h3 class="text-dark text-justify">Register</h3>
   </div>
+  <hr>
   <form #signupForm=ngForm (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input type="email" class="form-control" required id="email" [(ngModel)]="formData.email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted" [hidden]='errors.email'>You will use your email to login later on.</small>
-      <small class="form-text text-danger mt-2" [hidden]='!errors.email' >
-        {{errors.email}}
-      </small>
+    <div class="viewerblock shadow-soft">
+        <h3 class="text-dark">Normal Account section</h3>
+        <div class="form-group">
+          <label class='text-info' for="email">Email Address</label>
+          <input type="email" class="form-control" required id="email" [(ngModel)]="formData.email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+          <small id="emailHelp" class="form-text text-muted" [hidden]='errors.email'>You will use your email to login later on.</small>
+          <small class="form-text text-danger mt-2" [hidden]='!errors.email' >
+            {{errors.email}}
+          </small>
+        </div>
+        <div class="form-group">
+          <label class='text-info' for="password">Password </label>
+          <input type="password" class="form-control" required id="password" name="password" [(ngModel)]="formData.password" placeholder="Password" aria-describedby="passwordHelp">
+          <small id="passwordHelp" class="form-text text-muted" [hidden]='errors.password'>Don't forget this, ok?</small>
+          <small class="form-text text-danger mt-2" [hidden]='!errors.password' >
+            {{errors.password}}
+          </small>
+        </div>
+        <div class="form-group">
+          <label class='text-info' for="password_confirmation">Password Confirmation</label>
+          <input type="password" class="form-control" required id="password_confirmation" name="password_confirmation" [(ngModel)]="formData.password_confirmation" placeholder="Re-enter Password" aria-describedby="repasswordHelp">
+          <small id="password_confirmation" class="form-text text-muted" [hidden]='errors.password_confirmation'>Type again your password...strengthen your memory!</small>
+          <small class="form-text text-danger mt-2" [hidden]='!errors.password_confirmation' >
+            {{errors.password_confirmation}}
+          </small>
+        </div>
+        <div class="form-group">
+          <label class='text-info' for="name">Display Name</label>
+          <input type="text" class="form-control" required id="name" name="name" [(ngModel)]="formData.name" placeholder="Your true name, or nickname...but we do prefer true name :)">
+          <small class="form-text text-danger mt-2" [hidden]='!errors.name' >
+            {{errors.name}}
+          </small>
+        </div>
     </div>
-    <div class="form-group">
-      <label for="password">Password </label>
-      <input type="password" class="form-control" required id="password" name="password" [(ngModel)]="formData.password" placeholder="Password" aria-describedby="passwordHelp">
-      <small id="passwordHelp" class="form-text text-muted" [hidden]='errors.password'>Don't forget this, ok?</small>
-      <small class="form-text text-danger mt-2" [hidden]='!errors.password' >
-        {{errors.password}}
-      </small>
-    </div>
-    <div class="form-group">
-      <label for="password_confirmation">Password Confirmation</label>
-      <input type="password" class="form-control" required id="password_confirmation" name="password_confirmation" [(ngModel)]="formData.password_confirmation" placeholder="Re-enter Password" aria-describedby="repasswordHelp">
-      <small id="password_confirmation" class="form-text text-muted" [hidden]='errors.password_confirmation'>Type again your password...strengthen your memory!</small>
-      <small class="form-text text-danger mt-2" [hidden]='!errors.password_confirmation' >
-        {{errors.password_confirmation}}
-      </small>
-    </div>
-    <div class="form-group">
-      <label for="name">Display Name</label>
-      <input type="text" class="form-control" required id="name" name="name" [(ngModel)]="formData.name" placeholder="Your true name, or nickname...but we do prefer true name :)">
-      <small class="form-text text-danger mt-2" [hidden]='!errors.name' >
-        {{errors.name}}
-      </small>
+    <hr>
+    <div class="authorblock">
+      <h3 class="text-dark">Author section</h3>
+      <div class="form-group">
+        <label class='text-info' for="authorname">Author name</label>
+        <input type="text" class="form-control" required id="authorname" name="authorname" [(ngModel)]="formData.authorname" placeholder="Your author nickname">
+        <small id="authorname" class="form-text text-muted" [hidden]='errors.authorname'>This nickname should be awesome, as everyone will see it :)</small>
+        <small class="form-text text-danger mt-2" [hidden]='!errors.authorname' >
+          {{errors.authorname}}
+        </small>
+      </div>
+      <div class="form-group">
+        <label class='text-info' for="information">Briefly Information</label>
+        <input type="text" class="form-control" required id="information" name="information" [(ngModel)]="formData.information" placeholder="Brief introduction about yourself">
+        <small id="information" class="form-text text-muted" [hidden]='errors.information'>A maniac? A genius? Let's tell everyone about yourself!</small>
+        <small class="form-text text-danger mt-2" [hidden]='!errors.information' >
+          {{errors.information}}
+        </small>
+      </div>
     </div>
     <div class="form-group form-check">
       <input type="checkbox" class="form-check-input" name="condition" required id="exampleCheck1">
