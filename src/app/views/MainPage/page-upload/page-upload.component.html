@@ -7,30 +7,81 @@
         <div class="form-group">
           <label class='text-info' for="name">Manga Name</label>
           <input type="text" class="form-control" required id="name" name="name" value="etc" [(ngModel)]="formData.name" placeholder="Name of the manga" aria-describedby="namehelp">
-          <small id="name" class="form-text text-muted" [hidden]='errors.name'>Let's make your manga name awesome!</small>
-          <small class="form-text text-danger mt-2" [hidden]='!errors.name' >
-            {{errors.name}}
+          <small id="name" class="form-text text-muted" [hidden]='nameErr'>Let's make your manga name awesome!</small>
+          <small class="form-text text-danger mt-2" [hidden]='!nameErr' >
+            {{nameErr}}
           </small>
         </div>
         <div class="form-group">
           <label class='text-info' for="cover">Cover links</label>
           <input type="text" class="form-control" required id="cover" name="cover" [(ngModel)]="formData.cover" placeholder="Link image for your awesome manga's cover!" aria-describedby="coverhelp">
-          <small id="cover" class="form-text text-muted" [hidden]='errors.cover'>Expected to be embed image link!!!</small>
-          <small class="form-text text-danger mt-2" [hidden]='!errors.cover' >
-            {{errors.cover}}
+          <small id="cover" class="form-text text-muted" [hidden]='coverErr'>Expected to be embed image link!!!</small>
+          <small class="form-text text-danger mt-2" [hidden]='!coverErr' >
+            {{coverErr}}
           </small>
         </div>
+        <div class="form-group row">
+          <div class="col-sm-6 col-xs-12">
+            <label class='text-info' for="releaseYear">Release Year</label>
+            <select required class="form-control" id="releaseYear" name="releaseYear" ngDefaultControl [(ngModel)]="formData.releaseYear">
+              <option *ngFor="let year of listYear" [value]='year' [selected]='year == currentYear ? true:false' >{{year}}</option>
+            </select>
+            <small id="releaseYear" class="form-text text-muted">Year of your awesome manga born!</small>
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <label class='text-info' for="status">Status</label>
+            <select required class="form-control" id="status" name="status" ngDefaultControl [(ngModel)]="formData.status">
+              <option [value]='1' selected >Ongoing</option>
+              <option [value]='2' selected >Finished</option>
+              <option [value]='3' selected >Suspended</option>
+            </select>
+            <small id="status" class="form-text text-muted" *ngIf="formData?.status == 1" >Means your manga is still continuing to be updated.</small>
+            <small id="status" class="form-text text-muted" *ngIf="formData?.status == 2" >Means your manga is finished, no update will be made.</small>
+            <small id="status" class="form-text text-muted" *ngIf="formData?.status == 3" >Means your manga is dropped, might have update in future.</small>
+          </div>
+        </div>
         <div class="form-group">
-          <label class='text-info' for="releaseYear">Release Year</label>
-          <input type="number" min="1800" max="2100" class="form-control" required id="password_confirmation" name="releaseYear" [(ngModel)]="formData.releaseYear" placeholder="well...should be recently?" aria-describedby="releaseYearhelp">
-          <small id="releaseYear" class="form-text text-muted" [hidden]='errors.releaseYear'>Year of your awesome manga born!</small>
-          <small class="form-text text-danger mt-2" [hidden]='!errors.releaseYear' >
-            {{errors.releaseYear}}
+          <label class='text-info' for="description">Description</label>
+          <textarea style="resize: none;" minlength="3" maxlength="300" class="form-control" required id="description" name="description" [(ngModel)]="formData.description" placeholder="Briefly introduction about your awesome manga" aria-describedby="descriptionhelp"></textarea>
+          <small class="form-text text-muted">Available characters left: {{ 300 - formData.description.length}}</small>
+          <small class="form-text text-danger mt-2" [hidden]='!descriptionErr' >
+            {{descriptionErr}}
           </small>
         </div>
       </div>
-      <div class="imageSection">
-
+      <div class="moreinfo">
+        <div class="form-group">
+          <label class='text-info' for="tag">Tag</label>
+          <input class="form-control" id="tag" name="tag" #searchBox (keyup)="searchTag(searchBox.value)" 
+          placeholder="Tags can also promote your manga" aria-describedby="taghelp">
+          <p class="form-text text-muted">Available Tag: 
+            <span class="text-info suggestTag" (click)="chooseTag(tag, i)" 
+            *ngFor="let tag of tags; index as i"> 
+            {{tag.name}} 
+            </span>  
+          </p>
+          <small class="form-text text-danger mt-2" [hidden]='!tagErr' >
+            {{tagErr}}
+          </small>
+          <p *ngIf="typing" class="text-warning">Loading</p>
+          <div class="tagDisplay" *ngFor="let tag of listChoosenTag; index as i">
+            <div (click)="removeChoosenTag(i)" class="atag bg-primary">{{tag.name}} <i class="fas fa-minus-square"></i></div>
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label class='text-info' for="aliasName">Alias Name</label>
+          <input type="text" #namealias (keyup.enter)='aliasConfirm(namealias.value)' class="form-control" id="aliasName" name="aliasName" value="etc" [(ngModel)]="tempAliasName" 
+          placeholder="For viewer easier when recognize" aria-describedby="aliasNamehelp">
+          <small id="aliasName" class="form-text text-muted" >Maximum 4 alias names</small>
+          <div class="tagDisplay" *ngFor="let alias of aliasList; index as i">
+            <div (click)="removeAliasName(i)" class="atag bg-info">{{alias}} <i class="fas fa-minus-square"></i></div>
+          </div>
+          <p *ngIf="errorAlias" class="text-danger">
+            Alias name length must be more than 3 characters and less than 51 characters (yeah, just protocol, I known...).
+          </p>
+          <p *ngIf="aliastoomany" class="text-danger">Hey...that's too many name. Should be 4, remember?</p>
+        </div>
       </div>
       <button type="submit" [disabled]="!signupForm.valid" class="btn btn-block btn-success">Upload now</button>
     </form>

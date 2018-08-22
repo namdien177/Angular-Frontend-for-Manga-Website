@@ -80,7 +80,16 @@ export class PageMangaReadComponent implements OnInit {
           this.loading = false;
         }
       });
-      this.mangaservice.countAView(this.idManga,this.idChap).subscribe();
+      this.mangaservice.countAView(this.idManga,this.idChap).subscribe(
+        res=>{
+          console.log(res);
+          //@ts-ignore
+          if(res.tokenView){
+            //@ts-ignore
+            this.token.setTokenRead(res.tokenView);
+          }
+        }
+      );
     });
   }
 

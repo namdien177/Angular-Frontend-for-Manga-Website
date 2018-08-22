@@ -13,6 +13,15 @@ export class ResponseMessage{
     message: string;
 }
 
+export interface ErrorSection{
+    [key: string]: string
+}
+
+export class ResponseMessageSection{
+    boolean:boolean;
+    error:ErrorSection
+}
+
 export class BookmarkJSON{
     data:Bookmark[];
 }

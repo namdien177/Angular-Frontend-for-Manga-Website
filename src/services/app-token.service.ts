@@ -28,8 +28,16 @@ export class AppTokenService {
     localStorage.setItem('token', token);
   }
 
+  setTokenRead(token){
+    localStorage.setItem('tokenView',token);
+  }
+
   getToken(){
     return localStorage.getItem('token');
+  }
+
+  getTokenRead(){
+    return localStorage.getItem('tokenView')
   }
 
   removeToken(){

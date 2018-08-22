@@ -16,8 +16,10 @@ export class MangaServicesService {
 
   list: Manga[];
   tags: TagManga;
-  private urlAPIManga = 'http://localhost:8000/api/manga';
-  private urlAPIAuthor = 'http://localhost:8000/api/author';
+  private urlAPI = 'http://localhost:8000/api';
+  private urlAPIManga = this.urlAPI + '/manga';
+  private urlAPIAuthor = this.urlAPI + '/author';
+  private urlAPITags = this.urlAPI + '/tags'
 
   getListManga(link?): Observable<jsonmodel.MangaJSON[]> {
     if (!link) {
@@ -165,7 +167,10 @@ export class MangaServicesService {
   }
 
   countAView(idManga, idChap){
-    return this.apiLaravel.getDataGet('manga/'+idManga+"/chap/"+idChap+"/count/"+this.token.getIDUser());
+    let ob = {
+      tokenView: this.token.getTokenRead()
+    }
+    return this.apiLaravel.getDataPost('manga/'+idManga+"/chap/"+idChap+"/count/"+this.token.getIDUser(),ob);
   }
 
   getViewCount(idManga, idChap?){
@@ -174,6 +179,17 @@ export class MangaServicesService {
     }else{
       return this.apiLaravel.getDataGet('manga/'+idManga+'/getview');
     }
+  }
+
+  searchTagManga(typedString:string): Observable<TagManga[]>{
+    if( !typedString.trim()){
+      return of([]);
+    }
+    return this.http.get<TagManga[]>(this.urlAPITags+'/search?name='+typedString)
+    .pipe(
+      tap(foundList => foundList),
+      catchError(error=> of(null))
+    );
   }
 
   constructor(
