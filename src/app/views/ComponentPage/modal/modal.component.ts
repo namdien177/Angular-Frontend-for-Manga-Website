@@ -9,17 +9,34 @@ export class ModalComponent implements OnInit {
 
   constructor() { }
 
-  @Input() message:string;
+  @Input() message:string = '';
+  @Input() title:string = '';
+  @Input() optionMessage:string = '';
   @Output() close = new EventEmitter<boolean>();
+  @Output() opt = new EventEmitter<boolean>();
+
+  countTime:number;
 
   closebtn(){
     this.close.emit(false);
   }
 
+  optionbtn(){
+    this.opt.emit(true);
+  }
+
   ngOnInit() {
-    // setTimeout(() => {
-    //   this.close.emit(false)
-    // }, 4000);
+    if(this.optionMessage.length>0){
+      this.countTime=0
+    }else{
+      this.countTime = 5;
+      setInterval(()=>{
+        this.countTime = this.countTime - 1;
+      }, 1000);
+      setTimeout(() => {
+        this.closebtn();
+      }, 5000);
+    }
   }
 
   

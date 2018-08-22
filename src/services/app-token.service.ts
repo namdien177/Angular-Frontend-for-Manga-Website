@@ -68,7 +68,6 @@ export class AppTokenService {
         }
       }
     }
-
     return false;
   }
 

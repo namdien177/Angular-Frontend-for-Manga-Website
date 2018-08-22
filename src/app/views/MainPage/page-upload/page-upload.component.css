@@ -1,3 +1,7 @@
+.container-fluid{
+    min-height: 100% !important
+}
+
 .mainblock{
     margin: auto;
     margin-top: 1em;
@@ -24,4 +28,18 @@
 
 .suggestTag{
     cursor: pointer;
+}
+
+.afterBlock{
+    display: grid;
+    height: 100% !important;
+    width: 100% !important;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-gap: 1em;
+}
+
+.afterBlock > .content{
+    grid-column: 2 / 3;
+    grid-row: 2/3;
 }

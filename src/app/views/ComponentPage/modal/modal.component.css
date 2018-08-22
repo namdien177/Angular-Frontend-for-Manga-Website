@@ -15,7 +15,7 @@
     min-width: 25%;
     display: grid;
     grid-template-areas: 
-    '.          close-button'
+    'title      close-button'
     'message    message'
     'option     option';
     grid-gap: 1em;
@@ -26,9 +26,15 @@
     border-radius: 1em;
 }
 
+.modal-windows > .modal-frame > .modal-title{
+    grid-area: title;
+}
+
 .modal-windows > .modal-frame > .close-button{
     grid-area: close-button;
 }
+
+
 
 .modal-windows > .modal-frame > .modal-message-block{
     grid-area: message;
@@ -40,15 +46,17 @@
     grid-area: option;
     display: grid;
     grid-template-areas: 
-    'tips   btn';
-    grid-template-columns: auto 30%;
-    align-items: center;
+    'opt   btn';
+    grid-template-columns: auto;
+    grid-gap: 1em;
+    align-content: stretch;
+    justify-content: stretch;
 }
 
-.modal-windows > .modal-frame > .modal-option > small{
-    grid-area: tips;
+.modal-windows > .modal-frame > .modal-option > .modal-option-button{
+    grid-area: opt;
 }
 
-.modal-windows > .modal-frame > .modal-option > button{
+.modal-windows > .modal-frame > .modal-option > .modal-confirm{
     grid-area: btn;
 }

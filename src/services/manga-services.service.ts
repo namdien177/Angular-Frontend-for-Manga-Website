@@ -192,6 +192,10 @@ export class MangaServicesService {
     );
   }
 
+  uploadManga(formData){
+    return this.apiLaravel.getDataPost('content/upload',formData);
+  }
+
   constructor(
     private http: HttpClient,
     private apiLaravel: ApiLaravelService,

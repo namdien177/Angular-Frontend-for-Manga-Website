@@ -18,6 +18,7 @@ export class CompListmangaComponent implements OnInit {
 
   selectedManga: Manga;
   jsonData: jsonmodel.MangaJSON;
+  totalManga:number = 0;
 
   listUnit: jsonmodel.MangaAllJSON[] = [];
 
@@ -38,6 +39,8 @@ export class CompListmangaComponent implements OnInit {
         (ListMangaGot) => {
           // @ts-ignore
           this.jsonData = ListMangaGot;
+          //@ts-ignore
+          if(ListMangaGot.data.length <1) this.loading = false;
           // @ts-ignore
           this.getAuthorNameAndNewChap(ListMangaGot);
         }
@@ -59,6 +62,8 @@ export class CompListmangaComponent implements OnInit {
         // @ts-ignore
         this.jsonData = ListMangaGot;
         // @ts-ignore
+        this.totalManga = ListMangaGot.meta.total;
+        // @ts-ignore
         this.getAuthorNameAndNewChap(ListMangaGot);
       }
     );
@@ -73,16 +78,20 @@ export class CompListmangaComponent implements OnInit {
         unit.aManga = aManga;
         this.MangaServices.getListMangaChap(aManga.id).subscribe(listChap=>{
           //@ts-ignore
-          this.MangaServices.getListMangaChap(aManga.id, listChap.links.last).subscribe(listChap=>{
+          if(listChap.meta.total == 0){
+            unit.newestChap=0;
+            unit.viewCount=0;
+            this.listUnit.push(unit);
+          }else{
             //@ts-ignore
-            unit.newestChap = listChap.data[listChap.data.length -1].chap;
+            unit.newestChap = listChap.meta.total;
             this.MangaServices.getViewCount(aManga.id).subscribe(view=>{
               //@ts-ignore
               unit.viewCount=view;
               this.listUnit.push(unit);
-              this.loading = false;
             });
-          });
+          }
+          this.loading = false;
         });
       });
     });
