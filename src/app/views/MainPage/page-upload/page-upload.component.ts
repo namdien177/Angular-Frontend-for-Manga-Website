@@ -41,28 +41,11 @@ export class PageUploadComponent implements OnInit {
   modalMessage='Back to Author page'
 
   ngOnInit() {
-    if(this.token.getIDUser() == false){
-      this.router.navigateByUrl('/home');
+    this.currentYear = (new Date()).getFullYear();
+    let initYear = 1980;
+    for (let index = initYear; index <= this.currentYear; index++) {
+      this.listYear.push(index);
     }
-    let formData = {
-      id: this.token.getIDUser()
-    }
-    this.apiServices.getDataPost('author',formData).subscribe(
-      res =>{
-        //@ts-ignore
-        this.idAuthor = res.id
-        if (this.idAuthor >0){
-          this.currentYear = (new Date()).getFullYear();
-          let initYear = 1980;
-          for (let index = initYear; index <= this.currentYear; index++) {
-            this.listYear.push(index);
-          }
-          this.loading = false;
-        }else{
-          this.router.navigateByUrl('/home');
-        }
-      }
-    );
   }
 
   /**
@@ -72,7 +55,7 @@ export class PageUploadComponent implements OnInit {
   searchTag(searchedString:string):void{
     if(searchedString.length > 1){
       this.typing = true;
-      this.mangaservice.searchTagManga(searchedString).pipe(debounceTime(500)).subscribe(
+      this.mangaservice.searchTagManga(searchedString).pipe(debounceTime(500),distinctUntilChanged()).subscribe(
         listFound => {
           this.tags = listFound;
           this.typing = false;
@@ -298,6 +281,23 @@ export class PageUploadComponent implements OnInit {
     private token:AppTokenService,
     private router:Router,
     private mangaservice:MangaServicesService,
-  ) { }
+  ) {
+    if(this.token.getIDUser() == false){
+      this.router.navigateByUrl('/home');
+    }
+    let formData = {
+      id: this.token.getIDUser()
+    }
+    this.apiServices.getDataPost('author',formData).subscribe(
+      res =>{
+        //@ts-ignore
+        this.idAuthor = res.id
+        this.loading = false;
+        if (this.idAuthor <=0){
+          this.router.navigateByUrl('/home');
+        }
+      }
+    );
+   }
 
 }

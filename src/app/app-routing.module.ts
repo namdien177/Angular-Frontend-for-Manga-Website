@@ -19,6 +19,7 @@ import { PageRegisterAuthorComponent } from './views/MainPage/page-register-auth
 import { AppBeforeloginService } from '../services/app-beforelogin.service';
 import { AppAffterloginService } from '../services/app-affterlogin.service';
 import { PageUploadComponent } from './views/MainPage/page-upload/page-upload.component';
+import { PageSearchComponent } from './views/MainPage/page-search/page-search.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full', data:{depth: 1}  },
@@ -49,7 +50,8 @@ const routes: Routes = [
       
   { path:'user',component:PageUserComponent, data:{depth: 1}, canActivate:[AppAffterloginService] },
 
-  { component: PageUnknownComponent, path: '', data:{depth: 1}  } //for unknown page - Should be at end
+  { path:'search', component: PageSearchComponent, data: {depth: 2}},
+  { component: PageUnknownComponent, path: '**', data:{depth: 1}  } //for unknown page - Should be at end
 ];
 
 @NgModule({

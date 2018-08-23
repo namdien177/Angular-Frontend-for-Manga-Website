@@ -181,6 +181,24 @@ export class MangaServicesService {
     }
   }
 
+  searchManga(searchString:string, result?:number): Observable<jsonmodel.MangaJSON[]>{
+    if(!searchString.trim()){
+      return of([]);
+    }
+    if(result >0){
+      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPI+'/search?name='+searchString+'&result='+result)
+      .pipe(
+        tap(found => found),
+        catchError(error => of(null))
+      )
+    }
+    return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPI+'/search?name='+searchString)
+    .pipe(
+      tap(found => found),
+      catchError(error => of(null))
+    )
+  }
+
   searchTagManga(typedString:string): Observable<TagManga[]>{
     if( !typedString.trim()){
       return of([]);

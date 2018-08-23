@@ -30,9 +30,25 @@
         </a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+    <form #signupForm=ngForm (ngSubmit)="searchPress()" class="form-inline my-2 my-lg-0 searchBar" #searchForm>
+      <input required autocomplete="off" autocorrect="off" class="form-control mr-sm-2" #searchBarNavi (keyup)='searchPress()' [(ngModel)]="searchBarText" name="searchBarText" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit" [disabled]="!signupForm.valid" >Search</button>
+      <div class="searchResult" *ngIf="resultBar" >
+        <a class="result" *ngFor="let result of listFound" routerLink="/manga/{{result.id}}" (click)="clickLink()">
+          <div class="cover" 
+          [ngStyle]="{'background-image': 'url(' + result.cover + ')'}">
+          </div>
+          <div class="title">
+            {{result.name}}
+          </div>
+          <div class="chap">
+            Release Year: {{result.releaseYear}}
+          </div>
+        </a>
+        <p class="text-center text-info" *ngIf="!notfound && listFound.length == 0">Checking my bookshell...</p>
+        <p class="text-center text-muted" *ngIf="notfound && listFound.length == 0">Oops! No result was found... try something else?</p>
+        <a *ngIf="listFound.length > 0" class="text-center" routerLink="/search" [queryParams]="{name: searchBarText }" >More result</a>
+      </div>
     </form>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item" *ngIf="!loggedIn">

@@ -2,7 +2,7 @@
   <div class="mainblock col-xs-12 col-sm-8" *ngIf="!submitDone">
     <h3>Upload Section</h3>
     <hr>
-    <form #signupForm=ngForm (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()" >
+    <form #signupForm=ngForm (ngSubmit)="onSubmit()">
       <div class="info">
         <div class="form-group">
           <label class='text-info' for="name">Manga Name</label>

@@ -36,6 +36,8 @@ import { AppBeforeloginService } from '../services/app-beforelogin.service';
 import { SpinnerComponent } from './views/ComponentPage/spinner/spinner.component';
 import { ModalComponent as ModalComComponent } from './views/ComponentPage/modal/modal.component';
 import { PageUploadComponent } from './views/MainPage/page-upload/page-upload.component';
+import { WINDOW_PROVIDERS } from './WINDOW_PROVIDER';
+import { PageSearchComponent } from './views/MainPage/page-search/page-search.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { PageUploadComponent } from './views/MainPage/page-upload/page-upload.co
     PageRegisterAuthorComponent,
     SpinnerComponent,
     ModalComComponent,
-    PageUploadComponent      //adding component
+    PageUploadComponent,
+    PageSearchComponent      //adding component
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,8 @@ import { PageUploadComponent } from './views/MainPage/page-upload/page-upload.co
     AppTokenService,
     AppAuthService,
     AppAffterloginService,
-    AppBeforeloginService
+    AppBeforeloginService,
+    WINDOW_PROVIDERS
   ],
   bootstrap: [AppComponent]
 })

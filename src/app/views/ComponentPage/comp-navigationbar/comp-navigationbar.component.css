@@ -1,10 +1,68 @@
-nav.bg-primary{
+nav.bg-primary {
     background: #31363d !important;
     -webkit-box-shadow: 0px 2px 30px 0px rgba(0,0,0,0.55);
     -moz-box-shadow: 0px 2px 30px 0px rgba(0,0,0,0.55);
     box-shadow: 0px 2px 30px 0px rgba(0,0,0,0.55);
 }
 
+a{
+    color: white;
+}
+
 .linkNoHref{
     cursor: pointer;
+}
+
+.searchBar{
+    position: relative;
+}
+
+.searchResult{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    background: white;
+    top: 100%;
+    border-radius: 0 0 1em 1em;
+    border: 1px solid #31363d;
+    overflow: auto;
+    max-height: 300px;
+    padding-top: 0.5em;
+    background: rgb(49,54,61);
+    background: -moz-linear-gradient(180deg, rgba(49,54,61,1) 70%, rgba(49,54,61,1) 75%, rgba(49,54,61,0.8494748241093313) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(49,54,61,1) 70%, rgba(49,54,61,1) 75%, rgba(49,54,61,0.8494748241093313) 100%);
+    background: linear-gradient(180deg, rgba(49,54,61,1) 70%, rgba(49,54,61,1) 75%, rgba(49,54,61,0.8494748241093313) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#31363d",endColorstr="#31363d",GradientType=1);
+}
+
+.searchResult > .result{
+    display: grid;
+    grid-template-areas: 
+    'img title'
+    'img chap';
+    grid-gap: 0.5em;
+    grid-template-columns: 56px auto;
+    height: 56px;
+    margin-bottom: 0.5em;
+    background: #31363df3;
+}
+
+.searchResult > .result > .cover{
+    grid-area: img;
+    background-position: center;
+    background-size: cover;
+}
+
+.searchResult > .result > .title{
+    grid-area: title;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.searchResult > .result > .chap {
+    grid-area: chap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
