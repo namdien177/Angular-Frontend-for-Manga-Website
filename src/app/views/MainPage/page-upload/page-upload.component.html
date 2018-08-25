@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="mainblock col-xs-12 col-sm-8" *ngIf="!submitDone">
+  <div class="mainblock col-xs-12 col-sm-8">
     <h3>Upload Section</h3>
     <hr>
     <form #signupForm=ngForm (ngSubmit)="onSubmit()">
@@ -42,7 +42,7 @@
         </div>
         <div class="form-group">
           <label class='text-info' for="description">Description</label>
-          <textarea style="resize: none;" minlength="3" maxlength="400" class="form-control" required id="description" name="description" [(ngModel)]="formData.description" placeholder="Briefly introduction about your awesome manga" aria-describedby="descriptionhelp"></textarea>
+          <textarea style="resize: none; height: 100px;" minlength="3" maxlength="400" class="form-control" required id="description" name="description" [(ngModel)]="formData.description" placeholder="Briefly introduction about your awesome manga" aria-describedby="descriptionhelp"></textarea>
           <small class="form-text text-muted">Available characters left: {{ 400 - formData.description.length}}</small>
           <small class="form-text text-danger mt-2" [hidden]='!descriptionErr' >
             {{descriptionErr}}
@@ -86,11 +86,6 @@
       </div>
       <button type="submit" [disabled]="!signupForm.valid" class="btn btn-block btn-success">Upload now</button>
     </form>
-  </div>
-  <div *ngIf="submitDone" class='afterBlock'>
-    <div class="content">
-        <h3 class="text-center text-success text-monospace">Your manga was uploaded successfully!</h3>
-    </div>
   </div>
 </div>
 <app-modal *ngIf="errorDialog" [title]='errorDialogTitle' [message]="errorDialogMessage" [optionMessage]='modalMessage' (opt)='toProfile($event)' (close)='errorModal($event)' ></app-modal>

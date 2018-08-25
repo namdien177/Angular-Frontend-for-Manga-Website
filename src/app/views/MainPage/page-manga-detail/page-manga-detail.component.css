@@ -1,5 +1,6 @@
 .side-info-block .side-info-block>*{
     z-index: 1;
+    overflow: auto;
 }
 
 .img-block{

@@ -1,0 +1,66 @@
+.mainblock{
+    display: block;
+    width: 90% !important;
+    margin: auto;
+    position: relative;
+    padding-top: 1em;
+}
+
+.search-option{
+    display: grid;
+    grid-area: 
+    "searchbar"
+    "option";
+    grid-gap: 1em;
+    width: 100% !important;
+    position: relative;
+    background: rgba(255, 255, 255, 0.808);
+    border-radius: 1em;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+.search-result{
+    display: grid;
+    grid-template-areas: 
+    'manga'
+    'author';
+    width: 100% !important;
+    grid-gap: 1em;
+    position: relative;
+}
+
+.result-manga{
+    grid-area: manga;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 0.5em;
+    grid-template-rows: auto;
+    background: rgba(255, 255, 255, 0.808);
+    border-radius: 1em;
+    padding: 0.5em;
+    color: black;
+    justify-content: center;
+    align-content: center;
+}
+
+.result-manga >* {
+    justify-self: center;
+    align-self: center;
+}
+
+.result-author{
+    grid-area: author;
+    background: rgba(255, 255, 255, 0.808);
+    border-radius: 1em;
+    padding: 0.5em;
+    color: black;
+}
+
+@media only screen and (max-width: 800px){
+    .result-manga{
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0.1em;
+        grid-gap: 0.1em;
+    }
+}

@@ -20,6 +20,7 @@ import { AppBeforeloginService } from '../services/app-beforelogin.service';
 import { AppAffterloginService } from '../services/app-affterlogin.service';
 import { PageUploadComponent } from './views/MainPage/page-upload/page-upload.component';
 import { PageSearchComponent } from './views/MainPage/page-search/page-search.component';
+import { PageUploadChapComponent } from './views/MainPage/page-upload-chap/page-upload-chap.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full', data:{depth: 1}  },
@@ -44,7 +45,8 @@ const routes: Routes = [
           {path:'manga/:id/chap/:idChap',component: PageMangaReadComponent, data:{depth:3}},
 
   { path:'author', component: PageAllauthorComponent, data:{depth: 1} },
-      {path:'author/:id', component: PageAuthorComponent, data:{depth:2 }},
+      { path:'author/:id', component: PageAuthorComponent, data:{depth:2 }},
+      { path:'manage/manga/:id', component: PageUploadChapComponent, data: {depth:2}},
       
   {path:'upload', component:PageUploadComponent, data:{depth:2}},
       

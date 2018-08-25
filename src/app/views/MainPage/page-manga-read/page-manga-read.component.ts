@@ -82,7 +82,6 @@ export class PageMangaReadComponent implements OnInit {
       });
       this.mangaservice.countAView(this.idManga,this.idChap).subscribe(
         res=>{
-          console.log(res);
           //@ts-ignore
           if(res.tokenView){
             //@ts-ignore

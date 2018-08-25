@@ -37,10 +37,7 @@ export class PageHomeComponent implements OnInit {
         unit.aManga = aManga;
         this.mangaservice.getListMangaChap(aManga.id).subscribe(listChap=>{
           //@ts-ignore
-          this.mangaservice.getListMangaChap(aManga.id, listChap.links.last).subscribe(listChap=>{
-            //@ts-ignore  
-            unit.newestChap = listChap.data[listChap.data.length -1].chap;
-          });
+          unit.newestChap = listChap.meta.total;
           this.displayList.push(unit);
           this.loading = false;
         });

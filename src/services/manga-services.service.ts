@@ -166,6 +166,14 @@ export class MangaServicesService {
     return this.apiLaravel.getDataGetResponse('manga/'+idManga+"/unread/"+this.token.getIDUser());
   }
 
+  isAuthorOfThis(idManga:number){
+    let formData = {
+      idUser: this.token.getIDUser(),
+      idManga:idManga
+    }
+    return this.apiLaravel.getDataPostResponse('author/manga',formData);
+  }
+
   countAView(idManga, idChap){
     let ob = {
       tokenView: this.token.getTokenRead()
@@ -181,12 +189,12 @@ export class MangaServicesService {
     }
   }
 
-  searchManga(searchString:string, result?:number): Observable<jsonmodel.MangaJSON[]>{
+  searchManga(searchString:string, result:number = 4, order:string = 'asc', condi:number = 0): Observable<jsonmodel.MangaJSON[]>{
     if(!searchString.trim()){
       return of([]);
     }
     if(result >0){
-      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPI+'/search?name='+searchString+'&result='+result)
+      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPI+'/search?name='+searchString+'&result='+result+'&order='+order+'&condi='+condi)
       .pipe(
         tap(found => found),
         catchError(error => of(null))

@@ -187,43 +187,48 @@ export class PageUploadComponent implements OnInit {
     this.formData.tags = this.listChoosenTag;
   }
 
-  errorDialog:boolean=true;
-  errorDialogMessage:string=' test message';
+  errorDialog:boolean=false;
+  errorDialogMessage:string='';
   errorDialogTitle:string = '';
 
   errorModal(closemodal:boolean){
     this.errorDialog = closemodal;
   }
 
-  submitDone:boolean = true;
+  submitDone:boolean = false;
   onSubmit(){
     this.loading = true;
-    let canSubmit = this.validateRequest();
-    if(canSubmit){
-      this.prepareForm();
-      this.mangaservice.uploadManga(this.formData).subscribe(
-        res => {
-          this.loading = false;
-          //@ts-ignore
-          if(res.boolean){
-            this.errorDialogTitle = 'Success!'
-            this.errorDialog = true;
+    this.validateRequest();
+    this.validateImage(this.formData.cover, boolean=>{
+      this.toSubmit = boolean;
+      if (!boolean){
+        this.coverErr = 'Opps...that was not an image?';
+        this.errorDialogTitle='ERROR !!!'
+        this.errorDialog = true;
+        this.errorDialogMessage = 'The action cannot be done! Can you review all the fields to the correct format? :(';
+        console.log('dit me chung may');
+        this.loading = false;
+      }else{
+        this.prepareForm();
+        this.mangaservice.uploadManga(this.formData).subscribe(
+          res => {
+            this.loading = false;
             //@ts-ignore
-            this.errorDialogMessage = res.message;
-            this.submitDone = true;
-          }else{
-            this.errorDialogTitle ='Opps!!!'
-            this.errorDialog = true;
-            this.errorDialogMessage = 'There was some bugs on our system...I know it\'s troublesome but please try again after awhile :(';
+            if(res.boolean){
+              this.errorDialogTitle = 'Success!'
+              this.errorDialog = true;
+              //@ts-ignore
+              this.errorDialogMessage = res.message;
+              this.submitDone = true;
+            }else{
+              this.errorDialogTitle ='Opps!!!'
+              this.errorDialog = true;
+              this.errorDialogMessage = 'There was some bugs on our system...I know it\'s troublesome but please try again after awhile :(';
+            }
           }
-        }
-      );
-    }else{
-      this.errorDialogTitle='ERROR !!!'
-      this.errorDialog = true;
-      this.errorDialogMessage = 'There was some bugs on our system...I know it\'s troublesome but please try again after awhile :(';
-      console.log('dit me chung may');
-    }
+        );
+      }
+    });
   }
 
   toProfile(opt:boolean){
@@ -236,27 +241,20 @@ export class PageUploadComponent implements OnInit {
   /**
    * Prepare data (validating)
    */
-  validateRequest():boolean{
-    let validateInformation = true;
+  toSubmit:boolean = true;
+  validateRequest(){
     if(this.formData.name.length <3 || this.formData.name.length >60){
       this.nameErr="Keep name length more than 3 characters and under 60 character ok?"
-      validateInformation = false;
+      this.toSubmit = false
     }
     if(this.formData.description.length <3 || this.formData.description.length >400){
       this.descriptionErr="Wah description is limited with at lease 3 characters and maximum 300 characters only!"
-      validateInformation = false;
+      this.toSubmit = false
     }
-    this.validateImage(this.formData.cover,exists =>{
-      if (!exists){
-        this.coverErr = "hey, that was not a image!";
-        validateInformation = false;
-      }
-    });
     if(this.listChoosenTag.length <1){
       this.tagErr="You must add at least 1 tag for the manga!";
-      validateInformation = false;
+      this.toSubmit = false
     }
-    return validateInformation;
   }
 
   /**

@@ -27,6 +27,7 @@ export class PageMangaDetailComponent implements OnInit {
   responseMessage:string;
   auth:boolean = false;
   loading: boolean = true;
+  belongsToUser:boolean = false;
 
   constructor(
     private MangaServices: MangaServicesService,
@@ -84,7 +85,7 @@ export class PageMangaDetailComponent implements OnInit {
         chaplist.data.forEach(chap=>{
           let aChap = new ChapFull;
           aChap.chap = chap;
-          this.MangaServices.getViewCount(this.showBriefManga.id,chap.id).subscribe(view=>{
+          this.MangaServices.getViewCount(this.idManga,chap.id).subscribe(view=>{
             //@ts-ignore
             aChap.viewCount = view;
             this.displayChapList.push(aChap);
@@ -110,6 +111,11 @@ export class PageMangaDetailComponent implements OnInit {
       }
     );
     this.auth = this.token.loggedIn();
+
+    this.MangaServices.isAuthorOfThis(this.idManga).subscribe(res=>{
+      //@ts-ignore
+      this.belongsToUser = res.boolean;
+    })
   }
 
   bookmark(manga:Manga):void{

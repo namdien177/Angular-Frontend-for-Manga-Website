@@ -58,8 +58,7 @@ export class CompNavigationbarComponent implements OnInit {
       this.resultBar = true;
       this.notfound = false;
       let stringsearch = this.searchBarText.trim();
-      console.log(this.searchBarText.trim());
-      this.mangaService.searchManga(stringsearch).pipe(
+      this.mangaService.searchManga(stringsearch,3).pipe(
         debounceTime(500),distinctUntilChanged()
       ).subscribe(
         listmanga => {

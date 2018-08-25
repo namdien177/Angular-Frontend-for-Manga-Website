@@ -33,4 +33,12 @@ export class ApiLaravelService {
       ])));
   }
 
+  getDataPostResponse(route: String, formData):Observable<ResponseMessage[]>{
+    return this.http.post<ResponseMessage[]>(this.url_api + '/api/' + route + '',formData).pipe(
+      tap(recievedList => recievedList),
+      catchError(error => of([
+
+      ])));
+  }
+
 }

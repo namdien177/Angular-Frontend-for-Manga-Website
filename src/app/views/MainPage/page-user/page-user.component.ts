@@ -103,17 +103,14 @@ export class PageUserComponent implements OnInit {
                         let infoManga:Manga = jsoninfo.data;
                         this.mangaservice.getListMangaChap(Bookmark.idManga).subscribe(listChap=>{
                           //@ts-ignore
-                          this.mangaservice.getListMangaChap(Bookmark.idManga, listChap.links.last).subscribe(listChap=>{
-                            //@ts-ignore
-                            let latestChap:number = listChap.data[listChap.data.length -1].chap;
-                            let displayManga:displayBookmark = {
-                              manga: Bookmark,
-                              latestChap:latestChap,
-                              info: infoManga
-                            };
-                            this.listmanga.push(displayManga);
-                            this.loading = false;
-                          });
+                          let latestChap:number = listChap.meta.total;
+                          let displayManga:displayBookmark = {
+                            manga: Bookmark,
+                            latestChap:latestChap,
+                            info: infoManga
+                          };
+                          this.listmanga.push(displayManga);
+                          this.loading = false;
                         });
                       }
                     );
@@ -125,11 +122,7 @@ export class PageUserComponent implements OnInit {
             error =>{
               this.loading=false;
               this.error = true;
-              this.errorMessage = "User is not authenticated. You will be redirected after 4 seconds.";
-              setTimeout(() => {
-                this.token.removeToken();
-                location.reload();
-              }, 4000);
+              this.errorMessage = "User is not authenticated! Please login first!!!";
             }
           );
         }

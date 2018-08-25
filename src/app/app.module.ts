@@ -38,6 +38,7 @@ import { ModalComponent as ModalComComponent } from './views/ComponentPage/modal
 import { PageUploadComponent } from './views/MainPage/page-upload/page-upload.component';
 import { WINDOW_PROVIDERS } from './WINDOW_PROVIDER';
 import { PageSearchComponent } from './views/MainPage/page-search/page-search.component';
+import { PageUploadChapComponent } from './views/MainPage/page-upload-chap/page-upload-chap.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { PageSearchComponent } from './views/MainPage/page-search/page-search.co
     SpinnerComponent,
     ModalComComponent,
     PageUploadComponent,
-    PageSearchComponent      //adding component
+    PageSearchComponent,
+    PageUploadChapComponent      //adding component
   ],
   imports: [
     BrowserModule,

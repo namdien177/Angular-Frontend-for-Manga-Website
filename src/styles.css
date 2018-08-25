@@ -154,3 +154,14 @@ ngInvisible{
     top: 27px;
     text-align: center;
 }
+
+
+.btn-more-card{
+    height: 280px;
+    width: 200px;
+    border-radius: 1em;
+    border: 1px solid rgb(165, 165, 165);
+    background: rgb(165, 165, 165);
+    color: white;
+    cursor: pointer;
+}

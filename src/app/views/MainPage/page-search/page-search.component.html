@@ -1,3 +1,81 @@
-<p>
-  page-search works!
-</p>
+<div class="container-fluid">
+  <div class="mainblock">
+    <div class="search-option">
+      <form method="get">
+        <div class="form-group">
+          <label for="searchText" class="text-dark">Search bar</label>
+          <input type="text" name="searchText" id="searchText" class="form-control" 
+          placeholder="Enter your search text here" aria-describedby="searchTexthelpId"
+          [(ngModel)]="searchText" (keyup)='submitSearch()'>
+          <small id="helpId" class="text-muted">You can search manga, author, maybe more in the future!</small>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-info col-sm-6 col-xs-12"
+          (click)="clickOngoing()"
+          *ngIf="processOngoing && processFinished">
+            Process: All
+          </button>
+          <button class="btn btn-info col-sm-6 col-xs-12"
+          (click)="clickFinished()"
+          *ngIf="processOngoing && !processFinished">
+            Process: Ongoing
+          </button>
+          <button class="btn btn-info col-sm-6 col-xs-12"
+          (click)="clickAll()"
+          *ngIf="!processOngoing && processFinished">
+            Process: Finished
+          </button>
+          <button class="btn col-sm-6 col-xs-12 btn-success"
+          (click)="clickAscending()"
+          *ngIf="ascName">
+            Name <i class="fas fa-sort-alpha-down"></i>
+          </button>
+          <button class="btn col-sm-6 col-xs-12 btn-success"
+          (click)="clickDescending()"
+          *ngIf="!ascName">
+            Name <i class="fas fa-sort-alpha-up"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="search-result">
+      <div class="result-manga">
+        <a routerLink="/manga/{{manga?.aManga.id}}" class="manga-card" *ngFor="let manga of listMangaDisplay" >
+          <img [src]="manga.aManga.cover"
+              class="cover">
+          <div class="manga-info">
+            <h5 class="title">{{manga.aManga.name}}</h5>
+            <div class="chap">
+              Chap {{manga.newestChap}}
+            </div>
+            <p class="description">
+              {{manga.aManga.description}}
+            </p>
+          </div>
+        </a>
+        <button (click)="clickMore()" *ngIf="moreSearchMangaResult && !gettingdata && searchText.length >1" class="btn btn-more-card">
+            <i class="fas fa-plus-circle fa-3x"></i>
+            <br>
+            More result
+        </button>
+        <button *ngIf="!moreSearchMangaResult && searchText.length >1 && !gettingdata" class="btn btn-more-card" disabled>
+            <i class="fas fa-sad-tear fa-3x"></i>
+            <br>
+            Out of result :'(
+        </button>
+        <button *ngIf="gettingdata" class="btn btn-more-card" disabled>
+          <i class="fab fa-mixcloud fa-3x"></i>
+          <br>
+          <p>Looking for that <br> awesome manga!</p>
+        </button>
+        <p class="text-muted" *ngIf="searchText.length ==0">Waiting for your search text :></p>
+        <p class="text-muted" *ngIf="searchText.length ==1">One more character please... :></p>
+      </div>
+      <div class="result-author">
+        <h4 class="text-muted">This section is developing, but believe me, it's gonna be awesome!!!!</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-spinner *ngIf="loading"></app-spinner>

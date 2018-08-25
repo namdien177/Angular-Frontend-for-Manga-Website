@@ -45,9 +45,6 @@
 }
 
 .btn-option > button{
-    -webkit-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
-    -moz-box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
-    box-shadow: 2px 2px 3px 0px rgba(84,84,84,1);
     border-radius: 1em;
 }
 
