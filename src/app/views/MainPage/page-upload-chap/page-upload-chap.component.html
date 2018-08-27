@@ -1,3 +1,147 @@
-<p>
-  page-upload-chap works!
-</p>
+<div class="mainblock">
+  <div class="tabpanel">
+    <div class="ActiveBar" [ngClass]="{'uploadOn': uploadOn, 'updateOn': updateOn, 'editOn': editOn}">
+  
+    </div>
+    <div class="uploadNewChap" [ngClass]="{'blackWord': uploadOn}" (click)="clickUpload()">
+      Upload New Chap
+    </div>
+    <div class="editChap" [ngClass]="{'blackWord': editOn}" (click)="clickEdit()">
+      Edit Existed Chap
+    </div>
+    <div class="updateInfo" [ngClass]="{'blackWord': updateOn}" (click)="clickUpdate()">
+      Change Manga Infomation
+    </div>
+  </div>
+  
+  <form class="formUpload"  #uploadForm=ngForm (ngSubmit)="onSubmit()" *ngIf="uploadOn">
+    <div class="general-info row">
+      <h4 class="col-12 text-muted text-center">{{manga?.name}}</h4>
+      <div class="form-group col-sm-2 col-xs-3">
+        <label for="chapNumber">Chap Number</label>
+        <input type="number" min="0" #mainChap (keyup)='watchChap($event)' [(ngModel)]="formData.chapNumber" required name="chapNumber" id="chapNumber" class="form-control" placeholder="Chap number" aria-describedby="chapNumberHelp">
+        <small id="chapNumberHelp" class="text-muted">Chosing chap to upload</small>
+      </div>
+      <div class="form-group col-sm-10 col-xs-9">
+        <label for="chapTitle">Chap Title</label>
+        <input type="text" [(ngModel)]="formData.chapTitle" required name="chapTitle" id="chapTitle" class="form-control" placeholder="Chap title" aria-describedby="chapTitleHelp">
+        <small id="chapTitleHelp" class="text-muted">Title of a chapter is required.</small>
+      </div>
+      <div *ngIf="subChap" class="form-group col-sm-6 col-xs-12">
+        <label for="chapNumberSub">Secondary number</label>
+        <input type="number" min="0" [(ngModel)]="formData.chapNumberSecondary" required name="chapNumberSub" id="chapNumberSub" class="form-control" placeholder="Sub number" aria-describedby="chapNumberSubHelp">
+        <small id="chapNumberSubHelp" class="text-muted">This will be considered as sub-chap</small>
+      </div>
+    </div>
+    <div class="class-upload">
+      <h4 class="text-muted">Image Section</h4>
+      <div class="anImage">
+        <div class="numbering"># {{imgOrder}}</div>
+        <input type="text" #imgTemp (keyup)='listeningURLField(imgTemp.value)' class="form-control" name="imageInput" [(ngModel)]="imgText" placeholder="URL image" >
+        <a *ngIf="!checkImage && !validImage" disabled class="btn btn-warning disabled">Parse a valid URL!</a>
+        <a (click)="clickAddQueue()" *ngIf="!checkImage && validImage" class="btn btn-success">Add to queue</a>
+        <a *ngIf="checkImage" class="btn btn-default" disabled><i class="fas fa-spinner"></i> Checking</a>
+      </div>
+      <hr>
+      <div class="displayPrototype">
+
+        <div class="card-image" *ngFor="let img of listImageTemp; let i = index">
+            <img [src]="img?.src"
+            class="cover">
+          <div class="card-image-option">
+            <div class="btn btnview" (click)="previewClick(img)"><i class="fas fa-eye"></i></div>
+            <div class="btn btnremove" (click)="removeImage(i)"><i class="fas fa-trash"></i></div>
+          </div>
+          <p class="text-center text-muted"># {{i}}</p>
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!uploadForm.valid" class="option-block btn btn-block btn-success">
+      Upload new chap now
+    </button>
+  </form>
+
+  <form *ngIf="editOn" class="formEdit">
+    <h3 class="text-muted text-center">THIS SECTION IS NOT AVAILABLE</h3>
+  </form>
+
+  <form *ngIf="updateOn" class="formUpdate" #updateForm=ngForm (ngSubmit)="onSubmitUpdate()">
+    <div class="form-group description-block">
+      <label class='text-info' for="description">Description</label>
+      <textarea style="resize: none; height: 100px;" minlength="3" maxlength="400" class="form-control" required id="description" name="description" [(ngModel)]="formDataUpdate.description" placeholder="Briefly introduction about your awesome manga" aria-describedby="descriptionhelp"></textarea>
+      <small class="form-text text-muted">Available characters left: {{ 400 - formDataUpdate.description.length}}</small>
+      <small class="form-text text-danger mt-2" [hidden]='!descriptionErr' >
+        {{descriptionErr}}
+      </small>
+    </div>
+    <div class="form-group status-block">
+      <label class='text-info' for="status">Status</label>
+      <select required class="form-control" id="status" name="status" ngDefaultControl [(ngModel)]="formDataUpdate.status">
+        <option [value]='1' [attr.selected]="formDataUpdate?.status== 1" >Ongoing</option>
+        <option [value]='2' [attr.selected]="formDataUpdate?.status== 2" >Finished</option>
+        <option [value]='3' [attr.selected]="formDataUpdate?.status== 3" >Suspended</option>
+      </select>
+      <small id="status" class="form-text text-muted" *ngIf="formDataUpdate?.status == 1" >Means your manga is still continuing to be updated.</small>
+      <small id="status" class="form-text text-muted" *ngIf="formDataUpdate?.status == 2" >Means your manga is finished, no update will be made.</small>
+      <small id="status" class="form-text text-muted" *ngIf="formDataUpdate?.status == 3" >Means your manga is dropped, might have update in future.</small>
+    </div>
+    <div class="tagAlias-block">
+      <div class="form-group">
+        <label class='text-info' for="tag">Tag</label>
+        <input autocomplete="off" class="form-control" id="tag" [(ngModel)]="tagField" name="tag" #searchBox (keyup)='completeTag($event)' (keyup)="searchTag(searchBox.value)" 
+        placeholder="Tags can also promote your manga" aria-describedby="taghelp">
+        <small class="form-tex text-muted">Type in to search for suitable tags, press DOUBLE-SPACE if you want to take the first result (below) or just need to click any result to select it</small>
+        <p class="form-text text-dark">Available Tag: 
+          <span class="text-info suggestTag" (click)="chooseTag(tag, i)" 
+          *ngFor="let tag of tagsSearch; index as i"> 
+          {{tag?.name}} 
+          </span>  
+        </p>
+        <small class="form-text text-danger mt-2" [hidden]='!tagErr' >
+          {{tagErr}}
+        </small>
+        <p *ngIf="typing" class="text-warning">Loading</p>
+        <div class="tagDisplay" *ngFor="let tag of listDisplayTag; index as i">
+          <div (click)="removeChoosenTag(i, tag)" class="atag bg-primary">{{tag.name}} <i class="fas fa-minus-square"></i></div>
+        </div>
+      </div>
+      <hr>
+      <div class="form-group">
+        <label class='text-info' for="aliasName">Alias Name</label>
+        <input autocomplete="off" type="text" #namealias (keyup)='aliasConfirm($event)' class="form-control" id="aliasName" name="aliasName" value="etc" [(ngModel)]="tempAliasName" 
+        placeholder="For viewer easier when recognize" aria-describedby="aliasNamehelp">
+        <small id="aliasName" class="form-text text-muted" >Maximum 4 alias names, DOUBLE-Space for complete a name</small>
+        <div class="tagDisplay" *ngFor="let alias of listAliasDisplay; index as i">
+          <div (click)="removeAliasName(i, alias)" class="atag bg-info">{{alias}} <i class="fas fa-minus-square"></i></div>
+        </div>
+        <p *ngIf="errorAlias" class="text-danger">
+          Alias name length must be more than 3 characters and less than 51 characters (yeah, just protocol, I known...).
+        </p>
+        <p *ngIf="aliastoomany" class="text-danger">Hey...that's too many name. Should be 4, remember?</p>
+      </div>
+    </div>
+    <div class="cover-block">
+      <div class="form-group">
+        <label for="cover">Cover</label>
+        <input #coverField (keyup)='listeningCoverField(coverField.value)' autocomplete="off" type="text" name="cover" [(ngModel)]="tempCover" id="cover" class="form-control" placeholder="URL for new Cover" aria-describedby="coverhelp">
+        <small id="coverhelp" class="text-muted">Enter to change old cover below.</small>
+        <div class="text-center text-danger" *ngIf="!checkCover && !validCover">That is not a valid image!</div>
+        <div class="text-center text-secondary" *ngIf="checkCover && !validCover">Validating</div>
+        <div (click)="updateCover()" class="btn btn-block btn-outline-info" *ngIf="!checkCover && validCover">Update cover</div>
+      </div>
+      <div class="prev-cover">
+        <img [src]="formDataUpdate.cover" *ngIf="formDataUpdate.cover != null">
+        <h4 class="text-center text-danger" *ngIf="formDataUpdate.cover == null">Hmmm...cover image cannot be found!</h4>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!updateForm.valid" class="option-block btn btn-block btn-success">
+      Update infomation
+    </button>
+  </form>
+</div>
+
+<div class="previewWindows" *ngIf="onPrev" (click)="closePrev()">
+  <img [src]="prevSrc" #prevWindows class="prevImg" alt="">
+</div>
+<app-spinner *ngIf="loading"></app-spinner>
+<app-modal *ngIf="errorDialog" [title]='errorDialogTitle' [redirectHome]='redirectModal' [message]="errorDialogMessage" (close)='errorModal($event)' ></app-modal>

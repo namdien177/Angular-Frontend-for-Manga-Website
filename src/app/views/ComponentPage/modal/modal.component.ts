@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal',
@@ -7,17 +8,21 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   @Input() message:string = '';
   @Input() title:string = '';
   @Input() optionMessage:string = '';
+  @Input() redirectHome:boolean = false;
   @Output() close = new EventEmitter<boolean>();
   @Output() opt = new EventEmitter<boolean>();
 
   countTime:number;
 
   closebtn(){
+    if(this.redirectHome) this.router.navigateByUrl('/');
     this.close.emit(false);
   }
 

@@ -83,6 +83,14 @@ export class MangaServicesService {
     ])));
   }
 
+  getAliasOf(idManga):Observable<jsonmodel.AliasJson[]>{
+    return this.http.get<jsonmodel.AliasJson[]>(this.urlAPIManga + '/' + idManga + '/aliases').pipe(
+      tap(recievedList => recievedList),
+      catchError(error => of([
+
+    ])));
+  }
+
   getMangaAuthor(idManga:number): Observable<jsonmodel.AuthorJSON[]> {
     return this.http.get<jsonmodel.AuthorJSON[]>(this.urlAPIManga + '/' + idManga + '/getauthor').pipe(
       tap(recievedList => recievedList),
@@ -220,6 +228,10 @@ export class MangaServicesService {
 
   uploadManga(formData){
     return this.apiLaravel.getDataPost('content/upload',formData);
+  }
+
+  updateManga(formData):Observable<jsonmodel.ResponseMessage[]>{
+    return this.apiLaravel.getDataPostResponse('content/updateManga',formData);
   }
 
   constructor(

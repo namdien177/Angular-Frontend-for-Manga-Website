@@ -49,6 +49,7 @@ export class PageMangaReadComponent implements OnInit {
       this.getImage(this.idManga,this.idChap);
       this.api.getDataGetResponse('manga/'+this.idManga+"/chap/"+this.idChap+"/link").subscribe(
       res=>{
+        console.log(res);
         //@ts-ignore
         this.prevLink = res.prev;
         //@ts-ignore

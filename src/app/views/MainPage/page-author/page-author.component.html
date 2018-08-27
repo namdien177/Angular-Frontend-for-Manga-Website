@@ -34,9 +34,9 @@
               </p>
             </div>
           </a>
-          <button class="btn btn-block btn-info" (click)="loadmoreall()" *ngIf="loadmorerecent">Load more</button>
-          <h5 class="text-muted text-center" *ngIf="!loadmorerecent">Sorry it seems like there are all of this author works :/</h5>
         </div>
+        <button class="btn btn-block btn-info" (click)="loadmoreall()" *ngIf="loadmorerecent">Load more</button>
+        <h5 class="text-muted text-center" *ngIf="!loadmorerecent">Sorry it seems like there are all of this author works :/</h5>
     </div>
     <div class="author-hottest" *ngIf="!error"  >
         <h4 class="text-dark">Most viewed</h4>

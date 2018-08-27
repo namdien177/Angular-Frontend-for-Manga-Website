@@ -39,6 +39,7 @@ import { PageUploadComponent } from './views/MainPage/page-upload/page-upload.co
 import { WINDOW_PROVIDERS } from './WINDOW_PROVIDER';
 import { PageSearchComponent } from './views/MainPage/page-search/page-search.component';
 import { PageUploadChapComponent } from './views/MainPage/page-upload-chap/page-upload-chap.component';
+import { MainComponent } from './views/admin/main/main.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { PageUploadChapComponent } from './views/MainPage/page-upload-chap/page-
     ModalComComponent,
     PageUploadComponent,
     PageSearchComponent,
-    PageUploadChapComponent      //adding component
+    PageUploadChapComponent,
+    MainComponent      //adding component
   ],
   imports: [
     BrowserModule,

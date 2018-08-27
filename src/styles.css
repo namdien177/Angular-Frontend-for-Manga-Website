@@ -2,7 +2,7 @@
 body{
     background: rgb(88, 102, 112) !important;
     color: #d9d9d9;
-    margin: 0 0 0 5px;
+    margin: 0 0 0 0;
     height: 100% !important;
     width: 100% !important;
     font-family: Helvetica, sans-serif;
@@ -164,4 +164,12 @@ ngInvisible{
     background: rgb(165, 165, 165);
     color: white;
     cursor: pointer;
+}
+
+.atag{
+    padding: 0.3em;
+    border-radius: 1px solid white;
+    border-radius: 0.5em;
+    cursor: pointer;
+    margin: 0.2em;
 }

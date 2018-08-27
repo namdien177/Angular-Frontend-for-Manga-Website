@@ -4,4 +4,5 @@
     width: 100% !important;
     padding: 56px 10px 2em 0 !important;
     box-sizing: border-box;
+    position: relative;
 }

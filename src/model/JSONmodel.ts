@@ -7,6 +7,11 @@ import { ImageManga } from "./manga-img";
 import { TagManga } from './tags';
 import { User } from "./user";
 import { Bookmark } from "./bookmark";
+import { Aliases } from "./mangaAlias";
+
+export class AliasJson{
+    data: Aliases[];
+}
 
 export class ResponseMessage{
     boolean: boolean;

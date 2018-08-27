@@ -68,11 +68,20 @@
 }
 
 .list-work{
-    display: inline-block;
     width: 100% !important;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 0.5em;
+    justify-content: center;
+    align-content: center;
 }
 
-.list-work > button{
+.list-work > a{
+    justify-self: center;
+    align-self: center;
+}
+
+.author-work > button{
     border-radius: 0.5em 0.5em 1em 1em;
 }
 

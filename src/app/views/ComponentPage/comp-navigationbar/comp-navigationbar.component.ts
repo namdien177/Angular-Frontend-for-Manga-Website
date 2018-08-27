@@ -13,7 +13,7 @@ import { WINDOW } from '../../../WINDOW_PROVIDER';
   styleUrls: ['./comp-navigationbar.component.css'],
   host: {
     '(document:click)': 'handleFormClick($event)',
-},
+  },
 })
 export class CompNavigationbarComponent implements OnInit {
 
@@ -38,7 +38,6 @@ export class CompNavigationbarComponent implements OnInit {
   @ViewChild('searchForm') elementRef:ElementRef;
 
   handleFormClick($event){
-    var inside = false;
     if (this.elementRef.nativeElement.contains(event.target)) {
       
     } else {
@@ -64,7 +63,6 @@ export class CompNavigationbarComponent implements OnInit {
         listmanga => {
           //@ts-ignore
           this.listFound = listmanga.data;
-          console.log(listmanga);
           if(this.listFound.length >0) this.notfound = false;
           else this.notfound = true;
         }

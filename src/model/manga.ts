@@ -10,3 +10,7 @@ export class Manga{
     created_at:string;
     updated_at:string;
 }
+
+export class tempUploadImage{
+    src:string;
+}
