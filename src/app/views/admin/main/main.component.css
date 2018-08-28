@@ -1,0 +1,287 @@
+.containBlock{
+    width: 80% !important;
+    height: 100% !important;
+    overflow: auto;
+    display: block;
+    margin: auto;
+    padding: 0.5em;
+}
+
+.containBlock > .content{
+    width: 100% !important;
+    height: 100% !important;
+    display: grid;
+    grid-template-areas: 
+    'info   authorize   hot'
+    'info   disable     hot'
+    'info   ongo        author';
+    grid-gap: 0.5em;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.infoSection{
+    grid-area: info;
+
+}
+
+.infoSection > div{
+    background: rgba(255, 255, 255, 0.788);
+    border-radius: 1em;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    color: black;
+}
+
+.authorizeSection{
+    grid-area: authorize;
+    padding: 0.5em;
+    display: grid;
+    grid-template-areas: 
+    'title'
+    'display'
+    'option';
+    grid-gap: 0.5em;
+    grid-template-rows: min-content auto min-content;
+    grid-template-columns: 1fr;
+}
+
+.authorizeSection > button.btn{
+    grid-area: option;
+    border-radius: 0 0 1em 1em;
+}
+
+.authorizeSection > .displaySection{
+    border-radius: 1em 1em 0 0;
+}
+
+.hotSection{
+    grid-area: hot;
+    display: grid;
+    grid-template-areas: 
+    'title'
+    'display';
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content auto;
+    grid-gap: 0.5em;
+    padding: 0.5em;
+}
+
+.hotSection a{
+    color: white;
+}
+
+.hotSection> .displaySection {
+    padding: 0 !important;
+    background: transparent;
+}
+
+.hotSection > .displaySection > div {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.hotSection > .displaySection > div > .rankTab{
+    color: white !important;
+    display: grid;
+    grid-template-areas: 
+    'stt name view';
+    grid-template-columns: 40px auto 40px;
+    grid-template-rows: 1fr;
+    grid-gap: 0.1em;
+    height: 26px;
+    margin-bottom: 0.5em;
+    overflow: hidden;
+}
+
+.hotSection > .displaySection > div > .rankTab > *{
+    background: transparent;
+    border-radius: 0;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+}
+
+.hotSection > .displaySection > div > .rankTab > .rankFirst{
+    background: rgba(0, 0, 0, 0.700);
+    color: white;
+}
+
+.hotSection > .displaySection > div > .rankTab > * > *{
+    justify-self: center;
+    align-self: center;
+}
+
+.hotSection > .displaySection > div > .rankTab > * > .rankName{
+    overflow: hidden;
+}
+
+.displaySection{
+    grid-area: display;
+    background: rgba(255, 255, 255, 0.850);
+    padding: 1em;
+}
+
+h4.title{
+    grid-area: title;
+}
+
+.prevWindows{
+    position: fixed;
+    height: 100% !important;
+    width: 100% !important;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.829);
+    z-index: 5;
+    display: grid;
+    grid-template-areas: 
+    'bt  bt       bt       bt   bt'
+    'bm  covers   info     simi bms'
+    'bb  bb       bb       bb   bb';
+    grid-template-columns: 15% 250px auto 180px 15%;
+    grid-template-rows: 15% auto 15%;
+    grid-gap: 0.5em;
+    align-content: center;
+}
+
+.prevWindows > .coverPrev{
+    grid-area: covers;
+    max-width: 250px;
+}
+
+.prevWindows > .infoPrev{
+    grid-area: info;
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.850);
+    color: black;
+    display: grid;
+    grid-template-areas: 
+    'name       name'
+    'alias      alias'
+    'desc       desc'
+    'tag        status'
+    'blank      btnc';
+    grid-gap: 0.5em;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 60px 38px 130px
+    auto min-content;
+    padding: 1em;
+}
+
+.prevWindows > .infoPrev > .namePrev{
+    grid-area: name;
+    overflow: hidden;
+}
+.prevWindows > .infoPrev > .alias{
+    grid-area: alias;
+    overflow: hidden;
+}
+.prevWindows > .infoPrev > .descrip{
+    grid-area: desc;
+    overflow: auto;
+}
+.prevWindows > .infoPrev > .tags{
+    grid-area: tag;
+    overflow: auto;
+}
+.prevWindows > .infoPrev > .status{
+    grid-area: status;
+    overflow: hidden;
+}
+.prevWindows > .infoPrev > button{
+    grid-area: btnc;
+}
+
+.prevWindows > .similarPrev{
+    grid-area: simi;
+    height: 100% !important;
+    width: 100% !important;
+    display: block;
+    background: rgba(255, 255, 255, 0.850);
+    color: black;
+}
+
+.card-image{
+    display: block;
+    height: 250px;
+    width: 160px;
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 0.5em;
+    z-index: 2;
+    text-decoration: none !important;
+    margin: 5px;
+    position: relative;
+}
+
+.card-image >*{
+    border-radius: 0.5em;
+    z-index: 3;
+}
+
+.card-image > .cover{
+    width: 160px; 
+    max-height: 200px;
+    bottom: 50px;
+}
+
+.card-image > .card-image-option{
+    position: absolute;
+    height: 200px;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    width: 160px;
+    background: rgba(0, 0, 0, 0.308);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    transition: 0.5s;
+    opacity: 0;
+    display: grid;
+    grid-template-areas: 
+    'b b        b'
+    'b view     b'
+    'b accept   b'
+    'b delete   b'
+    'b b        b';
+    grid-template-columns: 1fr 40px 1fr;
+    grid-template-rows: 1fr 40px 40px 40px 1fr;
+    grid-gap: 10px;
+}
+
+.card-image > .card-image-option:hover{
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.575);
+}
+
+.card-image > .card-image-option > .btnview{
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    background: rgba(0, 0, 0, 0.945);
+    color: white;
+    justify-self: center;
+    align-self: center;
+}
+
+.card-image > .card-image-option > .btnaccept{
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    background: rgba(0, 0, 0, 0.945);
+    color: white;
+    justify-self: center;
+    align-self: center;
+}
+
+.card-image > .card-image-option > .btndelete{
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    background: rgba(0, 0, 0, 0.945);
+    color: white;
+    justify-self: center;
+    align-self: center;
+}

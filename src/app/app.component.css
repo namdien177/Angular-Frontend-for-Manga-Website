@@ -2,7 +2,7 @@
     overflow: auto;
     height: 100% !important;
     width: 100% !important;
-    padding: 56px 10px 2em 0 !important;
+    padding: 56px 0 0 0 !important;
     box-sizing: border-box;
     position: relative;
 }

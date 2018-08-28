@@ -21,6 +21,7 @@ import { AppAffterloginService } from '../services/app-affterlogin.service';
 import { PageUploadComponent } from './views/MainPage/page-upload/page-upload.component';
 import { PageSearchComponent } from './views/MainPage/page-search/page-search.component';
 import { PageUploadChapComponent } from './views/MainPage/page-upload-chap/page-upload-chap.component';
+import { MainComponent } from './views/admin/main/main.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full', data:{depth: 1}  },
@@ -33,12 +34,6 @@ const routes: Routes = [
 
   { path:'forget-password', component: PageForgetPasswordComponent, data:{depth: 1}, canActivate:[AppBeforeloginService]},
   { path:'new-password', component: PageNewPasswordComponent, data: {depth:1}},
-
-  // { path:'manga', component: PageAllmangaComponent, data:{depth: 1}, children:[
-  //   {path:':id', component:  PageMangaDetailComponent, data:{depth:2}, children:[
-  //     {path:':chap',component: PageMangaReadComponent, data:{depth:3}}
-  //   ] }
-  // ]},
 
   { path:'manga', component: PageAllmangaComponent, data:{depth: 1} },
       {path:'manga/:id', component:  PageMangaDetailComponent, data:{depth:2} },
@@ -53,6 +48,9 @@ const routes: Routes = [
   { path:'user',component:PageUserComponent, data:{depth: 1}, canActivate:[AppAffterloginService] },
 
   { path:'search', component: PageSearchComponent, data: {depth: 2}},
+
+  { path:'admin', component: MainComponent, data: {depth: 2}, canActivate: [AppAffterloginService]},
+
   { component: PageUnknownComponent, path: '**', data:{depth: 1}  } //for unknown page - Should be at end
 ];
 

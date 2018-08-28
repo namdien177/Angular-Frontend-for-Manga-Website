@@ -89,7 +89,6 @@ export class PageUserComponent implements OnInit {
         }else{
             this.userServices.me().subscribe(
             userInfo =>{
-              console.log(userInfo);
               //@ts-ignore
               this.user = userInfo;
               this.userServices.getUserBookmark().subscribe(

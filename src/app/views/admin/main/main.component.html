@@ -1,3 +1,124 @@
-<p>
-  main works!
-</p>
+<div class="containBlock">
+  <div class="content">
+    <div class="infoSection">
+      <div class="nameSection">
+        <h4>Admin:</h4>
+        <p>{{user?.name}}</p>
+      </div>
+      <div class="generalStats">
+        <p class="generalTitle">Total account on page:</p>
+        <p>{{userInfo.total}}</p>
+        <p class="generalTitle">Total Author</p>
+        <p>{{userInfo.author}}</p>
+        <p class="generalTitle">Total Viewer</p>
+        <p>{{userInfo.total-userInfo.author}}</p>
+      </div>
+    </div>
+    <div class="authorizeSection">
+      <h4 class="title text-light">Need authorize manga</h4>
+      <div class="displaySection">
+        <div class="card-image" *ngFor="let manga of listNeedAuthorize; let i=index">
+          <img class="cover" [src]="manga?.cover">
+          <div class="card-image-option">
+            <button class="btnview btn" (click)="clickPreview(manga)"><i class="fas fa-eye"></i></button>
+            <button class="btnaccept btn" (click)="clickAuthorize(manga)"><i class="fas fa-check"></i></button>
+            <button class="btndelete btn" disabled (click)="clickDelete(manga)"><i class="fas fa-trash"></i></button>
+          </div>
+          <p class="text-center text-dark">{{manga?.updated_at}}</p>
+        </div>
+        <div class="text-muted text-center" *ngIf="listNeedAuthorize.length ==0">
+          No manga need to be authorized
+        </div>
+      </div>
+      <button class="btn btn-block btn-secondary" disabled *ngIf="nextAuthorize ==null">No more result</button>
+      <button class="btn btn-block btn-info" *ngIf="nextAuthorize !=null">Show more</button>
+    </div>
+    <div class="disableSection">
+      <h4 class="title text-light">Manga Currently Disabled</h4>
+      <div class="displaySection">
+        <div class="card-image" *ngFor="let manga of listDisabledManga">
+          <img class="cover" [src]="manga.cover">
+          <div class="card-image-option">
+            <button class="btnview btn"><i class="fas fa-eye"></i></button>
+            <button class="btnaccept btn"><i class="fas fa-check"></i></button>
+            <button class="btndelete btn"><i class="fas fa-trash"></i></button>
+          </div>
+          <p class="text-center text-dark">{{manga?.updated_at}}</p>
+        </div>
+        <div class="text-muted text-center" *ngIf="listDisabledManga.length ==0">
+          No manga need to be authorized
+        </div>
+      </div>
+      <button class="btn btn-block btn-info">Show more</button>
+    </div>
+    <div class="hotSection">
+      <h4 class="text-light text-center">Top Manga</h4>
+      <div class="displaySection">
+        <div>
+          <div class="rankTab" *ngFor="let manga of listHot; let i=index">
+            <div class="rankFirst">
+              <div class="rankNumber text-center">
+                {{i+1}}
+              </div>
+            </div>
+            <div>
+              <div class="rankName">
+                {{manga?.name}}
+              </div>
+            </div>
+            <div>
+              <a routerLink="/manga/{{manga.id}}" class="btn btn-block">
+                <i class="fas fa-eye"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="authorSection">
+      Lorem, ipsum dolor.
+    </div>
+    <div class="prevWindows" *ngIf="previewWindows && previewManga != null">
+      <img [src]="previewManga?.cover" class="coverPrev">
+      <div class="infoPrev">
+        <div class="namePrev">
+          <h4>{{previewManga?.name}}</h4>
+          <hr>
+        </div>
+        <div class="alias">
+          <p>Alias: 
+            <span *ngFor="let alias of aliasPreview" class="atag bg-info">
+              {{alias}}
+            </span>
+          </p>
+        </div>
+        <div class="descrip">
+          <p class="text-info">Description:</p>
+          <p class="text-muted">
+            {{previewManga?.description}}
+          </p>
+        </div>
+        <div class="tags">
+          <p>Tag: 
+            <span *ngFor="let tag of tagPreview" class="atag bg-info">
+              {{tag?.name}}
+            </span>
+          </p>
+        </div>
+        <div class="status">
+          <p>Status: 
+            <span class="text-success" *ngIf="previewManga?.status == 1">Ongoing</span>
+            <span class="text-warning" *ngIf="previewManga?.status == 2">Finished</span>
+            <span class="text-danger" *ngIf="previewManga?.status == 3">Suspended</span>
+          </p>
+        </div>
+        <button (click)="clickClosePreview()" type="button" class="btn btn-outline-dark">Close</button>
+      </div>
+      <div class="similarPrev">
+        <h4 class="text-center">Similar to</h4>
+        <hr>
+        <h5 class="text-center text-muted">Not available now</h5>
+      </div>
+    </div>
+  </div>
+</div>
