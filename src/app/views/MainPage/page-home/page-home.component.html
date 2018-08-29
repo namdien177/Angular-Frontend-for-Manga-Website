@@ -1,10 +1,10 @@
 <div class="container-fluid" [class.ngDisplayOn] = "!loading" [class.ngDisplayOff] = "loading">
   <div class="update-block">
     <h2>New Updates: </h2>
-    <p class="currentPage">Page: 2</p>
+    <p class="currentPage">Page: {{page}}</p>
     <div class="update-manga">
       <div class="prevbtn">
-        <button class="btn btn-block btn-default rounded-0" (click)="prevbtn" [class.d-none]="!prevcondition">
+        <button class="btn btn-block btn-default rounded-0" (click)="prevbtn()" [class.d-none]="!prevcondition">
           <
         </button>
       </div>
@@ -24,7 +24,7 @@
           </a>
       </div>
       <div class="nextbtn">
-        <button class="btn btn-block btn-default rounded-0" (click)="nextbtn">
+        <button class="btn btn-block btn-default rounded-0" [class.d-none]="!nextcondition" (click)="nextbtn()">
           >
         </button>
       </div>
@@ -32,9 +32,20 @@
   </div>
   
   <div class="ranking-block">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate sit provident hic molestiae incidunt assumenda velit blanditiis vero? Beatae ullam at quia? Laborum molestiae alias expedita perspiciatis delectus, aliquam aut.
-    <br>
-    rank
+    <h4>Top Manga</h4>
+    <div class="displayRank">
+      <div class="aManga" *ngFor="let manga of listRank; let i=index">
+        <div class="stt">
+          {{i+1}}
+        </div>
+        <div class="name">
+          {{manga?.name}}
+        </div>
+        <a routerLink="/manga/{{manga?.id}}" class="view">
+          <i class="fas fa-eye"></i>
+        </a>
+      </div>
+    </div>
   </div>  
 
   <div class="newrising-block">

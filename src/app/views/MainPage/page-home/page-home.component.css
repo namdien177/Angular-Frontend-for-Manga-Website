@@ -112,8 +112,60 @@ RANKING BLOCK
 .ranking-block{
     grid-area: ranking;
     z-index: 1;
+    display: grid;
+    grid-template-areas: 
+    'title'
+    'display';
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content auto;
+    grid-gap: 0.5em;
+    justify-content: start;
 }
 
+.ranking-block > h4{
+    grid-area: title;
+}
+
+.ranking-block > .displayRank{
+    grid-area: display;
+    display: flex;
+    flex-direction: column;
+}
+
+.ranking-block > .displayRank > .aManga{
+    display: grid;
+    grid-template-areas: 
+    'stt name view';
+    grid-template-columns: 60px auto 60px;
+    grid-template-rows: 1fr;
+    grid-gap: 0.3em;
+    justify-content: stretch;
+    align-content: center;
+    padding: 0.5em 0;
+    margin: 3px 0;
+    background: white;
+    color: black;
+    border: 1px solid black
+}
+
+.ranking-block > .displayRank > .aManga > .stt{
+    grid-area: stt;
+    justify-self: center;
+    color: black
+}
+
+.ranking-block > .displayRank > .aManga > .name{
+    grid-area: name;
+    height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ranking-block > .displayRank > .aManga > .view{
+    grid-area: view;
+    justify-self: center
+}
 
 /**
 newrising BLOCK

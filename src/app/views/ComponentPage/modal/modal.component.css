@@ -1,5 +1,5 @@
 .modal-windows{
-    position: absolute;
+    position: fixed;
     display: block;
     width: 100% !important;
     height: 100% !important;

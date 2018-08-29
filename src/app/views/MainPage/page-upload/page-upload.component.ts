@@ -206,7 +206,6 @@ export class PageUploadComponent implements OnInit {
         this.errorDialogTitle='ERROR !!!'
         this.errorDialog = true;
         this.errorDialogMessage = 'The action cannot be done! Can you review all the fields to the correct format? :(';
-        console.log('dit me chung may');
         this.loading = false;
       }else{
         this.prepareForm();
@@ -243,17 +242,26 @@ export class PageUploadComponent implements OnInit {
    */
   toSubmit:boolean = true;
   validateRequest(){
-    if(this.formData.name.length <3 || this.formData.name.length >60){
-      this.nameErr="Keep name length more than 3 characters and under 60 character ok?"
+    if(this.formData.name.length <3 || this.formData.name.length >200){
+      this.nameErr="Keep name length more than 3 characters and under 200 character ok?"
+      this.errorDialogTitle ='Opps!!!'
+      this.errorDialog = true;
+      this.errorDialogMessage = 'Some input was in wrong format! Please recheck all field again!';
       this.toSubmit = false
     }
     if(this.formData.description.length <3 || this.formData.description.length >400){
       this.descriptionErr="Wah description is limited with at lease 3 characters and maximum 300 characters only!"
-      this.toSubmit = false
+      this.toSubmit = false;
+      this.errorDialogTitle ='Opps!!!'
+      this.errorDialog = true;
+      this.errorDialogMessage = 'Some input was in wrong format! Please recheck all field again!';
     }
     if(this.listChoosenTag.length <1){
       this.tagErr="You must add at least 1 tag for the manga!";
-      this.toSubmit = false
+      this.toSubmit = false;
+      this.errorDialogTitle ='Opps!!!'
+      this.errorDialog = true;
+      this.errorDialogMessage = 'Some input was in wrong format! Please recheck all field again!';
     }
   }
 

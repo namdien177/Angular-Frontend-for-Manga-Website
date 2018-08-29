@@ -1,6 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { MangaServicesService } from '../../../../services/manga-services.service';
 import * as jsondata from '../../../../model/JSONmodel';
+import { Manga } from '../../../../model/manga';
+import { ApiLaravelService } from '../../../../services/api-laravel.service';
 
 @Component({
   selector: 'app-page-home',
@@ -11,11 +13,13 @@ export class PageHomeComponent implements OnInit {
 
   loading:boolean = true;
   displayList:jsondata.MangaAllJSON[] = [];
+  page:number = 1;
 
   jsonManga:jsondata.MangaJSON;
 
   ngOnInit() {
     this.loadList(4);
+    this.getListRank();
   }
   
   loadList(displayNumber:number): void {
@@ -24,11 +28,14 @@ export class PageHomeComponent implements OnInit {
         // @ts-ignore
         this.jsonManga = listmanga;
         this.getLastestChap(this.jsonManga);
+        //@ts-ignore
+        this.page = listmanga.meta.current_page;
       }
     )
   }
 
   getLastestChap(jsonMangaList){
+    let tempDisplay:jsondata.MangaAllJSON[] = [];
     jsonMangaList.data.forEach(aManga => {
       this.mangaservice.getMangaAuthor(aManga.id).subscribe(listAuthor=>{
         let unit = new jsondata.MangaAllJSON;
@@ -38,11 +45,13 @@ export class PageHomeComponent implements OnInit {
         this.mangaservice.getListMangaChap(aManga.id).subscribe(listChap=>{
           //@ts-ignore
           unit.newestChap = listChap.meta.total;
-          this.displayList.push(unit);
+          tempDisplay.push(unit);
           this.loading = false;
         });
+      });
     });
-  })}
+    this.displayList = tempDisplay;
+  }
 
   nextcondition = true;
   nextbtn() {
@@ -85,7 +94,18 @@ export class PageHomeComponent implements OnInit {
     }
   }
 
+  listRank:Manga[] = [];
+  getListRank(){
+    this.apilara.getDataGet('manga/hottest/10').subscribe(res=>{
+      if(res != null){
+        //@ts-ignore
+        this.listRank = res.data;
+      }
+    });
+  }
+
   constructor(
-    private mangaservice:MangaServicesService) { }
+    private mangaservice:MangaServicesService,
+    private apilara:ApiLaravelService) { }
 
 }
