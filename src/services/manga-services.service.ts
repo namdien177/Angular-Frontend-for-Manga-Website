@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import * as jsonmodel from '../model/JSONmodel';
-import {ApiLaravelService} from './api-laravel.service';
+import { ApiLaravelService } from './api-laravel.service';
 import { AppTokenService } from './app-token.service';
 import { Bookmark } from '../model/bookmark';
 
@@ -39,9 +39,9 @@ export class MangaServicesService {
     }
   }
 
-  getListMangaAuthor(idAuthor, link?):Observable<jsonmodel.MangaJSON[]>{
+  getListMangaAuthor(idAuthor, link?): Observable<jsonmodel.MangaJSON[]> {
     if (!link) {
-      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPIAuthor+'/'+idAuthor+'/recent-update').pipe(
+      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPIAuthor + '/' + idAuthor + '/recent-update').pipe(
         tap(recievedList => recievedList),
         catchError(error => of([
 
@@ -57,9 +57,9 @@ export class MangaServicesService {
     }
   }
 
-  getRecentUpdateList(displayNumber:number, link?:string): Observable<jsonmodel.MangaJSON[]>{
+  getRecentUpdateList(displayNumber: number, link?: string): Observable<jsonmodel.MangaJSON[]> {
     if (!link) {
-      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPIManga + '/updatelist/'+displayNumber).pipe(
+      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPIManga + '/updatelist/' + displayNumber).pipe(
         tap(recievedList => recievedList),
         catchError(error => of([
 
@@ -80,18 +80,18 @@ export class MangaServicesService {
       tap(recievedList => recievedList),
       catchError(error => of([
 
-    ])));
+      ])));
   }
 
-  getAliasOf(idManga):Observable<jsonmodel.AliasJson[]>{
+  getAliasOf(idManga): Observable<jsonmodel.AliasJson[]> {
     return this.http.get<jsonmodel.AliasJson[]>(this.urlAPIManga + '/' + idManga + '/aliases').pipe(
       tap(recievedList => recievedList),
       catchError(error => of([
 
-    ])));
+      ])));
   }
 
-  getMangaAuthor(idManga:number): Observable<jsonmodel.AuthorJSON[]> {
+  getMangaAuthor(idManga: number): Observable<jsonmodel.AuthorJSON[]> {
     return this.http.get<jsonmodel.AuthorJSON[]>(this.urlAPIManga + '/' + idManga + '/getauthor').pipe(
       tap(recievedList => recievedList),
       catchError(error => of([
@@ -115,123 +115,123 @@ export class MangaServicesService {
       ])));
   }
 
-  getMangaChapImage(idManga:number, idChap:number): Observable<jsonmodel.MangaCoverJSON[]>{
-    return this.http.get<jsonmodel.MangaCoverJSON[]>(this.urlAPIManga+'/'+idManga+'/chap/'+idChap).pipe(
-        tap(recievedList => recievedList),
-        catchError(error => of([
-  
+  getMangaChapImage(idManga: number, idChap: number): Observable<jsonmodel.MangaCoverJSON[]> {
+    return this.http.get<jsonmodel.MangaCoverJSON[]>(this.urlAPIManga + '/' + idManga + '/chap/' + idChap).pipe(
+      tap(recievedList => recievedList),
+      catchError(error => of([
+
       ]))
     )
   }
 
-  getListMangaChap(id:number, link?): Observable<jsonmodel.ChapJSON[]> {
-      if (!link) {
-        return this.http.get<jsonmodel.ChapJSON[]>(this.urlAPIManga+'/'+id+"/chap").pipe(
-          tap(recievedList => recievedList),
-          catchError(error => of([
-  
-          ]))
-        );
-      } else {
-        return this.http.get<jsonmodel.ChapJSON[]>(link).pipe(
-          tap(recievedList => recievedList),
-          catchError(error => of([
-  
-          ]))
-        );
-      }
+  getListMangaChap(id: number, link?): Observable<jsonmodel.ChapJSON[]> {
+    if (!link) {
+      return this.http.get<jsonmodel.ChapJSON[]>(this.urlAPIManga + '/' + id + "/chap").pipe(
+        tap(recievedList => recievedList),
+        catchError(error => of([
+
+        ]))
+      );
+    } else {
+      return this.http.get<jsonmodel.ChapJSON[]>(link).pipe(
+        tap(recievedList => recievedList),
+        catchError(error => of([
+
+        ]))
+      );
+    }
   }
 
   /**
    * Bookmark a manga. Return type is object JSON message
    * @param manga passed manga to bookmark
    */
-  bookmark(id){
-    return this.apiLaravel.getDataGetResponse('manga/'+ id+"/bookmark/"+this.token.getIDUser());
+  bookmark(id) {
+    return this.apiLaravel.getDataGetResponse('manga/' + id + "/bookmark/" + this.token.getIDUser());
   }
 
   /**
    * Un-bookmark a manga. Return type is object JSON message
    * @param manga passed manga to unbookmark
    */
-  unbookmark(id){
-    return this.apiLaravel.getDataGetResponse('manga/'+ id+"/unbookmark/"+this.token.getIDUser());
+  unbookmark(id) {
+    return this.apiLaravel.getDataGetResponse('manga/' + id + "/unbookmark/" + this.token.getIDUser());
   }
 
-  markRead(bookmark:Bookmark){
-    return this.apiLaravel.getDataGetResponse('manga/'+bookmark.idManga+"/read/"+this.token.getIDUser());
+  markRead(bookmark: Bookmark) {
+    return this.apiLaravel.getDataGetResponse('manga/' + bookmark.idManga + "/read/" + this.token.getIDUser());
   }
 
-  markReadID(idManga){
-    return this.apiLaravel.getDataGetResponse('manga/'+idManga+"/read/"+this.token.getIDUser());
+  markReadID(idManga) {
+    return this.apiLaravel.getDataGetResponse('manga/' + idManga + "/read/" + this.token.getIDUser());
   }
 
-  markUnRead(bookmark:Bookmark){
-    return this.apiLaravel.getDataGetResponse('manga/'+bookmark.idManga+"/unread/"+this.token.getIDUser());
+  markUnRead(bookmark: Bookmark) {
+    return this.apiLaravel.getDataGetResponse('manga/' + bookmark.idManga + "/unread/" + this.token.getIDUser());
   }
 
-  markUnReadID(idManga){
-    return this.apiLaravel.getDataGetResponse('manga/'+idManga+"/unread/"+this.token.getIDUser());
+  markUnReadID(idManga) {
+    return this.apiLaravel.getDataGetResponse('manga/' + idManga + "/unread/" + this.token.getIDUser());
   }
 
-  isAuthorOfThis(idManga:number){
+  isAuthorOfThis(idManga: number) {
     let formData = {
       idUser: this.token.getIDUser(),
-      idManga:idManga
+      idManga: idManga
     }
-    return this.apiLaravel.getDataPostResponse('author/manga',formData);
+    return this.apiLaravel.getDataPostResponse('author/manga', formData);
   }
 
-  countAView(idManga, idChap){
+  countAView(idManga, idChap) {
     let ob = {
       tokenView: this.token.getTokenRead()
     }
-    return this.apiLaravel.getDataPost('manga/'+idManga+"/chap/"+idChap+"/count/"+this.token.getIDUser(),ob);
+    return this.apiLaravel.getDataPost('manga/' + idManga + "/chap/" + idChap + "/count/" + this.token.getIDUser(), ob);
   }
 
-  getViewCount(idManga, idChap?){
-    if(idChap){
-      return this.apiLaravel.getDataGet('manga/'+idManga+"/chap/"+idChap+"/count/getcount");
-    }else{
-      return this.apiLaravel.getDataGet('manga/'+idManga+'/getview');
+  getViewCount(idManga, idChap?) {
+    if (idChap) {
+      return this.apiLaravel.getDataGet('manga/' + idManga + "/chap/" + idChap + "/count/getcount");
+    } else {
+      return this.apiLaravel.getDataGet('manga/' + idManga + '/getview');
     }
   }
 
-  searchManga(searchString:string, result:number = 4, order:string = 'asc', condi:number = 0): Observable<jsonmodel.MangaJSON[]>{
-    if(!searchString.trim()){
+  searchManga(searchString: string, result: number = 4, order: string = 'asc', condi: number = 0): Observable<jsonmodel.MangaJSON[]> {
+    if (!searchString.trim()) {
       return of([]);
     }
-    if(result >0){
-      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPI+'/search?name='+searchString+'&result='+result+'&order='+order+'&condi='+condi)
+    if (result > 0) {
+      return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPI + '/search?name=' + searchString + '&result=' + result + '&order=' + order + '&condi=' + condi)
+        .pipe(
+          tap(found => found),
+          catchError(error => of(null))
+        )
+    }
+    return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPI + '/search?name=' + searchString)
       .pipe(
         tap(found => found),
         catchError(error => of(null))
       )
-    }
-    return this.http.get<jsonmodel.MangaJSON[]>(this.urlAPI+'/search?name='+searchString)
-    .pipe(
-      tap(found => found),
-      catchError(error => of(null))
-    )
   }
 
-  searchTagManga(typedString:string): Observable<TagManga[]>{
-    if( !typedString.trim()){
+  searchTagManga(typedString: string): Observable<TagManga[]> {
+    if (!typedString.trim()) {
       return of([]);
     }
-    return this.http.get<TagManga[]>(this.urlAPITags+'/search?name='+typedString)
-    .pipe(
-      tap(foundList => foundList),
-      catchError(error=> of(null))
-    );
+    return this.http.get<TagManga[]>(this.urlAPITags + '/search?name=' + typedString)
+      .pipe(
+        tap(foundList => foundList),
+        catchError(error => of(null))
+      );
   }
 
-  uploadManga(formData){
-    return this.apiLaravel.getDataPost('content/upload',formData);
+  uploadManga(formData) {
+    return this.apiLaravel.getDataPost('content/upload', formData);
   }
 
-  updateManga(formData):Observable<jsonmodel.ResponseMessage[]>{
-    return this.apiLaravel.getDataPostResponse('content/updateManga',formData);
+  updateManga(formData): Observable<jsonmodel.ResponseMessage[]> {
+    return this.apiLaravel.getDataPostResponse('content/updateManga', formData);
   }
 
   constructor(
